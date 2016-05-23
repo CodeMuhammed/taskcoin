@@ -1,0 +1,54 @@
+<div class="panel panel-default col-xs-12 col-sm-8 col-sm-offset-2" style=" padding:0;border-radius:0;margin-bottom:0">
+     <div class="panel-heading" style="background-color:#fff; border-bottom:2px solid #ccc;
+         box-shadow:0em .3em .3em #ccc; width:100%;height:50px; z-index:100000000">
+         <img src="img/logof.png" alt="paystack.io" style="height:30px">
+         <span class="pull-right" style="margin-top:.4em">
+             <i class="icon fa fa-refresh" style="font-size:1.6em; font-weight:bold;margin-right:.6em"></i>
+             <i class="icon fa fa-times" ng-click="cancelTask()" style="font-size:1.6em; font-weight:bold;margin-right:.6em"></i>
+         </span>
+     </div>
+      <div class="panel-body" style="min-height:800px;">
+         <span class="init"  ng-hide="init.host">
+              <span>
+                  <pal size="60" loading="{{!init.host}}"></pal>
+                  <span style="display:block; margin-top:1em">{{init.msg}}</span>
+              </span>
+         </span>
+         <span class="init" ng-show="init.host && !init.auth">
+              <span >
+                  <b>Please login to checkout</b>
+                  <form name="authentication" class=""
+                      style="margin-top:1em"
+                      novalidate ng-submit="login(person)">
+                     <div class="form-group" style="padding:0">
+                         <input name="username" type="text" class="form-control"
+                         required ng-model="person.username" placeholder="Username" ng-click="resetError()">
+                     </div>
+                     <div class="form-group" style="padding:0">
+                         <input name="password" type="password" class="form-control"
+                         required ng-model="person.password" placeholder="Password" ng-click="resetError()">
+                     </div>
+                     <div class="clearfix"></div>
+                     <div class="alert alert-warning" style="padding:1; margin-top:1em" ng-show="init.loginError">
+                           {{init.msg}}
+                     </div>
+                     <div class="form-group" style="padding:0">
+                        <button type="submit" class="btn btn-primary btn-block"
+                           ng-disabled="authentication.$invalid || authenticating">
+                            <span ng-show="!authenticating">Login</span>
+                            <span ng-show="authenticating">
+                                <pal size="10" loading="{{authenticating}}"></pal>
+                                loading
+                            </span>
+                        </button>
+                     </div>
+                  </form>
+              </span>
+         </span>
+
+         <span ng-show="init.host && init.auth" style="padding:0">
+              <h4><b>Paytask user review</b></h4><hr>
+              <span style="font-size:1.2em"><b>* How did you first learn about paytask ?<b></span> <br>
+         </span>
+      </div>
+ </div>
