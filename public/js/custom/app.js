@@ -90,6 +90,12 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
          verifyUser: verifyUser
      };
 })
+
+//============================ Home controller =============================
+.controller('homeController' , function($scope){
+
+})
+
 //============================ pay controller ==============================
 .controller('payController' , function($scope , $window , $state , $timeout , taskcoinAuth){
      //send a message to host to send back his credentials for authentication
@@ -156,64 +162,4 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
              $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
          } , 3000)
      }
-})
-
-//taskcoin loading logo directive
-.directive('pal' , function($interval){
-     return {
-         restrict : 'E',
-         scope : {
-             loading: '@'
-         },
-         link : function(scope , elem , attrs){
-             scope.size = attrs['size']?attrs['size']:30;
-         },
-         template : '<div style="height:{{size}}px;width:{{size}}px; display:inline-block">'+
-                         '<div ng-repeat="cell in cells" style="width:{{size/3}}px;height:{{size/3}}px; border:0px solid #ccc;'+
-                             'background-color:{{cell.color}}; display:block; float:left"></div>'+
-                     '</div>',
-
-         controller: 'palController'
-     };
-})
-.controller('palController' , function($scope , $interval){
-    //LOGO ANIMATED JS
-    $scope.cells = [];
-    var activeFormIndex = 0;
-    //
-    var formCells = [
-      [0,2,6,5],
-      [0,6,8,5],
-      [2,6,8,5],
-      [0,2,8,5]
-    ];
-
-    //init cells for 3x3
-    var initCells = function (formation){
-        $scope.cells = [];
-        for(var i=0; i<9; i++){
-            $scope.cells.push({
-              color:'FFF'
-            });
-            if(formation.indexOf(i)>=0){
-                 $scope.cells[i].color = '#FF7F00';
-            }
-        }
-    }
-
-    //
-    initCells(formCells[activeFormIndex]);
-
-     //animate LOGO
-     var interval = $interval(function () {
-
-          if($scope.loading == 'true'){
-              initCells(formCells[activeFormIndex%4]);
-              activeFormIndex++;
-          }
-          else{
-             initCells(formCells[0]);
-          }
-
-     }, 400);
 });

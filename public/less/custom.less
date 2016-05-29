@@ -50,10 +50,147 @@
 @import "responsive-utilities.less";
 @import "hover.less";
 
+ .home-container{
+     overflow-x: hidden;
+     width:100%;
+     padding:0;
+     .intro-container{
+       padding:0;
+       height:41.5em; //dynamic @TODO
+       background:#2098D1 url('../img/home-bg.jpg') center center no-repeat;
+       background-size: cover;
+     .intro{
+         padding:0;
+         height:41.5em; //dynamic @TODO
+         background-color: rgba(0, 0, 0, .3);
+         .menu{
+            padding:1em 1em;
+            .logo{
+               img{
+                  height:30px;
+               }
+            }
+            .nav-item{
+               display:inline-block;
+               color:darken(#fff , 20%);
+               font-size:1.5em;
+               font-weight:bold;
+               margin-left:1em;
+               padding:.5em;
+               &:hover{
+                  color: #FFC73F;
+               }
+            }
+            .login{
+               display:inline-block;
+               color:darken(#fff , 20%);
+               font-size:1.5em;
+               font-weight:bold;
+               border:2px solid #FFF;
+               padding:.3em .5em;
+               border-radius:30px;
+               &:hover{
+                  border:2px solid  #FFC73F;
+               }
+            }
+         }
+         .tag-line{
+             margin-top:6em;
+             font-style: oblique;
+             color:darken(#fff , 20%);
+             h1{
+                font-size:5.5em;
+                text-shadow: .01em .01em .01em silver
+             }
+             h2{
+               font-size:2.5em;
+             }
+             span{
+               display:inline-block;
+               color:darken(#fff , 15%);
+               font-size:1.5em;
+               font-weight:bold;
+               border:2px solid #fff;
+               padding:.5em;
+               margin-top:2em;
+               border-radius:30px;
+               &:hover{
+                  border:2px solid  #FFC73F;
+               }
+             }
+         }
+     }
+   }
 
-body{
-   a{
-      outline:none;
+   //
+   .beta-queue{
+      padding:1.5em 1.5em;
+      background-color: #005EA5;
+      .stat-form{
+           .stat{
+               font-size:2em;
+               font-weight:bold;
+               font-style: oblique;
+               margin-right: 3em;
+               color:#fff;
+           }
+           .input{
+              input{
+                display:inline-block;
+                width: 40%;
+                color:darken(#fff , 20%);
+                font-size:1.5em;
+                font-weight:bold;
+                border:2px solid #ccc;
+                padding:.5em;
+                border-radius:30px 0 0 30px;
+                background-color: lighten(#005EA5, 10%);
+                &:focus{
+                   background-color:#fff;
+                   color:#000;
+                }
+              }
+           }
+           .btn{
+             display:inline-block;
+             color:darken(#fff , 20%);
+             font-size:1.5em;
+             font-weight:bold;
+             border:2px solid #ccc;
+             padding:.5em;
+             margin-top:-.35em;
+             border-radius:0 30px 30px 0;
+             &:hover{
+                border:2px solid  #FFC73F;
+             }
+           }
+      }
+   }
+
+   //
+   .footer{
+       background-color: lighten(#282C34, 0%);
+       border-top: 2px solid softlight(#fff, #000);
+       padding:1em 1em;
+       .copy-right{
+         display:inline-block;
+         color:darken(#fff , 40%);
+         font-size:1.2em;
+         font-weight:bold;
+         padding:.5em;
+       }
+       .foot-item{
+          .pull-right;
+          display:inline-block;
+          color:darken(#fff , 40%);
+          font-size:1.3em;
+          font-weight:bold;
+          margin-left:1em;
+          padding:.5em;
+          &:hover{
+             color:#FFF;
+          }
+       }
    }
  }
 
@@ -63,7 +200,7 @@ body{
     padding:1em 2em;
     margin-left:50%;
     transform: translate(-50%, 50%);
-    color: #FF7F00;
+    color: #FDC740;
     background-color:#fff !important;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
     z-index:2000000;
