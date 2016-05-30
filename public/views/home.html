@@ -5,7 +5,6 @@
                      <span class="logo pull-left">
                           <img src="img/logof.png" alt="taskcoin.io" />
                      </span>
-                     
                      <span class="pull-right login">Invited ? login</span>
                 </div>
                 <div class="col-xs-12 tag-line text-center">
@@ -19,22 +18,94 @@
           </div>
      </div>
      <div class="col-xs-12 beta-queue">
-          <div class="col-xs-12 stat-form text-center">
-               <span class="stat">375 users on queue</span>
-               <span class="input">
-                  <input type="email" placeholder="Enter your Email address">
-                </span>
-               <span class="btn" ng-disabled="true">join beta test</span>
+       <div class="stat-form col-xs-12 col-sm-6 text-left">
+           <span class="stat">Reserve your spot <i>with 375 others.</i></span>
+       </div>
+          <div class="col-xs-12 col-sm-6 stat-form text-center">
+               <form name="betaqueue" novalidate>
+                 <span class="input">
+                    <input type="email" placeholder="Enter your Email address"
+                        ng-model="email" required>
+                  </span>
+                 <span class="btn" ng-disabled="betaqueue.$invalid"
+                    ng-click="reserveSpot(email)">join beta test</span>
+               </form>
+          </div>
+     </div>
+     <div class="col-xs-12 value-container">
+       <div class="col-xs-12 col-sm-8 col-sm-offset-2 value">
+         <h1>
+              micro-payments powered by <typeform good-text="micro-tasks" bad-text="credit-cards"></typeform>.
+         </h1>
+         <h2>
+             Without the high transaction cost and security vulnerabilities associated with
+             credit card payments, taskcoin is your best bet for spending and recieving micro-payments.
+         </h2>
+       </div>
+       <div class="col-xs-12 benefits">
+             <div class="benefit col-xs-12 col-sm-4">
+                  <span class="b-heading">
+                       <img src="img/logo.png" alt="" />
+                  </span>
+                  <span class="b-body">
+                       <h3>Create taskcoins</h3>
+                       <h4>Collect real-time customer feedbacks by
+                         creating tasks on taskcoin.io</h4>
+                  </span>
+             </div>
+             <div class="benefit col-xs-12 col-sm-4">
+                  <span class="b-heading">
+                      <i class="icon fa fa-money"></i>
+                  </span>
+                  <span class="b-body">
+                       <h3>Recieve taskcoins</h3>
+                       <h4>Collect micro-payments from customers by integrating
+                         taskcoin checkout button on your website</h4>
+                  </span>
+             </div>
+             <div class="benefit col-xs-12 col-sm-4">
+                  <span class="b-heading">
+                        <i class="icon fa fa-cart-plus"></i>
+                  </span>
+                  <span class="b-body">
+                       <h3>spend taskcoins</h3>
+                       <h4>pay for products and services at verified merchant websites by completing micro-tasks</h4>
+                  </span>
+             </div>
+       </div>
+
+     </div>
+     <div class="col-xs-12 beta-queue">
+       <div class="stat-form col-xs-12 col-sm-6 text-left">
+           <span class="stat">Reserve your spot <i>with 375 others.</i></span>
+       </div>
+          <div class="col-xs-12 col-sm-6 stat-form text-center">
+               <form name="betaqueue" novalidate>
+                 <span class="input">
+                    <input type="email" placeholder="Enter your Email address"
+                        ng-model="email" required>
+                  </span>
+                 <span class="btn" ng-disabled="betaqueue.$invalid"
+                    ng-click="reserveSpot(email)">join beta test</span>
+               </form>
           </div>
      </div>
      <div class="col-xs-12 footer">
        <span class="copy-right">
            <i class="icon fa fa-copyright"></i> 2015 taskcoin.io
        </span>
+
+       <span class="tel pull-right">
+           <a href="email:hello@taskcoin.io" class="icon fa fa-envelope"></a>
+       </span>
+       <span class="tel pull-right">
+           <a href="tel:+2348101639251" class="icon fa fa-phone"></a>
+       </span>
+       <hr class="hr">
        <span class="foot-item">About</span>
+       <span class="foot-item">blog</span>
        <span class="foot-item">API</span>
        <span class="foot-item">Jobs</span>
        <span class="foot-item">Concept</span>
-       <span class="foot-item">Contact</span>
      </div>
 </div>

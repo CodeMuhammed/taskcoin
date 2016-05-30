@@ -93,7 +93,10 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
 
 //============================ Home controller =============================
 .controller('homeController' , function($scope){
-
+      //
+      $scope.reserveSpot = function(emailAddress){
+          console.log(emailAddress);
+      }
 })
 
 //============================ pay controller ==============================
@@ -162,4 +165,103 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
              $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
          } , 3000)
      }
+})
+
+//taskcoin loading logo directive
+.directive('typeform' , function($interval){
+     return {
+         restrict : 'E',
+         scope : true,
+         link : function(scope , elem , attrs){
+             console.log(attrs);
+             scope.goodText = attrs['goodText'];
+             scope.badText = attrs['badText'];
+         },
+         template : '<span style="display:inline-block;">'+
+              '<span style="display: inline-block;text-decoration:{{active==\'good\'?\'\':\'line-through\'}}; color:{{active==\'good\'?\'green\':\'red\'}}">{{text}}<cursor></cursor></span>'+
+          '</span>',
+
+         controller: 'typeformController'
+     };
+})
+
+.directive('cursor' , function($interval){
+     return {
+         restrict : 'E',
+         scope : true,
+         template : '<span style="display:inline-block;">'+
+              '<span style="display: inline-block; width:.1em; color:#000">{{cursor}}</span>'+
+          '</span>',
+
+         controller: 'cursorController'
+     };
+})
+
+.controller('cursorController' , function($scope , $interval){
+      $scope.cursor = true;
+
+      $interval(function(){
+         $scope.cursor == '|'? $scope.cursor = ' ':$scope.cursor ='|';
+      }  , 600);
+})
+
+.controller('typeformController' , function($scope , $interval  , $timeout){
+    $timeout(function(){
+         $scope.text = $scope.badText;
+         $scope.active = 'bad';
+    });
+
+
+    //
+    $interval(function(){
+         type($scope.active=='good'?$scope.badText:$scope.goodText);
+    } , 5000);
+
+    //
+    function type(text){
+         eraseText(function(){
+              console.log('text cleared');
+              $scope.active=='good'? $scope.active='bad': $scope.active='good';
+              typeText(text);
+         });
+    }
+
+    //
+    function eraseText(cb){
+         var interval = $interval(function(){
+              removeText();
+         } , 100);
+
+         function removeText(){
+             if($scope.text.length >0){
+                  $scope.text = $scope.text.substr(0 ,  $scope.text.length-1);
+             }
+             else{
+                 $interval.cancel(interval);
+                 cb();
+             }
+         }
+    }
+
+     //
+    function typeText(text){
+         var txt = text;
+
+         var interval = $interval(function(){
+              var ch = txt.substr(0 , 1)
+              txt = txt.substr(1);
+              addText(ch);
+         } , 200);
+
+         function addText(ch){
+             if($scope.text.length == text.length){
+                 $interval.cancel(interval);
+             }
+             else{
+                 $scope.text+=ch;
+             }
+
+         }
+    }
+
 });
