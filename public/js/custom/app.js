@@ -91,11 +91,35 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
      };
 })
 
+//
+.factory('Mailer'  , function($q , $http , $timeout){
+     //
+     function reserveSpot(emailAddress){
+         var promise = $q.defer();
+         $timeout(function(){
+             promise.resolve('Thank you for joining the beta list');
+         } , 3000);
+         return promise.promise;
+     }
+
+     //
+     return{
+        reserveSpot:reserveSpot
+     }
+})
+
 //============================ Home controller =============================
-.controller('homeController' , function($scope){
+.controller('homeController' , function($scope , Mailer){
       //
       $scope.reserveSpot = function(emailAddress){
-          console.log(emailAddress);
+          Mailer.reserveSpot(emailAddress).then(
+              function(status){
+                   console.log(status);
+              },
+              function(err){
+                  console.log(err);
+              }
+          );
       }
 })
 

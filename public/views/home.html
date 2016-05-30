@@ -17,7 +17,7 @@
                 </div>
           </div>
      </div>
-     <div class="col-xs-12 beta-queue">
+     <div class="col-xs-12 beta-queue" bs-affix>
        <div class="stat-form col-xs-12 col-sm-6 text-left">
            <span class="stat">Reserve your spot <i>with 375 others.</i></span>
        </div>
@@ -27,8 +27,8 @@
                     <input type="email" placeholder="Enter your Email address"
                         ng-model="email" required>
                   </span>
-                 <span class="btn" ng-disabled="betaqueue.$invalid"
-                    ng-click="reserveSpot(email)">join beta test</span>
+                 <button class="btn btn-default btn-sm" ng-disabled="betaqueue.$invalid"
+                    ng-click="reserveSpot(email)">join beta test</button>
                </form>
           </div>
      </div>
@@ -38,8 +38,8 @@
               micro-payments powered by <typeform good-text="micro-tasks" bad-text="credit-cards"></typeform>.
          </h1>
          <h2>
-             Without the high transaction cost and security vulnerabilities associated with
-             credit card payments, taskcoin is your best bet for spending and recieving micro-payments.
+              high transaction fees and security risks assocaited
+              with credit card micro-payments below 50 cents, makes taskcoin perfect for the job.
          </h2>
        </div>
        <div class="col-xs-12 benefits">
@@ -49,8 +49,10 @@
                   </span>
                   <span class="b-body">
                        <h3>Create taskcoins</h3>
-                       <h4>Collect real-time customer feedbacks by
-                         creating tasks on taskcoin.io</h4>
+                       <h4>
+                          Create micro-tasks and Gather feedbacks in realtime from millions
+                          of taskcoin users across the web.
+                       </h4>
                   </span>
              </div>
              <div class="benefit col-xs-12 col-sm-4">
@@ -58,9 +60,8 @@
                       <i class="icon fa fa-money"></i>
                   </span>
                   <span class="b-body">
-                       <h3>Recieve taskcoins</h3>
-                       <h4>Collect micro-payments from customers by integrating
-                         taskcoin checkout button on your website</h4>
+                       <h3>Merchants</h3>
+                       <h4>Collect micro-payments seemlessly from customers by Integrating taskcoin checkout in your websites and apps.</h4>
                   </span>
              </div>
              <div class="benefit col-xs-12 col-sm-4">
@@ -68,31 +69,16 @@
                         <i class="icon fa fa-cart-plus"></i>
                   </span>
                   <span class="b-body">
-                       <h3>spend taskcoins</h3>
-                       <h4>pay for products and services at verified merchant websites by completing micro-tasks</h4>
+                       <h3>Shop</h3>
+                       <h4>Buy apps, pay for articles at your favourite online news stand and so much more.</h4>
                   </span>
              </div>
        </div>
 
      </div>
-     <div class="col-xs-12 beta-queue">
-       <div class="stat-form col-xs-12 col-sm-6 text-left">
-           <span class="stat">Reserve your spot <i>with 375 others.</i></span>
-       </div>
-          <div class="col-xs-12 col-sm-6 stat-form text-center">
-               <form name="betaqueue" novalidate>
-                 <span class="input">
-                    <input type="email" placeholder="Enter your Email address"
-                        ng-model="email" required>
-                  </span>
-                 <span class="btn" ng-disabled="betaqueue.$invalid"
-                    ng-click="reserveSpot(email)">join beta test</span>
-               </form>
-          </div>
-     </div>
      <div class="col-xs-12 footer">
        <span class="copy-right">
-           <i class="icon fa fa-copyright"></i> 2015 taskcoin.io
+           <i class="icon fa fa-copyright"></i> 2016 taskcoin.io
        </span>
 
        <span class="tel pull-right">
