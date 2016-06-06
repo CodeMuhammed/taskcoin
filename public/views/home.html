@@ -1,41 +1,101 @@
+<!--Modal elements placed outside any divs-->
+<div class="col-xs-12 my-modal" ng-show="thankYou.show" ng-click="cancelThank()">
+      <div class="col-xs-12 col-sm-5 modal-box" alt="" />
+         <h2>{{thankYou.msg}}.</h2>
+         <h3>
+              We are gradually rolling out in batches, your invite code
+              will be sent to your email address within two weeks.
+         </h3>
+         <div class="col-xs-12 modal-footer" alt="" />
+            <span class="social ">Let's get social </span>
+            <span class="tel">
+                <a href="email:hello@taskcoin.io" class="icon fa fa-envelope"></a>
+            </span>
+            <span class="tel">
+                <a href="" class="icon fa fa-twitter"></a>
+            </span>
+            <span class="tel">
+                <a href="" class="icon fa fa-facebook"></a>
+            </span>
+            <span class="tel">
+                <a href="" class="icon fa fa-instagram"></a>
+            </span>
+            <span class="tel">
+                <a href="" class="icon fa fa-medium"></a>
+            </span>
+            <span class="tel">
+                <a href="tel:+2348101639251" class="icon fa fa-whatsapp"></a>
+            </span>
+         </div>
+      </div>
+</div>
+<div class="col-xs-12 my-modal" ng-show="auth" >
+      <div class="col-xs-12 col-sm-5 modal-box" alt="" />
+         <authy auth="auth"></authy>
+      </div>
+</div>
+
 <div class="col-xs-12 home-container">
+    <div class="col-xs-12 menu text-center">
+         <span class="logo pull-left">
+              <img src="img/logof.png" alt="taskcoin.io" />
+         </span>
+         <span class="pull-right login" ng-click="auth=!auth">Invited ? login</span>
+    </div>
      <div class="col-xs-12 intro-container">
            <div class="col-xs-12 intro">
-                <div class="col-xs-12 menu text-center">
-                     <span class="logo pull-left">
-                          <img src="img/logof.png" alt="taskcoin.io" />
-                     </span>
-                     <span class="pull-right login">Invited ? login</span>
-                </div>
-                <div class="col-xs-12 tag-line text-center">
+
+                <div class="col-xs-12 col-sm-7 tag-line text-left">
                      <h1>THE NEW MONEY</h1>
                      <h2>FOR MICRO-PAYMENTS</h2>
                      <span>
                          <i class="icon fa fa-youtube-play"></i>
                          Watch concept video
                      </span>
+
+                </div>
+                <div class="col-xs-12 col-sm-5 betalist text-left">
+                     <form name="betaqueue" novalidate>
+                         <h2>My email address is :</h2>
+                         <span class="input">
+                            <input type="email" class="form-control" placeholder="Enter your Email address"
+                                ng-model="betaUser.email" required>
+                          </span>
+
+                         <h2>I'ld love to use taskcoin for :</h2>
+                         <div class="radio" ng-click="changePurpose('merchant')">
+                              <label>
+                                  <input type="radio" ng-checked="purpose=='merchant'"/>
+                                  Receiving micro-payments on my website/app
+                              </label>
+                          </div>
+                          <div class="radio" ng-click="changePurpose('shop')">
+                               <label>
+                                   <input type="radio" ng-checked="purpose=='shop'"/>
+                                   Paying for services and products below $1 online
+                               </label>
+                           </div>
+                           <div class="radio" ng-click="changePurpose('feedback')">
+                                <label>
+                                    <input type="radio" ng-checked="purpose=='feedback'" />
+                                    Collecting feedbacks for my surveys
+                                </label>
+                            </div>
+
+                         <span class="join-betalist" ng-disabled="betaqueue.$invalid"
+                            ng-click="reserveSpot(betaUser)">
+                             Join beta-list
+                             <i class="icon fa fa-arrow-right"></i>
+                         </span>
+                    </form>
                 </div>
           </div>
      </div>
-     <div class="col-xs-12 beta-queue" bs-affix>
-       <div class="stat-form col-xs-12 col-sm-6 text-left">
-           <span class="stat">Reserve your spot <i>with 375 others.</i></span>
-       </div>
-          <div class="col-xs-12 col-sm-6 stat-form text-center">
-               <form name="betaqueue" novalidate>
-                 <span class="input">
-                    <input type="email" placeholder="Enter your Email address"
-                        ng-model="email" required>
-                  </span>
-                 <button class="btn btn-default btn-sm" ng-disabled="betaqueue.$invalid"
-                    ng-click="reserveSpot(email)">join beta test</button>
-               </form>
-          </div>
-     </div>
+
      <div class="col-xs-12 value-container">
        <div class="col-xs-12 col-sm-8 col-sm-offset-2 value">
          <h1>
-              micro-payments powered by <typeform good-text="micro-tasks" bad-text="credit-cards"></typeform>.
+              micro-payments powered by <span style="color:#005EA6">surveys</span>.
          </h1>
          <h2>
               high transaction fees and security risks assocaited
@@ -50,7 +110,7 @@
                   <span class="b-body">
                        <h3>Create taskcoins</h3>
                        <h4>
-                          Create micro-tasks and Gather feedbacks in realtime from millions
+                          Create micro-surveys and Gather feedbacks in realtime from millions
                           of taskcoin users across the web.
                        </h4>
                   </span>
@@ -85,7 +145,10 @@
            <a href="email:hello@taskcoin.io" class="icon fa fa-envelope"></a>
        </span>
        <span class="tel pull-right">
-           <a href="tel:+2348101639251" class="icon fa fa-phone"></a>
+           <a href="" class="icon fa fa-twitter"></a>
+       </span>
+       <span class="tel pull-right">
+           <a href="tel:+2348101639251" class="icon fa fa-whatsapp"></a>
        </span>
        <hr class="hr">
        <span class="foot-item">About</span>

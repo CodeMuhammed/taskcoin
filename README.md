@@ -1,2 +1,12 @@
-# taskcoin
-taskcoin.io micropayment processor
+
+
+                               
+
+       
+                              _____   _   __  _  _  ___  ___  _ _  _     _  ___
+                             |_   _| / \ / / | |/ /   _|/ _ \| | \| |   | |/ _ \
+                               | |  / _ \ \ \|   \   (_| |_| | | \  | _ | | |_| |
+                               |_| /_/ \_\/_/|_|\_\ ___|\___/|_|_|\_||_||_|\___/
+                                                
+					               A survey driven micro-payment processor
+								   
