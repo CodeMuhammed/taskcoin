@@ -21,8 +21,39 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
              })
              .state('dashboard' , {
                  url : '/dashboard',
+                 abstract : true,
                  templateUrl : 'views/dashboard.html',
                  controller : 'dashboardController',
+                 data :{}
+             })
+             .state('dashboard.survey' , {
+                 url : '/survey',
+                 templateUrl : 'views/dashboard.survey.html',
+                 controller : 'surveyController',
+                 data :{}
+             })
+             .state('dashboard.merchant' , {
+                 url : '/merchant',
+                 templateUrl : 'views/dashboard.merchant.html',
+                 controller : 'merchantController',
+                 data :{}
+             })
+             .state('dashboard.history' , {
+                 url : '/history',
+                 templateUrl : 'views/dashboard.history.html',
+                 controller : 'historyController',
+                 data :{}
+             })
+             .state('dashboard.search' , {
+                 url : '/search',
+                 templateUrl : 'views/dashboard.search.html',
+                 controller : 'searchController',
+                 data :{}
+             })
+             .state('dashboard.betalist' , {
+                 url : '/betalist',
+                 templateUrl : 'views/dashboard.betalist.html',
+                 controller : 'betalistController',
                  data :{}
              });
 
@@ -126,19 +157,20 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
 //============================ Home controller =============================
 .controller('homeController' , function($scope , $document ,  Mailer){
       //
-      $scope.purpose = 'shop';
-      $scope.changePurpose = function(purpose){
-          $scope.purpose = purpose
-      }
-
-      //
       $scope.betaUser = {
           email: '',
-          purpose: $scope.purpose,
+          purpose: '',
           date: '',
           inviteStatus: '',
           inviteId: ''
       };
+
+      //
+      $scope.purpose = 'shop';
+      $scope.changePurpose = function(purpose){
+          $scope.purpose = purpose;
+          $scope.betaUser.purpose = purpose;
+      }
 
       //
       $scope.thankYou = {show:false , msg:''};
@@ -167,8 +199,133 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
 })
 
 //
-.controller('dashboardController' , function($scope){
-       $scope.hello = 'Add every awesome stuff here';
+.controller('dashboardController' , function($scope , $state ,  authy){
+       //Logic that requires user to be authenticated goes here
+       authy.isAuth().then(
+          function(){
+
+          },
+          function(){
+              $state.go('home');
+          }
+       );
+
+       var currentState = '';
+       $scope.isActiveClass = function(state){
+           return currentState==state ? 'active' : '';
+       }
+
+       //Listen to state change events
+       $scope.$on('$stateChangeSuccess' , function(e , toS){
+            currentState = toS.url.substr(1);
+       });
+})
+
+//
+.controller('surveyController' , function($scope){
+       $scope.hello = 'survey';
+})
+
+//
+.controller('merchantController' , function($scope){
+       $scope.hello = 'merchant';
+})
+
+//
+.controller('historyController' , function($scope){
+       $scope.hello = 'history';
+})
+
+//
+.controller('searchController' , function($scope){
+       $scope.hello = 'search';
+})
+
+//
+.controller('betalistController' , function($scope , betalistFactory){
+       $scope.hello = 'betalist';
+       betalistFactory.getList().then(
+           function(data){
+                $scope.betalistArr = data;
+           },
+           function(err){
+              //@TODO handle error case here
+              alert('err');
+           }
+       );
+
+       //
+       $scope.inviteUser = function(user){
+           betalistFactory.inviteUser(user).then(
+               function(data){
+                   user.inviteId =  data;
+               },
+               function(err){
+                   //@TODO handle error case here
+                   alert('err');
+               }
+           );
+       }
+
+       //
+       $scope.isInvited = function(user){
+            return user.inviteId != '';
+       }
+})
+
+//
+.factory('betalistFactory' , function($q , $http , $timeout){
+      //
+      var betalist = [];
+
+      //
+      function getList(){
+          var promise = $q.defer();
+          if(betalist.length>0){
+              promise.resolve(betalist);
+          }
+          else{
+            //@TODO get betalist from database
+            $http({
+                method: 'GET',
+                url: '/betalist',
+            })
+            .success(function(data){
+                 betalist = data;
+                 promise.resolve(data);
+            })
+            .error(function(err){
+                promise.reject(err);
+            });
+          }
+
+          return promise.promise;
+      }
+
+      //
+      function inviteUser(user){
+           var promise = $q.defer();
+
+           $http({
+               method: 'POST',
+               url: '/betalist/invite',
+               data:user
+           })
+           .success(function(inviteId){
+                promise.resolve(inviteId);
+           })
+           .error(function(err){
+               promise.reject(err);
+           });
+
+           return promise.promise;
+      }
+
+      //
+      return {
+           getList : getList,
+           inviteUser:inviteUser
+      };
 })
 
 //============================ pay controller ==============================
@@ -262,7 +419,21 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
 
      //
      function isAuth(){
-        return authStatus;
+         var promise = $q.defer();
+         if(authStatus){
+             promise.resolve();
+         }
+         else{
+             login().then(
+                  function(){
+                      promise.resolve();
+                  },
+                  function(){
+                      promise.reject();
+                  }
+             );
+         }
+         return promise.promise;
      }
 
      //
@@ -303,7 +474,7 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
          console.log('login');
          authy.login(userAuth).then(
              function(status){
-                $state.go('dashboard');
+                $state.go('dashboard.survey');
              },
              function(err){
                  alert(err)

@@ -308,6 +308,105 @@
  }
 
  //
+ .dashboard {
+     padding:0;
+     .menu-tall{
+         padding:0;
+         background-color: #fff;
+         .top-m{
+             padding:.7em 6em;
+             .menu-icon{
+               .pull-left;
+               .visible-xs;
+               font-size:1.4em;
+               margin-right:1em;
+             }
+             .logo{
+                 .pull-left;
+                 img{
+                     height:30px;
+                 }
+             }
+             .profile{
+                 .pull-right;
+             }
+             @media (max-width: @screen-sm-max) {
+               padding:.6em 1em;
+               .logo{
+                   .pull-left;
+                   img{
+                       height:20px;
+                   }
+               }
+               .profile{
+                   .pull-right;
+               }
+             }
+         }
+         .bottom-m{
+             padding:.7em 6em;
+             background-color: darken(@gray , 10%);
+             .menu-items{
+                 padding: 0;
+                 .item{
+                     display:inline-block;
+                     float:left;
+                     text-decoration: none;
+                     list-style:none;
+                     padding:.6em 1em;
+                     font-size:1.3em;
+                     &:first-child{
+                        padding-left:0;
+                     }
+                     &:hover{
+                       a{
+                           color:lighten(@gray-light, 30%);
+                       }
+                     }
+                     a{
+                         outline: none;
+                         text-decoration: none;
+                         color:@gray-light;
+                     }
+                 }
+                 .active{
+                     a{
+                        color:lighten(@gray-light, 50%);
+                     }
+                 }
+             }
+             .action{
+                 .pull-right;
+                 outline: none;
+             }
+             @media (max-width: @screen-sm-max) {
+                padding:.6em 1em;
+                .menu-items{
+                   .item{
+                        .col-xs-6;
+                        padding-left:0;
+                   }
+                }
+                .action{
+                    .pull-left;
+                }
+             }
+         }
+     }
+
+     //
+     .child-view{
+         padding:0;
+         .betalist{
+              padding:2em 6em;
+              .table-container{
+                  padding:0;
+              }
+         }
+     }
+ }
+
+ //
  .my-modal{
      position: fixed;
      top: 0px;
@@ -407,4 +506,9 @@
            }
        }
      }
+ }
+
+ //General css rules
+ .no-outline{
+      outline:none !important;
  }

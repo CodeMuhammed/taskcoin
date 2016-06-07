@@ -1,0 +1,34 @@
+<div class="betalist">
+     <div class="alert alert-info">List of first 100 users who have registered for betalist
+        interested in survey or merchant feature and yet to be invited.
+      </div>
+      <div class="col-xs-12 table-container">
+            <table class="table table-striped">
+                  <thead>
+                       <th>S/N</th>
+                       <th>Email Addess</th>
+                       <th>Reg. Date</th>
+                       <th>Interest</th>
+                       <th>Invite Id</th>
+                       <th>Action</th>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="betaUser in betalistArr">
+                          <td>{{$index+1}}</td>
+                          <td>{{betaUser.email}}</td>
+                          <td>{{betaUser.date | date:'fullDate'}}</td>
+                          <td>{{betaUser.purpose}}</td>
+                          <td>{{betaUser.inviteId==''?'-': betaUser.inviteId}}</td>
+                          <td>
+                             <button class="btn btn-primary btn-xs no-outline"
+                                ng-hide="isInvited(betaUser)" ng-click="inviteUser(betaUser)"
+                                >Invite</button>
+                             <span ng-show="isInvited(betaUser)">
+                               Invited <i class="icon fa fa-check" style="color:green"></i>
+                             </span>
+                          </td>
+                      </tr>
+                  </tbody>
+            </table>
+      </div>
+</div>

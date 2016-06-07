@@ -1,1 +1,39 @@
-{{hello}}
+<div class="col-xs-12 dashboard">
+      <div class="col-xs-12 menu-tall">
+            <div class="col-xs-12 top-m">
+                  <span class="menu-icon">
+                      <i class="icon fa fa-navicon"></i>
+                  </span>
+                  <span class="logo">
+                      <img src="img/logof.png" alt="" />
+                  </span>
+                  <span class="profile">
+                        @user profile
+                        <i class="icon fa fa-caret-down"></i>
+                  </span>
+            </div>
+            <div class="col-xs-12 bottom-m">
+                  <ul class="menu-items">
+                       <li class="item" ng-class="isActiveClass('survey')">
+                         <a href="#!/dashboard/survey">My surveys</a>
+                       </li>
+                       <li class="item" ng-class="isActiveClass('merchant')">
+                         <a href="#!/dashboard/merchant">Merchant</a>
+                       </li>
+                       <li class="item" ng-class="isActiveClass('history')">
+                         <a href="#!/dashboard/history">History</a>
+                       </li>
+                       <li class="item" ng-class="isActiveClass('betalist')">
+                           <a href="#!/dashboard/betalist">Betalist</a>
+                       </li>
+                  </ul>
+                  <button class="btn btn-navbar btn-primary action">
+                      <i class="icon fa fa-plus"></i>
+                      Create taskcoins
+                  </button>
+            </div>
+      </div>
+      <div class="col-xs-12 child-view">
+           <ui-view></ui-view>
+      </div>
+</div>
