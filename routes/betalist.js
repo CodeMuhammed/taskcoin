@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var ObjectId = require('mongodb').ObjectId;
+var bCrypt = require('bcrypt-nodejs');
 
 /*This api handles sending thank-you emails to users who joins the beta list
 *And adds their email details to Betalist collection in the database
@@ -37,7 +38,6 @@ module.exports = function(emailClient , dbResource){
 		 })
 	   .post(function(req , res){
 					req.body.date = Date.now();
-					console.log(req.body);
 
 					Betalist.update({email:req.body.email} , req.body, {upsert:true} , function(err , stats){
 						   if(err){
@@ -55,8 +55,8 @@ module.exports = function(emailClient , dbResource){
         .post(function(req , res){
 					   //
 					   (function generateId(cb){
-                  Users.find({})
-								     .sort({inviteId:-1})
+                  Betalist.find({})
+								     .sort({"inviteId":-1})
 										 .limit(1)
 										 .toArray(function(err , result){
 											    if(err){
@@ -66,10 +66,13 @@ module.exports = function(emailClient , dbResource){
 													else{
 														 if(result[0]){
 																req.body.inviteId = (++result[0].inviteId)+'';
+																console.log(req.body.inviteId);
+																req.body._id = ObjectId(req.body._id);
 																updateBetalist(req.body)
 														 }
 														 else{
 																req.body.inviteId = defaultId+'';
+																console.log(req.body.inviteId);
 																req.body._id = ObjectId(req.body._id);
 																updateBetalist(req.body)
 														 }
@@ -92,8 +95,15 @@ module.exports = function(emailClient , dbResource){
 
 						 //
 						 function createUser(betauser){
-							   var newUser = {}
-							   Users.update({email:newUser.email} , newUser, {upsert:true} , function(err , stats){
+							   var newUser = {
+									   auth: {
+											  username:betauser.email,
+												password:bCrypt.hashSync(betauser.inviteId , null , null)
+										 }
+										 //@TODO design user schema
+								 };
+
+							   Users.update({'auth.username':betauser.email} , newUser, {upsert:true} , function(err , stats){
 			 						   if(err){
 			 								  console.log(err);
 												res.status(500).send('Err creating new user');

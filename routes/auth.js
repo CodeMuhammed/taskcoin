@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 module.exports = function(passport){
-  //
-  var authorize = function(){
+   //
+   var authorize = function(){
       return function(req , res , next){
            if(req.isAuthenticated()){
                next();
@@ -11,49 +11,25 @@ module.exports = function(passport){
               res.status(500).send('User is not authorized');
            }
       }
-  }
+   }
 
-	//A catch all logic for this route
-   router.use(function(req , res , next){
-   	  if(req.path === '/logout'){
-         next();
-   	  }
-   	 else if(req.isAuthenticated()){
-		    res.status(200).send(req.user);
-	   }
-
-     else{
-         next();
-   	  }
-   });
-
-   var status = function(req , res , next){
+   router.post('/signup' , passport.authenticate('signup'));
+   router.post('/login' , passport.authenticate('login') , function(req , res){
        if(req.isAuthenticated()){
-		       res.status(200).send(req.user);
-	     }
-
-	     else {
-		      res.status(401).send('invalid username or password');
-	     }
-   };
-
-
-   router.post('/signup' , passport.authenticate('signup') , function(req , res){
-        status(req , res);
+           res.status(200).send(req.user);
+       }
+       else{
+           console.log('here not auth donno why');
+       }
    });
 
-   router.post('/signin' , passport.authenticate('login') , function(req , res){
-        status(req , res);
-   });
+	 router.get('/logout' , function(req, res){
+		   req.logout();
+		   res.status(200).send('Logged out successfully');
+	 });
 
-	router.get('/logout' , function(req, res){
-		console.log('logout called');
-		req.logout();
-		res.status(200).send('Logged out successfully');
-	});
-
-	return {
+	 return {
       router:router,
       authorize : authorize
-  };
+   };
 };

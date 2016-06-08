@@ -166,7 +166,7 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
       };
 
       //
-      $scope.purpose = 'shop';
+      $scope.purpose = '';
       $scope.changePurpose = function(purpose){
           $scope.purpose = purpose;
           $scope.betaUser.purpose = purpose;
@@ -202,13 +202,15 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
 .controller('dashboardController' , function($scope , $state ,  authy){
        //Logic that requires user to be authenticated goes here
        authy.isAuth().then(
-          function(){
-
+          function(stutus){
+             console.log(status);
           },
-          function(){
+          function(err){
+              console.log(err);
               $state.go('home');
           }
        );
+       //
 
        var currentState = '';
        $scope.isActiveClass = function(state){
@@ -403,9 +405,10 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
           auth:'=auth'
        },
        template:'<div class="col-xs-12 invite-auth">'+
-                   '<h1>Enter your invite code {{hello}}</h1>'+
+                   '<h2>Enter your username and password below</h2>'+
                    '<form name="login" novalidate>'+
-                      '<input type="password" ng-model="userAuth.inviteCode" class="form-control" required/>'+
+                      '<input type="text" ng-model="userAuth.username" class="form-control" placeholder="Email address" required/>'+
+                      '<input type="password" ng-model="userAuth.password" class="form-control" placeholder="Password" required/>'+
                       '<span class="btn btn-default pull-right" ng-disabled="login.$invalid"ng-click="loginUser(userAuth)">continue</span>'+
                    '</form>'+
                    '<span class="pull-left" ng-click="auth=!auth">cancel</span>'+
@@ -424,12 +427,13 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
              promise.resolve();
          }
          else{
-             login().then(
-                  function(){
+             //The _ is when you don't really provide useful variables
+             login({username:'_' , password:'_'}).then(
+                  function(user){
                       promise.resolve();
                   },
-                  function(){
-                      promise.reject();
+                  function(err){
+                      promise.reject(err);
                   }
              );
          }
@@ -437,12 +441,20 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
      }
 
      //
-     function login(){
+     function login(userAuth){
        var promise = $q.defer();
-       $timeout(function(){
-            authStatus = true;
-            promise.resolve('Loggin in successful');
-       } , 3000);
+       $http({
+           method: 'POST',
+           url: '/auth/login',
+           data:userAuth
+       })
+       .success(function(user){
+           authStatus = true;
+           promise.resolve(user);
+       })
+       .error(function(err){
+           promise.reject(err);
+       });
 
        return promise.promise;
      }
@@ -471,9 +483,9 @@ angular.module('taskcoin' , ['ui.router' ,'mgcrea.ngStrap'])
     $scope.userAuth = {};
     //
     $scope.loginUser = function(userAuth){
-         console.log('login');
          authy.login(userAuth).then(
-             function(status){
+             function(user){
+                console.log('logged iin');
                 $state.go('dashboard.survey');
              },
              function(err){

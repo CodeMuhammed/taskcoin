@@ -13,11 +13,8 @@ module.exports = function(passport  , dbResource){
 	//models
 	var Users = dbResource.model('Users');
 
-	//Get collections or models needed for this routes
-	//var food = dbResource.model('food');
-
 	var isValidPassword = function(user , password){
-		return bCrypt.compareSync(password , user.password);
+		 return bCrypt.compareSync(password , user.auth.password);
 	};
 
 	var createHash = function(password){
@@ -31,47 +28,44 @@ module.exports = function(passport  , dbResource){
 
   //Tells passport how to get users full info
 	passport.deserializeUser(function(_id , done){
-		//query database or cache for actual data
-		Users.find({'_id' : ObjectId(_id)}).toArray(function(err , result){
-
-			if(err){
-				return done(err ,false);
-			}
-			else if(!result[0]){
-				return done(null ,false);
-			}
-			else {
-			    return done(null , result[0]);
-			}
-		});
+			//query database or cache for actual data
+			Users.find({'_id' : ObjectId(_id)}).toArray(function(err , result){
+				if(err){
+					return done(err ,false);
+				}
+				else if(!result[0]){
+					return done(null ,false);
+				}
+				else {
+				    return done(null , result[0]);
+				}
+			});
 	});
 
 	//Strategy to use when logging in existing users
-	passport.use('login' , new passportLocal.Strategy({passReqToCallback: true},function(req , username , password , done){
-		//check if username exists
-		//check if password is correct
-		//sign in user
-
+	passport.use('login' , new passportLocal.Strategy({passReqToCallback: true} , function(req ,username , password , done){
+		//
 		if(req.isAuthenticated()){
-			return done(null , req.user);
+			  console.log('user already logged in');
+				return done(null , req.user);
 		}
-		else {
-			Users.find({'username':username}).toArray(function(err , result){
-				if(err){
-					return done(err);
-				}
-				else if(!result[0]){
-					 return done(null , false);
-				}
+		else{
+			Users.find({'auth.username':username}).toArray(function(err , result){
+						if(err){
+							return done(null , false);
+						}
+						else if(!result[0]){
+							 return done(null , false);
+						}
+						else if(!isValidPassword(result[0] , password)){
+							return done(null , false);
+						}
+						else{
+							return done(null , result[0]);
+						}
+				});
+		}
 
-				else if(!isValidPassword(result[0] , password)){
-					return done(null , false);
-				}
-				 else{
-					 return done(null , result[0]);
-				 }
-			});
-		}
 	}));
 
 	//Strategy to use when signing up a new user
@@ -105,7 +99,6 @@ module.exports = function(passport  , dbResource){
 		}
 
 	}));
-
 
   //Return the passport object with the local-strategy initialized
   return passport;

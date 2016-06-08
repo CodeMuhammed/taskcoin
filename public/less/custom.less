@@ -314,12 +314,16 @@
          padding:0;
          background-color: #fff;
          .top-m{
+             border-bottom:1px solid lighten(@gray , 50%);
              padding:.7em 6em;
              .menu-icon{
                .pull-left;
                .visible-xs;
                font-size:1.4em;
                margin-right:1em;
+               &:hover{
+                   color:@brand-primary;
+               }
              }
              .logo{
                  .pull-left;
@@ -402,6 +406,9 @@
               .table-container{
                   padding:0;
               }
+              @media (max-width: @screen-sm-max) {
+                 padding:1em;
+              }
          }
      }
  }
@@ -483,8 +490,8 @@
            }
        }
        .invite-auth{
-           h1{
-             font-size:2em;
+           h2{
+             font-size:1.7em;
            }
            input{
              margin-top:2em;

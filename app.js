@@ -29,10 +29,6 @@ dbResource.initColls(['Betalist' ,  'Users'] , function(){
 		//Auth module
 		var Auth =  require('./routes/auth')(localStrategy);
 
-		//start passport
-		app.use(passport.initialize());
-  	app.use(passport.session());
-
 		//Configure the express app
 		app.set('view cache' , true);
 	  app.set('views' , 'views');
@@ -49,6 +45,10 @@ dbResource.initColls(['Betalist' ,  'Users'] , function(){
 		app.use(bodyParser.urlencoded({extended:true}));
 		app.use(cookieParser());
 		app.use(session({resave:true , secret:'taskcoin' , saveUninitialized:true}));
+
+		//start passport
+		app.use(localStrategy.initialize());
+		app.use(localStrategy.session());
 
 		//configure express static
 	  app.use(express.static(path.join(__dirname , 'public')));

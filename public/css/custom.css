@@ -11776,6 +11776,7 @@ fieldset[disabled] .home-container .intro-container .intro .betalist .join-betal
   background-color: #fff;
 }
 .dashboard .menu-tall .top-m {
+  border-bottom: 1px solid #d5d5d5;
   padding: .7em 6em;
 }
 .dashboard .menu-tall .top-m .menu-icon {
@@ -11798,6 +11799,9 @@ fieldset[disabled] .home-container .intro-container .intro .betalist .join-betal
   td.dashboard .menu-tall .top-m .menu-icon {
     display: table-cell !important;
   }
+}
+.dashboard .menu-tall .top-m .menu-icon:hover {
+  color: #005EA6;
 }
 .dashboard .menu-tall .top-m .logo {
   float: left !important;
@@ -11876,6 +11880,11 @@ fieldset[disabled] .home-container .intro-container .intro .betalist .join-betal
 .dashboard .child-view .betalist .table-container {
   padding: 0;
 }
+@media (max-width: 991px) {
+  .dashboard .child-view .betalist {
+    padding: 1em;
+  }
+}
 .my-modal {
   position: fixed;
   top: 0px;
@@ -11952,8 +11961,8 @@ fieldset[disabled] .home-container .intro-container .intro .betalist .join-betal
 .my-modal .modal-box .modal-footer .tel a:hover {
   color: #78a0d7 !important;
 }
-.my-modal .modal-box .invite-auth h1 {
-  font-size: 2em;
+.my-modal .modal-box .invite-auth h2 {
+  font-size: 1.7em;
 }
 .my-modal .modal-box .invite-auth input {
   margin-top: 2em;
