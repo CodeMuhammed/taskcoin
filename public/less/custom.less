@@ -315,10 +315,10 @@
          background-color: #fff;
          .top-m{
              border-bottom:1px solid lighten(@gray , 50%);
+             box-shadow:0px 2px 4px rgba(0 , 0 , 0 , .3);
              padding:.7em 6em;
              .menu-icon{
                .pull-left;
-               .visible-xs;
                font-size:1.4em;
                margin-right:1em;
                &:hover{
@@ -331,7 +331,9 @@
                      height:30px;
                  }
              }
-             .profile{
+             .profile-btn{
+                  display:inline-block;
+                  margin-top:.5em;
                  .pull-right;
              }
              @media (max-width: @screen-sm-max) {
@@ -342,14 +344,14 @@
                        height:20px;
                    }
                }
-               .profile{
+               .profile-btn{
                    .pull-right;
                }
              }
          }
          .bottom-m{
              padding:.7em 6em;
-             background-color: darken(@gray , 10%);
+             background-color: darken(@gray , 30%);
              .menu-items{
                  padding: 0;
                  .item{
@@ -402,12 +404,12 @@
      .child-view{
          padding:0;
          .betalist{
-              padding:2em 6em;
+              padding:4em 6em;
               .table-container{
                   padding:0;
               }
               @media (max-width: @screen-sm-max) {
-                 padding:1em;
+                 padding:2em 1em;
               }
          }
      }

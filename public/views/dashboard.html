@@ -1,18 +1,18 @@
 <div class="col-xs-12 dashboard">
       <div class="col-xs-12 menu-tall">
             <div class="col-xs-12 top-m">
-                  <span class="menu-icon">
+                  <span class="menu-icon" ng-show="isSmall()" ng-click="toggleSubmenu()">
                       <i class="icon fa fa-navicon"></i>
                   </span>
                   <span class="logo">
                       <img src="img/logof.png" alt="" />
                   </span>
-                  <span class="profile">
+                  <span class="profile-btn btn btn-xs btn-default" data-animation="am-flip-x" placement="auto" bs-dropdown="dropdown" aria-haspopup="true" aria-expanded="false">
                         @user profile
                         <i class="icon fa fa-caret-down"></i>
                   </span>
             </div>
-            <div class="col-xs-12 bottom-m">
+            <div class="col-xs-12 bottom-m" ng-show="submenuVisible">
                   <ul class="menu-items">
                        <li class="item" ng-class="isActiveClass('survey')">
                          <a href="#!/dashboard/survey">My surveys</a>
