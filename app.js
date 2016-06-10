@@ -53,9 +53,13 @@ dbResource.initColls(['Betalist' ,  'Users'] , function(){
 		//configure express static
 	  app.use(express.static(path.join(__dirname , 'public')));
 
-		//Betalist route events
+		//routes implementations
 		app.use('/betalist' , require('./routes/betalist')(emailClient , dbResource));
     app.use('/auth' , Auth.router);
+		app.use('/profile' , Auth.authorize() , require('./routes/profile')(dbResource));
+
+
+
 		//handle errors using custom or 3rd party middle-wares
 		app.use(errorHandler());
 

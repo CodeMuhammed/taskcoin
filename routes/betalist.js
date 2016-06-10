@@ -99,8 +99,31 @@ module.exports = function(emailClient , dbResource){
 									   auth: {
 											  username:betauser.email,
 												password:bCrypt.hashSync(betauser.inviteId , null , null)
+										 },
+										 /*merchants:{
+											   //@virtual-Coll  The user name of this user will be attached to every website
+												 //he creates
+												 billingInfo:{}
+										 },
+										 taskcoinCreators:{
+											    //@virtual-Coll The username of this user will be attached to every survey
+													//he creates
+										 },
+										 historyLogs:{
+										    notificationSettings:{
+											      email:true,
+														sms:true
+										    }
+											 //@virtual-Coll The username of this user will be attached to every log entry
+											 //he creates
+										 },*/
+										 userInfo:{
+											   email:betauser.email,
+											   firstname:'@firstname',
+												 lastname:'@lastname',
+												 phone:'+@code@phone',
+												 companyname:'@parent company name'
 										 }
-										 //@TODO design user schema
 								 };
 
 							   Users.update({'auth.username':betauser.email} , newUser, {upsert:true} , function(err , stats){

@@ -7,15 +7,15 @@
                   <span class="logo">
                       <img src="img/logof.png" alt="" />
                   </span>
-                  <span class="profile-btn btn btn-xs btn-default" data-animation="am-flip-x" placement="auto" bs-dropdown="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @user profile
-                        <i class="icon fa fa-caret-down"></i>
-                  </span>
+                  <button class="btn btn-navbar btn-primary action pull-right">
+                      <i class="icon fa fa-plus"></i>
+                      Create taskcoins
+                  </button>
             </div>
             <div class="col-xs-12 bottom-m" ng-show="submenuVisible">
                   <ul class="menu-items">
-                       <li class="item" ng-class="isActiveClass('survey')">
-                         <a href="#!/dashboard/survey">My surveys</a>
+                       <li class="item" ng-class="isActiveClass('surveys')">
+                         <a href="#!/dashboard/surveys/overview">My surveys</a>
                        </li>
                        <li class="item" ng-class="isActiveClass('merchant')">
                          <a href="#!/dashboard/merchant">Merchant</a>
@@ -27,10 +27,11 @@
                            <a href="#!/dashboard/betalist">Betalist</a>
                        </li>
                   </ul>
-                  <button class="btn btn-navbar btn-primary action">
-                      <i class="icon fa fa-plus"></i>
-                      Create taskcoins
-                  </button>
+                  <span class="profile-btn btn btn-xs btn-default pull-right" data-animation="am-flip-x" placement="auto" bs-dropdown="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{user.userInfo.email}}
+                        <i class="icon fa fa-caret-down"></i>
+                  </span>
+
             </div>
       </div>
       <div class="col-xs-12 child-view">

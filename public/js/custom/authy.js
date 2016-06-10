@@ -63,12 +63,19 @@ angular.module('authyComponent' , [])
          //
          function logout(){
              var promise = $q.defer();
-             $timeout(function(){
-               authStatus = false;
-               promise.resolve('logged out successfully');
-             } , 3000);
+             $http({
+                 method: 'GET',
+                 url: '/auth/logout'
+             })
+             .success(function(user){
+                 authStatus = false;
+                 promise.resolve(true);
+             })
+             .error(function(err){
+                 promise.reject(err);
+             });
 
-             var promise = $q.defer();
+             return promise.promise;
          }
 
          //
@@ -87,7 +94,7 @@ angular.module('authyComponent' , [])
              authy.login(userAuth).then(
                  function(user){
                     console.log('logged iin');
-                    $state.go('dashboard.survey');
+                    $state.go('dashboard.surveys.overview');
                  },
                  function(err){
                      alert(err)

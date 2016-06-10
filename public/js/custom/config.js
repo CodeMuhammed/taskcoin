@@ -25,12 +25,40 @@ angular.module('config' , [])
                      controller : 'dashboardController',
                      data :{}
                  })
-                 .state('dashboard.survey' , {
-                     url : '/survey',
-                     templateUrl : 'views/dashboard.survey.html',
-                     controller : 'surveyController',
-                     data :{}
-                 })
+                     .state('dashboard.surveys' , {
+                         url : '/surveys',
+                         abstract : true,
+                         templateUrl : 'views/dashboard.surveys.html',
+                         controller : 'surveysController',
+                         data :{}
+                     })
+                         .state('dashboard.surveys.overview' , {
+                             url : '/overview',
+                             templateUrl : 'views/dashboard.surveys.overview.html',
+                             controller : 'surveysOverviewController',
+                             data :{}
+                         })
+                         .state('dashboard.surveys.edit' , {
+                             url : '/edit',
+                             templateUrl : 'views/dashboard.surveys.edit.html',
+                             controller : 'surveysEditController',
+                             data :{}
+                         })
+                         .state('dashboard.surveys.preview' , {
+                             url : '/preview',
+                             templateUrl : 'views/dashboard.surveys.preview.html',
+                             controller : 'surveysPreviewController',
+                             data :{}
+                         })
+                         .state('dashboard.surveys.stats' , {
+                             url : '/stats',
+                             templateUrl : 'views/dashboard.surveys.stats.html',
+                             controller : 'surveysStatsController',
+                             data :{}
+                         })
+
+
+
                  .state('dashboard.merchant' , {
                      url : '/merchant',
                      templateUrl : 'views/dashboard.merchant.html',

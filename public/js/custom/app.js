@@ -2,99 +2,87 @@ angular.module('taskcoin' , [
      'ui.router' ,'mgcrea.ngStrap' ,
      'config' , 'authyComponent' ,
      'general.factories' , 'checkoutModule',
-     'betalistModule' , 'ngSanitize'
+     'betalistModule' , 'ngSanitize',
+     'homeModule'
 ])
 
 //
-.factory('Mailer'  , function($q , $http , $timeout){
-     //
-     function reserveSpot(betaUser){
-        var promise = $q.defer();
-        $http({
-    			 method:'POST',
-    			 url:'/betalist',
-    			 data:betaUser
-    		 })
-    		 .success(function(status){
-    			 promise.resolve(status);
-    		 })
-    		 .error(function(err){
-    			 promise.reject(err);
-    		 });
+.factory('profile' , function($q , $http , $timeout){
+      var user;
 
-         return promise.promise;
-     }
-
-     //
-     return{
-        reserveSpot:reserveSpot
-     }
-})
-
-//============================ Home controller logged out state=============================
-.controller('homeController' , function($scope , $document ,  Mailer){
       //
-      $scope.betaUser = {
-          email: '',
-          purpose: '',
-          date: '',
-          inviteStatus: '',
-          inviteId: ''
+      function getUser(){
+          var promise = $q.defer();
+          if(user){
+             console.log('here');
+             promise.resolve(user);
+          }
+          else{
+             $http({
+                method:'GET',
+                url:'/profile'
+             })
+             .success(function(data){
+                 user = data;
+                 promise.resolve(user);
+             })
+             .error(function(err){
+                promise.reject(err);
+             });
+          }
+
+          return promise.promise;
+      }
+
+      //
+      return{
+          getUser:getUser
       };
-
-      //
-      $scope.purpose = '';
-      $scope.changePurpose = function(purpose){
-          $scope.purpose = purpose;
-          $scope.betaUser.purpose = purpose;
-      }
-
-      //
-      $scope.thankYou = {show:false , msg:''};
-      $scope.reserveSpot = function(betaUser){
-          Mailer.reserveSpot(betaUser).then(
-              function(status){
-                   $scope.thankYou.msg = status;
-                   $scope.thankYou.show = true;
-                   $document.find('html').css({overflow:'hidden'});
-              },
-              function(err){
-                  console.log(err);
-
-              }
-          );
-      }
-
-      //
-      $scope.cancelThank = function(){
-        $scope.thankYou.show = false;
-        $document.find('html').css({overflow:'auto' , overflowX:'hidden'});
-      }
-
-     //
-     $scope.auth = false;
 })
 
 //======================== Dashboard controller logged in state=============================
-.controller('dashboardController' , function($scope , $state ,$timeout,  authy , myMedia){
+.controller('dashboardController' , function($scope , $state ,$timeout,  authy , myMedia , profile){
        //Logic that requires user to be authenticated goes here
        authy.isAuth().then(
           function(stutus){
-             console.log(status);
+             profile.getUser().then(
+                 function(user){
+                     $scope.user = user;
+                 },
+                 function(err){
+                      console.log(err);
+                 }
+             );
           },
           function(err){
-              console.log(err);
               $state.go('home');
           }
        );
 
+       //logic for logging out
+      $scope.logout = function(){
+          authy.logout().then(
+              function(){
+                  console.log('logged out');
+                  $state.go('home');
+              },
+              function(err){
+                  alert(err);
+              }
+          );
+      }
+
        $scope.dropdown = [
-   {text: '<i class="fa fa-download"></i>&nbsp;Another action', href: '#anotherAction', active: true},
-   {text: '<i class="fa fa-globe"></i>&nbsp;Display an alert', click: '$alert("Holy guacamole!")'},
-   {text: '<i class="fa fa-external-link"></i>&nbsp;External link', href: '/auth/facebook', target: '_self'},
-   {divider: true},
-   {text: 'Separated link', href: '#separatedLink'}
- ];
+           {text: '<i class="fa fa-user"></i>&nbsp;Profile', href: '#', active: true},
+           {divider: true},
+           {text: '<i class="fa fa-code"></i>&nbsp;API', href: '#', active: true},
+           {divider: true},
+           {text: '<i class="fa fa-dollar"></i>&nbsp;Pricing', href: '#', active: true},
+           {divider: true},
+           {text: '<i class="fa fa-phone-square"></i>&nbsp;Help center', href: '#', active: true},
+           {divider: true},
+           {text: '<i class="fa fa-sign-out"></i>&nbsp;Logout', active: true , click:"logout()"},
+      ];
 
        var currentState = '';
        $scope.isActiveClass = function(state){
@@ -121,14 +109,35 @@ angular.module('taskcoin' , [
              if(myMedia.xs){
                  $scope.submenuVisible = false;
              }
-             currentState = toS.url.substr(1);
+             currentState = $state.$current.url.source.split('/')[2];
        });
 
 })
 
+//Abstract state controller for surveys route
+.controller('surveysController' , function($scope , $state){
+       console.log('surveys abstract controller loaded');
+})
+
 //
-.controller('surveyController' , function($scope){
-       $scope.hello = 'survey';
+.controller('surveysOverviewController' , function($scope , $state){
+       $scope.hello = 'surveys/overview';
+})
+
+//
+.controller('surveysEditController' , function($scope , $state){
+       $scope.hello = 'surveys/edit';
+       console.log($state);
+})
+
+//
+.controller('surveysPreviewController' , function($scope , $state){
+       $scope.hello = 'surveys/preview';
+})
+
+//
+.controller('surveysStatsController' , function($scope , $state){
+       $scope.hello = 'surveys/stats';
 })
 
 //

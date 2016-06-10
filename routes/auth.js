@@ -5,6 +5,7 @@ module.exports = function(passport){
    var authorize = function(){
       return function(req , res , next){
            if(req.isAuthenticated()){
+               console.log('User authorized');
                next();
            }
            else{
