@@ -35,13 +35,19 @@ angular.module('taskcoin' , [
       }
 
       //
+      function reset(){
+          user = undefined;
+      }
+
+      //
       return{
-          getUser:getUser
+          getUser:getUser,
+          reset:reset
       };
 })
 
 //======================== Dashboard controller logged in state=============================
-.controller('dashboardController' , function($scope , $state ,$timeout,  authy , myMedia , profile){
+.controller('dashboardController' , function($scope , $state ,$timeout,  authy , myMedia , profile , betalistFactory){
        //Logic that requires user to be authenticated goes here
        authy.isAuth().then(
           function(stutus){
@@ -64,6 +70,8 @@ angular.module('taskcoin' , [
           authy.logout().then(
               function(){
                   console.log('logged out');
+                  profile.reset();
+                  betalistFactory.reset();
                   $state.go('home');
               },
               function(err){
@@ -125,19 +133,19 @@ angular.module('taskcoin' , [
 })
 
 //
-.controller('surveysEditController' , function($scope , $state){
-       $scope.hello = 'surveys/edit';
+.controller('surveysEditController' , function($scope , $state , $stateParams){
+       $scope.hello = 'surveys/edit '+$stateParams.id;
        console.log($state);
 })
 
 //
-.controller('surveysPreviewController' , function($scope , $state){
-       $scope.hello = 'surveys/preview';
+.controller('surveysPreviewController' , function($scope , $state, $stateParams){
+       $scope.hello = 'surveys/preview '+$stateParams.id;
 })
 
 //
-.controller('surveysStatsController' , function($scope , $state){
-       $scope.hello = 'surveys/stats';
+.controller('surveysStatsController' , function($scope , $state, $stateParams){
+       $scope.hello = 'surveys/stats '+$stateParams.id;
 })
 
 //

@@ -48,9 +48,14 @@ angular.module('betalistModule' , [])
           }
 
           //
+          function reset(){
+              betalist = [];
+          }
+          //
           return {
                getList : getList,
-               inviteUser:inviteUser
+               inviteUser:inviteUser,
+               reset:reset
           };
     })
     .controller('betalistController' , function($scope , betalistFactory){

@@ -1,4 +1,4 @@
-angular.module('config' , [])
+angular.module('config' , ['LocalStorageModule'])
     //state configuration and routing setup
     .config([
         '$stateProvider' , '$urlRouterProvider'  , '$locationProvider',
@@ -39,19 +39,19 @@ angular.module('config' , [])
                              data :{}
                          })
                          .state('dashboard.surveys.edit' , {
-                             url : '/edit',
+                             url : '/edit?id',
                              templateUrl : 'views/dashboard.surveys.edit.html',
                              controller : 'surveysEditController',
                              data :{}
                          })
                          .state('dashboard.surveys.preview' , {
-                             url : '/preview',
+                             url : '/preview?id',
                              templateUrl : 'views/dashboard.surveys.preview.html',
                              controller : 'surveysPreviewController',
                              data :{}
                          })
                          .state('dashboard.surveys.stats' , {
-                             url : '/stats',
+                             url : '/stats?id',
                              templateUrl : 'views/dashboard.surveys.stats.html',
                              controller : 'surveysStatsController',
                              data :{}
@@ -88,7 +88,7 @@ angular.module('config' , [])
             }
     ])
 
-    //
+    //BS dropdown to allow html compilation
     .config(function($dropdownProvider) {
         angular.extend($dropdownProvider.defaults, {
           html: true
@@ -104,3 +104,9 @@ angular.module('config' , [])
            delete $httpProvider.defaults.headers.common['X-Requested-With'];
         }
     ])
+
+    //Setting to save all data as a property of taskcoin to avoid conflict
+    .config(function (localStorageServiceProvider) {
+        localStorageServiceProvider
+          .setPrefix('tskcoin');
+    });

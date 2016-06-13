@@ -1,4 +1,4 @@
-angular.module('authyComponent' , [])
+angular.module('authyComponent' , ['LocalStorageModule'])
     //
     .directive('authy' , function(){
         return{
@@ -86,14 +86,23 @@ angular.module('authyComponent' , [])
          };
     })
 
-    .controller('authController' , function($scope  , $state , $timeout , authy){
+    .controller('authController' , function($scope  , $state , $timeout , authy , localStorageService){
+        //initialize local storage for user auth
+        var lastpass = localStorageService.get('lastpass');
+        if(!lastpass){
+            localStorageService.set('lastpass' , {username:'' , password:''});
+            lastpass = localStorageService.get('lastpass');
+        }
+        console.log(lastpass);
+
         $scope.hello ='Here';
-        $scope.userAuth = {};
+        $scope.userAuth = lastpass;
         //
         $scope.loginUser = function(userAuth){
              authy.login(userAuth).then(
                  function(user){
                     console.log('logged iin');
+                    localStorageService.set('lastpass' , userAuth);
                     $state.go('dashboard.surveys.overview');
                  },
                  function(err){

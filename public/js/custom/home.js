@@ -37,6 +37,25 @@ angular.module('homeModule' , [])
           };
 
           //
+          $scope.features = [
+              {
+                title:'RESEARCHERS',
+                text:'Lorem ipsum text here goes the great proposal that will make everyone wants to use your product for the first time and rrally like what the proposal is really all about.',
+                url:'#!/home'
+              },
+              {
+                title:'MERCHANTS',
+                text:'Lorem ipsum text here goes the great proposal that will make everyone wants to use your product for the first time and rrally like what the proposal is really all about.',
+                url:'#!/home'
+              },
+              {
+                title:'SHOP',
+                text:'Lorem ipsum text here goes the great proposal that will make everyone wants to use your product for the first time and rrally like what the proposal is really all about.',
+                url:'#!/home'
+              }
+          ];
+
+          //
           $scope.purpose = '';
           $scope.changePurpose = function(purpose){
               $scope.purpose = purpose;
