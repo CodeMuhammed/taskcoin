@@ -40,17 +40,17 @@ angular.module('homeModule' , [])
           $scope.features = [
               {
                 title:'RESEARCHERS',
-                text:'Lorem ipsum text here goes the great proposal that will make everyone wants to use your product for the first time and rrally like what the proposal is really all about.',
+                text:'Create micro-surveys and Gather feedbacks in realtime from millions of taskcoin users across the web.',
                 url:'#!/home'
               },
               {
                 title:'MERCHANTS',
-                text:'Lorem ipsum text here goes the great proposal that will make everyone wants to use your product for the first time and rrally like what the proposal is really all about.',
+                text:'Get rid of those pesky banner ads and monetize your mobile apps, blogs, digital contents the right way by Integrating taskcoin checkout in your websites and apps.',
                 url:'#!/home'
               },
               {
                 title:'SHOP',
-                text:'Lorem ipsum text here goes the great proposal that will make everyone wants to use your product for the first time and rrally like what the proposal is really all about.',
+                text:'Think about it for a second. Why use your credit card or mobile phone voucher to make payments below $1 when your opinion counts? ',
                 url:'#!/home'
               }
           ];
