@@ -125,11 +125,44 @@ angular.module('taskcoin' , [
 //Abstract state controller for surveys route
 .controller('surveysController' , function($scope , $state){
        console.log('surveys abstract controller loaded');
+
 })
 
 //
-.controller('surveysOverviewController' , function($scope , $state){
+.controller('surveysOverviewController' , function($scope , $state /*Add surveys factory*/){
        $scope.hello = 'surveys/overview';
+
+       //
+       $scope.surveys = [
+          {
+            _id:'236496586',
+            title:'Taskcoin User Experience Survey',
+            created:Date.now(),
+            modified:Date.now(),
+            responses:'568'
+          },
+          {
+            _id:'236487886',
+            title:'Taskcoin User Experience Survey',
+            created:Date.now(),
+            modified:Date.now(),
+            responses:'568'
+          },
+          {
+            _id:'2368797886',
+            title:'Microsoft Windows 10 Survey',
+            created:Date.now(),
+            modified:Date.now(),
+            responses:'568'
+          },
+          {
+            _id:'236489786',
+            title:'Music Taste survey',
+            created:Date.now(),
+            modified:Date.now(),
+            responses:'568'
+          },
+       ];
 })
 
 //

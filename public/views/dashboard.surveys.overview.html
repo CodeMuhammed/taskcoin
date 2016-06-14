@@ -13,15 +13,18 @@
                    <th>ACTIONS</th>
               </thead>
               <tbody>
-                  <tr>
-                    <td>Taskcoin Experience survey</td>
-                    <td>05/20/2016</td>
-                    <td>0</td>
+                  <tr ng-repeat="survey in surveys">
                     <td>
-                        <i class="icon fa fa-edit"></i>
-                        <i class="icon fa fa-eye"></i>
-                        <i class="icon fa fa-play"></i>
-                        <i class="icon fa fa-line-chart"></i>
+                      {{survey.title}}<br>
+                      <span class="sub-title">created : {{survey.created | date:'shortDate'}}</span>
+                    </td>
+                    <td>{{survey.modified | date:'shortDate'}}</td>
+                    <td>{{survey.responses}}</td>
+                    <td>
+                        <a href="#!/dashboard/surveys/edit?id={{survey._id}}" class="icon fa fa-edit"></a>
+                        <a href="#!/dashboard/surveys/preview?id={{survey._id}}" class="icon fa fa-eye"></a>
+                        <a href="" class="icon fa fa-play"></a>
+                        <a href="#!/dashboard/surveys/stats?id={{survey._id}}" class="icon fa fa-line-chart"></a>
                     </td>
                   </tr>
               </tbody>
@@ -31,10 +34,10 @@
 
       <div class="col-xs-12 o-footer">
         <div class="col-xs-12 o-foot-h">
-          <button class="btn btn-primary action">
+          <a class="btn btn-primary action" href="#!/dashboard/surveys/edit?id=1">
               <i class="icon fa fa-plus"></i>
               Create Survey
-          </button>
+          </a>
         </div>
         <span class="col-xs-12 o-foot-b">
              <h2>ALL SURVEYS : 1 of 1</h2>

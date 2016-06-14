@@ -40,7 +40,7 @@ angular.module('homeModule' , [])
           $scope.features = [
               {
                 title:'RESEARCHERS',
-                text:'Create micro-surveys and Gather feedbacks in realtime from millions of taskcoin users across the web.',
+                text:'Create micro-surveys and Gather genuine feedbacks in realtime from millions of taskcoin users across the web for as low as $500 per 1000 feedbacks.',
                 url:'#!/home'
               },
               {
@@ -49,7 +49,7 @@ angular.module('homeModule' , [])
                 url:'#!/home'
               },
               {
-                title:'SHOP',
+                title:'ONLINE SHOPPERS',
                 text:'Think about it for a second. Why use your credit card or mobile phone voucher to make payments below $1 when your opinion counts? ',
                 url:'#!/home'
               }

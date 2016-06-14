@@ -11520,7 +11520,7 @@ fieldset[disabled] .home-container .menu .login.active {
     text-align: center;
   }
   .home-container .intro-container .intro .tag-line h1 {
-    font-size: 3em;
+    font-size: 2.5em;
   }
   .home-container .intro-container .intro .tag-line h2 {
     font-size: 1.5em;
@@ -11677,18 +11677,21 @@ fieldset[disabled] .home-container .intro-container .intro .betalist .join-betal
   }
 }
 .home-container .features {
+  border-top: 3px solid #e2e2e2;
   min-height: 25em;
   padding: 0;
 }
 .home-container .features .feature {
   padding: 2em;
-  background-color: #FEC742;
+  background-color: #FBFBFB;
 }
 .home-container .features .feature .inner {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   height: 25em;
   background-color: #fff;
 }
 .home-container .features .feature .inner .f-body h2 {
+  color: #005EA6;
   font-size: 2em;
   font-weight: bolder;
   margin-bottom: 1em;
@@ -11856,7 +11859,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
 }
 .dashboard .menu-tall {
   padding: 0;
-  background-image: linear-gradient(180deg, #0c384c, #1978a5);
+  background: #2098D1 url('../img/home-bg.jpg') center center repeat-x;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 .dashboard .menu-tall .top-m {
@@ -11919,9 +11922,10 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
 .dashboard .menu-tall .bottom-m .menu-items .item a {
   outline: none;
   text-decoration: none;
-  color: #b3b3b3;
+  color: #d9d9d9;
 }
 .dashboard .menu-tall .bottom-m .menu-items .active a {
+  font-weight: bold;
   color: #FFC73F;
 }
 .dashboard .menu-tall .bottom-m .action {
@@ -11977,7 +11981,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
 }
 @media (max-width: 991px) {
   .dashboard .child-view .surveys {
-    padding: 2em 1em;
+    padding: 2em .5em;
   }
 }
 .dashboard .child-view .surveys .overview {
@@ -11986,7 +11990,6 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
 .dashboard .child-view .surveys .overview .heading {
   color: #DCDCD9;
   background-color: #706F65;
-  border-radius: 6px 6px 0 0;
   padding-left: .7em;
 }
 .dashboard .child-view .surveys .overview .heading span h2 {
@@ -12014,9 +12017,23 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
 .dashboard .child-view .surveys .overview .o-body .table-style tbody tr td {
   color: #5f5f57;
 }
-.dashboard .child-view .surveys .overview .o-body .table-style tbody tr td:last-child i {
+.dashboard .child-view .surveys .overview .o-body .table-style tbody tr td:first-child {
+  color: #005EA6;
+  font-weight: bold;
+}
+.dashboard .child-view .surveys .overview .o-body .table-style tbody tr td:first-child .sub-title {
+  color: #5f5f57;
+  font-size: .8em;
+}
+.dashboard .child-view .surveys .overview .o-body .table-style tbody tr td:last-child a {
+  text-decoration: none;
+  color: inherit;
   font-size: 1.2em;
   margin-right: .4em;
+}
+.dashboard .child-view .surveys .overview .o-body .table-style tbody tr td:last-child a:hover {
+  font-weight: bold;
+  color: #005EA6;
 }
 .dashboard .child-view .surveys .overview .o-footer {
   padding: 0;
