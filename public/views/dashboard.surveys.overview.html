@@ -21,10 +21,10 @@
                     <td>{{survey.modified | date:'shortDate'}}</td>
                     <td>{{survey.responses}}</td>
                     <td>
-                        <a href="#!/dashboard/surveys/edit?id={{survey._id}}" class="icon fa fa-edit"></a>
-                        <a href="#!/dashboard/surveys/preview?id={{survey._id}}" class="icon fa fa-eye"></a>
-                        <a href="" class="icon fa fa-play"></a>
-                        <a href="#!/dashboard/surveys/stats?id={{survey._id}}" class="icon fa fa-line-chart"></a>
+                        <a href="#!/dashboard/surveys/edit?id={{survey._id}}" class="icon fa fa-edit" bs-tooltip="'Edit your survey'"></a>
+                        <a href="#!/dashboard/surveys/preview?id={{survey._id}}" class="icon fa fa-eye" bs-tooltip="'preview and test your survey'"></a>
+                        <a href="" class="icon fa fa-play" bs-tooltip="'Resume campaign'"></a>
+                        <a href="#!/dashboard/surveys/stats?id={{survey._id}}" class="icon fa fa-line-chart" bs-tooltip="'View survey stats'"></a>
                     </td>
                   </tr>
               </tbody>

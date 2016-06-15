@@ -167,8 +167,18 @@ angular.module('taskcoin' , [
 
 //
 .controller('surveysEditController' , function($scope , $state , $stateParams){
-       $scope.hello = 'surveys/edit '+$stateParams.id;
-       console.log($state);
+       //Setup default stage
+       $scope.stage = 'setup';
+
+       //
+       $scope.changeStage = function(newStage){
+           $scope.stage = newStage;
+       }
+
+       //
+       $scope.getActiveStage = function(stage){
+            return stage == $scope.stage?'active':'inactive';
+       }
 })
 
 //

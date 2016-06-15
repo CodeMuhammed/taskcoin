@@ -11900,7 +11900,9 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   }
 }
 .dashboard .menu-tall .bottom-m {
+  z-index: 100000;
   padding: .7em 10em;
+  background: #2098D1 url('../img/home-bg.jpg') center center repeat-x;
 }
 .dashboard .menu-tall .bottom-m .menu-items {
   padding: 0;
@@ -11976,16 +11978,13 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
     padding: 2em 1em;
   }
 }
-.dashboard .child-view .surveys {
-  padding: 4em 10em;
-}
 @media (max-width: 991px) {
   .dashboard .child-view .surveys {
     padding: 2em .5em;
   }
 }
 .dashboard .child-view .surveys .overview {
-  padding: 0;
+  padding: 4em 10em;
 }
 .dashboard .child-view .surveys .overview .heading {
   color: #DCDCD9;
@@ -12050,6 +12049,91 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   margin-top: .6em;
   font-size: 1.1em;
   font-weight: bold;
+}
+.dashboard .child-view .surveys .edit {
+  z-index: 10000;
+  padding: 4em 10em;
+  background-color: #EFEFEF;
+  min-height: 60em;
+}
+.dashboard .child-view .surveys .edit .menu-container {
+  padding: 2em;
+  padding-left: 0;
+}
+.dashboard .child-view .surveys .edit .menu-container .menu {
+  padding: .6em;
+  background-color: #9E9B90;
+}
+.dashboard .child-view .surveys .edit .menu-container .menu:last-child {
+  border-radius: 0 0 5px 5px;
+}
+.dashboard .child-view .surveys .edit .menu-container .menu:first-child {
+  border-radius: 5px 5px 0 0;
+}
+.dashboard .child-view .surveys .edit .menu-container .menu .heading {
+  color: #EFEFEF;
+  font-weight: bold;
+  display: inline-block;
+  padding: .5em 0;
+  width: 100%;
+}
+.dashboard .child-view .surveys .edit .menu-container .menu .heading .info {
+  font-size: 1.5em;
+}
+.dashboard .child-view .surveys .edit .menu-container .active .items .item {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin-bottom: .2em;
+}
+.dashboard .child-view .surveys .edit .menu-container .active .items .item .icon-c {
+  border-radius: 6px 0 0 6px;
+  width: 2.5em;
+  height: 2.5em;
+  padding: .7em .3em;
+  display: block;
+}
+.dashboard .child-view .surveys .edit .menu-container .active .items .item .icon-c i {
+  font-size: 1.2em;
+  color: #6b685d;
+  z-index: 100001 !important;
+}
+.dashboard .child-view .surveys .edit .menu-container .active .items .item .text {
+  color: #9E9B90;
+  border-radius: 6px;
+  padding-top: .6em;
+  padding-left: 3em;
+  font-weight: bold;
+  display: inline-block;
+  background-color: #fff;
+  position: absolute;
+  height: 2.5em;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.dashboard .child-view .surveys .edit .menu-container .active .items .item .text:hover {
+  background-color: #FDFACB;
+}
+.dashboard .child-view .surveys .edit .menu-container .inactive {
+  border-bottom: 1px solid #FFF;
+  background-color: #706F65;
+}
+.dashboard .child-view .surveys .edit .menu-container .inactive:last-child {
+  border-bottom: 0px solid #FFF;
+  border-top: 1px solid #FFF;
+}
+.dashboard .child-view .surveys .edit .menu-container .inactive .items {
+  display: none;
+}
+.dashboard .child-view .surveys .edit .canvas-container {
+  padding: 2em;
+  padding-right: 0;
+  padding-left: 1em;
+}
+.dashboard .child-view .surveys .edit .canvas-container .canvas {
+  outline: 1px solid #000;
+  height: 50em;
 }
 .dashboard .child-view .merchant {
   padding: 4em 10em;

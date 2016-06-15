@@ -351,8 +351,9 @@
              }
          }
          .bottom-m{
+             z-index:100000;
              padding:.7em 10em;
-             //background-color: darken(@gray , 25%);
+             background:#2098D1 url('../img/home-bg.jpg') center center repeat-x;
              .menu-items{
                  padding: 0;
                  .item{
@@ -378,7 +379,7 @@
                  }
                  .active{
                      a{
-                        font-weight: bold; 
+                        font-weight: bold;
                         color:#FFC73F;
                      }
                  }
@@ -435,12 +436,11 @@
               }
          }
          .surveys{
-              padding:4em 10em;
               @media (max-width: @screen-sm-max) {
                  padding:2em .5em;
               }
               .overview{
-                   padding:0;
+                   padding:4em 10em;
                    .heading{
                        color:#DCDCD9;
                        background-color: #706F65;
@@ -514,6 +514,98 @@
                           }
                        }
                    }
+              }
+              .edit{
+                  z-index:10000;
+                  padding:4em 10em;
+                  background-color: #EFEFEF;
+                  min-height: 60em;
+                  .menu-container{
+                     padding:2em;
+                     padding-left:0;
+                     .menu{
+                         &:last-child{
+                           border-radius: 0 0 5px 5px;
+                         }
+                         &:first-child{
+                           border-radius: 5px 5px 0 0;
+                         }
+
+                         padding:.6em;
+                         background-color: #9E9B90;
+                         .heading{
+                             color:#EFEFEF;
+                             font-weight: bold;
+                             display: inline-block;
+                             padding:.5em 0;
+                             width:100%;
+                             .info{
+                                 font-size:1.5em;
+                             }
+                         }
+                     }
+                     .active{
+                        .items{
+                            .item{
+                                display:inline-block;
+                                width:100%;
+                                position:relative;
+                                margin-bottom: .2em;
+                                .icon-c{
+                                    border-radius: 6px 0 0 6px;
+                                    width:2.5em;
+                                    height:2.5em;
+                                    padding:.7em .3em;
+                                    display:block;
+                                    i{
+                                       font-size: 1.2em;
+                                       color: darken(#9E9B90, 20%);
+                                       z-index: 100001 !important;
+                                    }
+
+                                }
+                                .text{
+                                    &:hover{
+                                       background-color: #FDFACB;
+                                    }
+                                    color: #9E9B90;
+                                    border-radius: 6px;
+                                    padding-top:.6em;
+                                    padding-left:3em;
+                                    font-weight: bold;
+                                    display:inline-block;
+                                    background-color: #fff;
+                                    position: absolute;
+                                    height:2.5em;
+                                    width:100%;
+                                    top:0;
+                                    left:0;
+                                }
+                            }
+                        }
+                     }
+                     .inactive{
+                          border-bottom:1px solid #FFF;
+                          &:last-child{
+                             border-bottom:0px solid #FFF;
+                             border-top:1px solid #FFF;
+                          }
+                          background-color: #706F65;
+                         .items{
+                             display:none;
+                         }
+                     }
+                  }
+
+                  .canvas-container{
+                       padding:2em;
+                       padding-right:0;
+                       padding-left:1em;
+                       .canvas{
+                           outline:1px solid #000;
+                           height:50em;
+                       }
+                  }
               }
          }
          .merchant{

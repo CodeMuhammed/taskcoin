@@ -1,5 +1,83 @@
-{{hello}}<br>
-<a href="#!/dashboard/surveys/overview">overview</a><br>
-<a href="#!/dashboard/surveys/edit?id=12345"  style="color:green; text-decoration:none">edit</a><br>
-<a href="#!/dashboard/surveys/preview?id=12345">preview</a><br>
-<a href="#!/dashboard/surveys/stats?id=12345">stats</a>
+<div class="col-xs-12 edit">
+    <div class="menu-container col-xs-4">
+      <div class="menu col-xs-12" ng-click="changeStage('setup')" ng-class="getActiveStage('setup')">
+        <span class="heading">
+           <i class="icon fa fa-caret-right"></i>
+           <i class="icon fa fa-question-circle pull-right info"></i>
+           SET UP
+        </span>
+      </div>
+      <div class="menu col-xs-12" ng-click="changeStage('builder')" ng-class="getActiveStage('builder')">
+          <span class="heading">
+             <i class="icon fa fa-caret-down"></i>
+             <i class="icon fa fa-question-circle pull-right info"></i>
+             BUILDER
+          </span>
+          <span class="items">
+            <a class="item">
+              <span class="icon-c">
+                  <i class="icon fa fa-list-alt"></i>
+              </span>
+              <span class="text"> Multiple Choice</span>
+            </a>
+            <a class="item">
+                <span class="icon-c">
+                    <i class="icon fa fa-chevron-circle-down"></i>
+                </span>
+                <span class="text">Dropdown</span>
+            </a>
+            <a class="item">
+                <span class="icon-c">
+                    <i class="icon fa fa-thumbs-o-up"></i>
+                </span>
+                <span class="text">Net Promoter Score</span>
+            </a>
+            <a class="item">
+                <span class="icon-c">
+                    <i class="icon fa fa-credit-card"></i>
+                </span>
+                <span class="text">Single Textbox</span>
+            </a>
+            <a class="item">
+                <span class="icon-c">
+                    <i class="icon fa fa-user"></i>
+                </span>
+                <span class="text">Contact Information</span>
+            </a>
+          </span>
+        </div>
+        <div class="menu col-xs-12" ng-click="changeStage('billing')" ng-class="getActiveStage('billing')">
+          <span class="heading">
+             <i class="icon fa fa-caret-right"></i>
+             <i class="icon fa fa-question-circle pull-right info"></i>
+             Billing
+          </span>
+          <span class="items">
+            <a class="item">
+              <span class="icon-c">
+                  <i class="icon fa fa-list-alt"></i>
+              </span>
+              <span class="text">Credit Card</span>
+            </a>
+            <a class="item">
+                <span class="icon-c">
+                    <i class="icon fa fa-bank"></i>
+                </span>
+                <span class="text">Manual Bank Transfer</span>
+            </a>
+          </span>
+        </div>
+    </div>
+    <div class="canvas-container col-xs-8">
+          <div class="canvas" ng-show="stage == 'setup'">
+               setup view
+          </div>
+          <div class="canvas" ng-show="stage == 'builder'">
+               Builder vie
+          </div>
+          <div class="canvas" ng-show="stage == 'billing'">
+               Billing view
+          </div>
+    </div>
+
+</div>
