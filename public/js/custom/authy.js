@@ -5,15 +5,7 @@ angular.module('authyComponent' , ['LocalStorageModule'])
            scope: {
               auth:'=auth'
            },
-           template:'<div class="col-xs-12 invite-auth">'+
-                       '<h2>Enter your username and password below</h2>'+
-                       '<form name="login" novalidate>'+
-                          '<input type="text" ng-model="userAuth.username" class="form-control" placeholder="Email address" required/>'+
-                          '<input type="password" ng-model="userAuth.password" class="form-control" placeholder="Password" required/>'+
-                          '<span class="btn btn-default pull-right" ng-disabled="login.$invalid"ng-click="loginUser(userAuth)">continue</span>'+
-                       '</form>'+
-                       '<span class="pull-left" ng-click="auth=!auth">cancel</span>'+
-                    '</div>',
+           templateUrl:'views/auth.html',
            controller: 'authController'
         };
     })
@@ -74,7 +66,7 @@ angular.module('authyComponent' , ['LocalStorageModule'])
              .error(function(err){
                  promise.reject(err);
              });
-
+             
              return promise.promise;
          }
 

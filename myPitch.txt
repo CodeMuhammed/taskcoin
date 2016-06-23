@@ -1,0 +1,45 @@
+ABOUT ME. Scrap book
+==========================================================================================
+IN ORDER TO MAKE A POSITIVE FIRST IMPRESSION AND START THE INTERVIEW RIGHT, COME PREPARED
+
+DESCRIBE YOURSELF IN ALIGNMENT WITH WHAT YOU KNOW ABOUT THE COMPANY CULTURE.
+
+TRY TO KEEP YOUR ANSWER TO “TELL ME ABOUT YOURSELF” ABOUT A MINUTE OR SO LONG
+
+THE MEDIUM IS THE MESSAGE
+THE INTERVIEWER CARES LESS ABOUT THE ANSWER TO THE QUESTION AND MORE ABOUT THE PASSION ENTHUSIASM AND CONFIDENCE BEHIND THE ANSWER
+
+
+Andela Values
+=============
+Excellence    -- Creativity
+passion     -- Effect change in the world, curiousity
+Integrity   -- Goal driven
+Collaboration -- Great communications skills and great work ethics
+
+THE PITCH
+=========
+
+1. DISCOVERY
+My first peek into the world of software development was some four years back when i accidentally downloaded a python shell on my nokia symbian phone because
+I thought it was a snake game. I launched the app and discovered something entirely different. Then i went online, researched about it and started following
+through with the online tutorial on my phone. it wasn't long before i built my first commandline-powered calculator app.In retrospect, That was where my passion for software dev started. Coupled with the realization that i had a turing complete tool in my hands that can be used to model anything within the grasp of my imagination, I went on a learning quest by taking series of online courses on programming from stanford. free courseware and coursera.
+
+2. SUCCESS STORY
+The highlight of my journey as an avid sofware developer was being a part of a rag-tag team who came out second runner up twice in the clash of the campuses-
+A software exhibition program organised by paradigm initiative Nigeria.
+
+3. CAREER GROWTH
+I have always wanted to work in a real team,, working on real-life projects, and collaborating with creative young minds with a singualar mantra of excellence and changing the world. Which makes the Andela model perfect.
+  
+
+WHERE DO YOU SEE YOURSELF IN FIVE YEARS
+=======================================
+I see myself in five years as an independent entrepreneur equipped with the neccessary skill sets needed to create great companies or work with an alreay
+Existing firm to effect change through innovative products and services. Andela is the path.
+
+
+DO YOU HAVE ANY QUESTION FOR ME
+===============================
+Sure!
+I am just wondering if there is any reason why i may not be called back for the two weeks bootcamp.

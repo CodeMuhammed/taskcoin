@@ -1,0 +1,24 @@
+<div class="invite-auth">
+    <div class="facebook hidden-xs">
+        <i class="fa fa-facebook"></i>
+        <div class="connect">Connect with Facebook</div>
+    </div>
+    <div class="mainlogin">
+        <div class="or">or</div>
+        <h1>Invited users login form</h1>
+        <form name="authform" novalidate>
+            <span class="input">
+               <input type="email" placeholder="username or email" ng-model="userAuth.username" required>
+            </span>
+            <span class="input">
+               <input type="password" placeholder="password" ng-model="userAuth.password" required>
+            </span>
+            <button type="button" class="btn" ng-disabled="authform.$invalid" ng-click="loginUser(userAuth)">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+        </form>
+        <div class="note">
+           <a href="#">Forgot your password?</a>
+        </div>
+    </div>
+</div>

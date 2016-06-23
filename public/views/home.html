@@ -29,26 +29,27 @@
          </div>
       </div>
 </div>
-<div class="col-xs-12 my-modal" ng-show="auth" >
+<div class="col-xs-12 my-modal" ng-show="auth" ng-click="auth=!auth">
       <div class="col-xs-12 col-sm-5 modal-box" alt="" />
          <authy auth="auth"></authy>
       </div>
 </div>
 
 <div class="col-xs-12 home-container">
-    <div class="col-xs-12 menu text-center">
-         <span class="logo pull-left">
-              <img src="img/logof.png" alt="taskcoin.io" />
-         </span>
-         <span class="pull-right login" ng-click="auth=!auth">Invited ? login</span>
-    </div>
-     <div class="col-xs-12 intro-container">
-           <div class="col-xs-12 intro">
 
+     <div class="col-xs-12 intro-container">
+
+           <div class="col-xs-12 intro">
+               <div class="col-xs-12 menu text-center">
+                    <span class="logo pull-left">
+                         <img src="img/logof.png" alt="taskcoin.io" />
+                    </span>
+                    <span class="pull-right login" ng-click="auth=!auth">Invited ? login</span>
+               </div>
                 <div class="col-xs-12 col-sm-7 tag-line text-left">
                      <h1>THE NEW MONEY</h1>
                      <h2>FOR MICRO-PAYMENTS</h2>
-                     <span>
+                     <span class="button">
                          <i class="icon fa fa-youtube-play"></i>
                          Watch concept video
                      </span>
@@ -82,7 +83,7 @@
                                 </label>
                             </div>
 
-                         <span class="join-betalist" ng-disabled="betaqueue.$invalid || purpose==''"
+                         <span class="button" ng-disabled="betaqueue.$invalid || purpose==''"
                             ng-click="reserveSpot(betaUser)">
                              Join beta-list
                              <i class="icon fa fa-arrow-right"></i>

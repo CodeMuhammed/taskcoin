@@ -179,6 +179,32 @@ angular.module('taskcoin' , [
        $scope.getActiveStage = function(stage){
             return stage == $scope.stage?'active':'inactive';
        }
+
+       //
+       $scope.infoActive = false;
+       $scope.info = '';
+
+       //
+       $scope.setAndDisplayInfo = function(info){
+           if($scope.infoActive && $scope.info == info){
+             $scope.infoActive = false;
+             $scope.info = '';
+           }
+           else{
+             $scope.infoActive = true;
+             $scope.info = info;
+           }
+       }
+
+       //
+       $scope.getInfoClass = function(info){
+           if($scope.infoActive){
+              return $scope.info == info ?'active':'';
+           }
+           else{
+             return '';
+           }
+       }
 })
 
 //
