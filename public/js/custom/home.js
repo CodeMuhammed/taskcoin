@@ -32,7 +32,6 @@ angular.module('homeModule' , [])
               email: '',
               purpose: '',
               date: '',
-              inviteStatus: '',
               inviteId: ''
           };
 
@@ -49,7 +48,7 @@ angular.module('homeModule' , [])
                 url:'#!/home'
               },
               {
-                title:'ONLINE SHOPPERS',
+                title:'SHOPPERS',
                 text:'Think about it for a second. Why use your credit card or mobile phone voucher to make payments below $1 when your opinion counts? ',
                 url:'#!/home'
               }
@@ -86,4 +85,7 @@ angular.module('homeModule' , [])
 
          //
          $scope.auth = false;
+
+         //
+         $scope.concept = false;
     });

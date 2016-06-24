@@ -11429,7 +11429,7 @@ button.close {
 }
 .home-container .intro-container {
   padding: 0;
-  background: #2098D1 url('../img/home-bg.png') center center no-repeat;
+  background: #449dd1 url('../img/homme-bg.png') center center no-repeat;
   background-size: cover;
 }
 .home-container .intro-container .intro {
@@ -11553,6 +11553,9 @@ fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
   .home-container .intro-container .intro .menu {
     padding: .5em .5em;
   }
+  .home-container .intro-container .intro .menu .logo {
+    margin-top: 1em;
+  }
   .home-container .intro-container .intro .menu .logo img {
     height: 25px;
   }
@@ -11564,10 +11567,12 @@ fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
 }
 .home-container .intro-container .intro .tag-line {
   margin-top: 4em;
+  margin-bottom: 4em;
   color: #f2f2f2;
 }
 .home-container .intro-container .intro .tag-line h1 {
   font-size: 5.5em;
+  font-weight: lighter;
   text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 .home-container .intro-container .intro .tag-line h2 {
@@ -11579,6 +11584,7 @@ fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
 @media (max-width: 991px) {
   .home-container .intro-container .intro .tag-line {
     text-align: center;
+    margin-bottom: 12em;
   }
   .home-container .intro-container .intro .tag-line h1 {
     font-size: 2.5em;
@@ -11587,31 +11593,10 @@ fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
     font-size: 1.5em;
   }
 }
-.home-container .intro-container .intro .betalist {
-  display: inline-block;
-  color: #FFF;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  margin-top: 4em;
-  padding: 2em;
-  padding-top: .5em;
-}
-.home-container .intro-container .intro .betalist .input input {
-  background-color: transparent;
-  color: #fff;
-}
-@media (max-width: 991px) {
-  .home-container .intro-container .intro .betalist {
-    text-align: center;
-  }
-  .home-container .intro-container .intro .betalist h2 {
-    font-size: 1.5em;
-  }
-}
 .home-container .value-container {
-  background-color: #fff;
+  background: #2098D1 url('../img/val-bg.png') center center;
   min-height: 35em;
-  padding: 4em;
+  padding: 8em 4em;
 }
 @media (max-width: 991px) {
   .home-container .value-container {
@@ -11633,34 +11618,28 @@ fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
     padding: 1em 1em;
   }
 }
-.home-container .features {
-  border-top: 3px solid #e2e2e2;
-  min-height: 25em;
-  padding: 0;
+.home-container .value-container .feature {
+  padding: 4em 4em;
 }
-.home-container .features .feature {
-  padding: 2em;
-  background-color: #FBFBFB;
-}
-.home-container .features .feature .inner {
+.home-container .value-container .feature .inner {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   height: 25em;
   background-color: #fff;
 }
-.home-container .features .feature .inner .f-body h2 {
+.home-container .value-container .feature .inner .f-body h2 {
   color: #005EA6;
   font-size: 2em;
   font-weight: bolder;
   margin-bottom: 1em;
 }
-.home-container .features .feature .inner .f-body .text {
+.home-container .value-container .feature .inner .f-body .text {
   display: inline-block;
   height: 10em;
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #555555;
 }
-.home-container .features .feature .inner .f-body .action-btn {
+.home-container .value-container .feature .inner .f-body .action-btn {
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
@@ -11691,32 +11670,32 @@ fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
   margin-top: 1em;
   margin-right: 1em;
 }
-.home-container .features .feature .inner .f-body .action-btn:focus,
-.home-container .features .feature .inner .f-body .action-btn:active:focus,
-.home-container .features .feature .inner .f-body .action-btn.active:focus,
-.home-container .features .feature .inner .f-body .action-btn.focus,
-.home-container .features .feature .inner .f-body .action-btn:active.focus,
-.home-container .features .feature .inner .f-body .action-btn.active.focus {
+.home-container .value-container .feature .inner .f-body .action-btn:focus,
+.home-container .value-container .feature .inner .f-body .action-btn:active:focus,
+.home-container .value-container .feature .inner .f-body .action-btn.active:focus,
+.home-container .value-container .feature .inner .f-body .action-btn.focus,
+.home-container .value-container .feature .inner .f-body .action-btn:active.focus,
+.home-container .value-container .feature .inner .f-body .action-btn.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.home-container .features .feature .inner .f-body .action-btn:hover,
-.home-container .features .feature .inner .f-body .action-btn:focus,
-.home-container .features .feature .inner .f-body .action-btn.focus {
+.home-container .value-container .feature .inner .f-body .action-btn:hover,
+.home-container .value-container .feature .inner .f-body .action-btn:focus,
+.home-container .value-container .feature .inner .f-body .action-btn.focus {
   color: #333;
   text-decoration: none;
 }
-.home-container .features .feature .inner .f-body .action-btn:active,
-.home-container .features .feature .inner .f-body .action-btn.active {
+.home-container .value-container .feature .inner .f-body .action-btn:active,
+.home-container .value-container .feature .inner .f-body .action-btn.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.home-container .features .feature .inner .f-body .action-btn.disabled,
-.home-container .features .feature .inner .f-body .action-btn[disabled],
-fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn {
+.home-container .value-container .feature .inner .f-body .action-btn.disabled,
+.home-container .value-container .feature .inner .f-body .action-btn[disabled],
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11724,49 +11703,110 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.home-container .features .feature .inner .f-body .action-btn:hover,
-.home-container .features .feature .inner .f-body .action-btn:focus,
-.home-container .features .feature .inner .f-body .action-btn.focus,
-.home-container .features .feature .inner .f-body .action-btn:active,
-.home-container .features .feature .inner .f-body .action-btn.active,
-.open > .dropdown-toggle.home-container .features .feature .inner .f-body .action-btn {
+.home-container .value-container .feature .inner .f-body .action-btn:hover,
+.home-container .value-container .feature .inner .f-body .action-btn:focus,
+.home-container .value-container .feature .inner .f-body .action-btn.focus,
+.home-container .value-container .feature .inner .f-body .action-btn:active,
+.home-container .value-container .feature .inner .f-body .action-btn.active,
+.open > .dropdown-toggle.home-container .value-container .feature .inner .f-body .action-btn {
   color: #333;
   background-color: #e6e6e6;
   border-color: #adadad;
 }
-.home-container .features .feature .inner .f-body .action-btn:active,
-.home-container .features .feature .inner .f-body .action-btn.active,
-.open > .dropdown-toggle.home-container .features .feature .inner .f-body .action-btn {
+.home-container .value-container .feature .inner .f-body .action-btn:active,
+.home-container .value-container .feature .inner .f-body .action-btn.active,
+.open > .dropdown-toggle.home-container .value-container .feature .inner .f-body .action-btn {
   background-image: none;
 }
-.home-container .features .feature .inner .f-body .action-btn.disabled,
-.home-container .features .feature .inner .f-body .action-btn[disabled],
-fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn,
-.home-container .features .feature .inner .f-body .action-btn.disabled:hover,
-.home-container .features .feature .inner .f-body .action-btn[disabled]:hover,
-fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn:hover,
-.home-container .features .feature .inner .f-body .action-btn.disabled:focus,
-.home-container .features .feature .inner .f-body .action-btn[disabled]:focus,
-fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn:focus,
-.home-container .features .feature .inner .f-body .action-btn.disabled.focus,
-.home-container .features .feature .inner .f-body .action-btn[disabled].focus,
-fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn.focus,
-.home-container .features .feature .inner .f-body .action-btn.disabled:active,
-.home-container .features .feature .inner .f-body .action-btn[disabled]:active,
-fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn:active,
-.home-container .features .feature .inner .f-body .action-btn.disabled.active,
-.home-container .features .feature .inner .f-body .action-btn[disabled].active,
-fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn.active {
+.home-container .value-container .feature .inner .f-body .action-btn.disabled,
+.home-container .value-container .feature .inner .f-body .action-btn[disabled],
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn,
+.home-container .value-container .feature .inner .f-body .action-btn.disabled:hover,
+.home-container .value-container .feature .inner .f-body .action-btn[disabled]:hover,
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn:hover,
+.home-container .value-container .feature .inner .f-body .action-btn.disabled:focus,
+.home-container .value-container .feature .inner .f-body .action-btn[disabled]:focus,
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn:focus,
+.home-container .value-container .feature .inner .f-body .action-btn.disabled.focus,
+.home-container .value-container .feature .inner .f-body .action-btn[disabled].focus,
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn.focus,
+.home-container .value-container .feature .inner .f-body .action-btn.disabled:active,
+.home-container .value-container .feature .inner .f-body .action-btn[disabled]:active,
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn:active,
+.home-container .value-container .feature .inner .f-body .action-btn.disabled.active,
+.home-container .value-container .feature .inner .f-body .action-btn[disabled].active,
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn.active {
   background-color: #fff;
   border-color: #ccc;
 }
-.home-container .features .feature .inner .f-body .action-btn .badge {
+.home-container .value-container .feature .inner .f-body .action-btn .badge {
   color: #fff;
   background-color: #333;
 }
 @media (max-width: 991px) {
-  .home-container .features .feature {
+  .home-container .value-container .feature {
+    padding: 2em;
+  }
+  .home-container .value-container .feature .inner {
+    height: 28em;
+  }
+}
+.home-container .betalist {
+  display: inline-block;
+  background-color: #449dd1;
+  color: #777777;
+  padding: 6em 4em;
+}
+.home-container .betalist .inner {
+  padding: 0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #FFF;
+}
+.home-container .betalist .inner .heading {
+  padding: 1em 2em;
+}
+.home-container .betalist .inner .heading h1 {
+  font-size: 3em;
+  color: #449dd1;
+}
+.home-container .betalist .inner .body {
+  padding: 1em 2em;
+}
+.home-container .betalist .inner .body .input input {
+  background-color: transparent;
+  height: 4em !important;
+  border: 3px solid #449dd1;
+  color: #777777 !important;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.home-container .betalist .inner .body form .query {
+  padding: 0;
+}
+.home-container .betalist .inner .body form .query h2 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+.home-container .betalist .inner .body form .query .radio {
+  display: block;
+  margin-bottom: 3em !important;
+}
+.home-container .betalist .inner .body form .query .radio label {
+  font-size: 1.4em;
+}
+@media (max-width: 991px) {
+  .home-container .betalist {
+    padding: 2em 1em;
+  }
+  .home-container .betalist .heading {
     padding: 1em;
+  }
+  .home-container .betalist .heading h1 {
+    font-size: 2em !important;
+  }
+  .home-container .betalist .heading h1 img {
+    width: 2em;
   }
 }
 .home-container .footer {
@@ -12005,49 +12045,49 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
     padding: 2em .5em;
   }
 }
-.dashboard .child-view .surveys .edit {
+.dashboard .child-view .surveys .edit-view {
   z-index: 10000;
   padding: 4em 10em;
   background-color: #EFEFEF;
   min-height: 60em;
 }
-.dashboard .child-view .surveys .edit .menu-container {
+.dashboard .child-view .surveys .edit-view .menu-container {
   z-index: 1000001;
   padding: 2em;
   padding-left: 0;
 }
-.dashboard .child-view .surveys .edit .menu-container .menu {
+.dashboard .child-view .surveys .edit-view .menu-container .menu {
   padding: .6em;
   background-color: #9E9B90;
 }
-.dashboard .child-view .surveys .edit .menu-container .menu:last-child {
+.dashboard .child-view .surveys .edit-view .menu-container .menu:last-child {
   border-radius: 0 0 5px 5px;
 }
-.dashboard .child-view .surveys .edit .menu-container .menu:first-child {
+.dashboard .child-view .surveys .edit-view .menu-container .menu:first-child {
   border-radius: 5px 5px 0 0;
 }
-.dashboard .child-view .surveys .edit .menu-container .menu .heading {
+.dashboard .child-view .surveys .edit-view .menu-container .menu .heading {
   color: #EFEFEF;
   font-weight: bold;
   display: inline-block;
   padding: .5em 0;
   width: 100%;
 }
-.dashboard .child-view .surveys .edit .menu-container .menu .heading .info-box {
+.dashboard .child-view .surveys .edit-view .menu-container .menu .heading .info-box {
   position: relative;
   display: inline-block;
   float: right !important;
   font-size: 1.5em;
 }
-.dashboard .child-view .surveys .edit .menu-container .menu .heading .info-box .info {
+.dashboard .child-view .surveys .edit-view .menu-container .menu .heading .info-box .info {
   display: none;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit .menu-container .menu .heading .info-box {
+  .dashboard .child-view .surveys .edit-view .menu-container .menu .heading .info-box {
     float: left !important;
   }
 }
-.dashboard .child-view .surveys .edit .menu-container .menu .heading .active .info {
+.dashboard .child-view .surveys .edit-view .menu-container .menu .heading .active .info {
   position: absolute;
   display: inline-block;
   padding: 1em;
@@ -12062,7 +12102,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -webkit-transform: translateX(0px);
   transform: translateX(0px);
 }
-.dashboard .child-view .surveys .edit .menu-container .menu .heading .active .info:before {
+.dashboard .child-view .surveys .edit-view .menu-container .menu .heading .active .info:before {
   pointer-events: none;
   position: absolute;
   z-index: -1;
@@ -12073,33 +12113,33 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   border-width: 10px 15px 10px 0;
   border-color: transparent #FFF transparent transparent;
 }
-.dashboard .child-view .surveys .edit .menu-container .active .items .item {
+.dashboard .child-view .surveys .edit-view .menu-container .active .items .item {
   display: inline-block;
   width: 100%;
   position: relative;
   margin-bottom: .2em;
 }
-.dashboard .child-view .surveys .edit .menu-container .active .items .item .icon-c {
+.dashboard .child-view .surveys .edit-view .menu-container .active .items .item .icon-c {
   border-radius: 6px 0 0 6px;
   width: 2.5em;
   height: 2.5em;
   padding: .7em .3em;
   display: block;
 }
-.dashboard .child-view .surveys .edit .menu-container .active .items .item .icon-c i {
+.dashboard .child-view .surveys .edit-view .menu-container .active .items .item .icon-c i {
   font-size: 1.2em;
   color: #6b685d;
   z-index: 100001 !important;
 }
-.dashboard .child-view .surveys .edit .menu-container .active .items .item .icon-c i:hover {
+.dashboard .child-view .surveys .edit-view .menu-container .active .items .item .icon-c i:hover {
   color: #EFEFEF;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit .menu-container .active .items .item .icon-c i {
+  .dashboard .child-view .surveys .edit-view .menu-container .active .items .item .icon-c i {
     float: right !important;
   }
 }
-.dashboard .child-view .surveys .edit .menu-container .active .items .item .text {
+.dashboard .child-view .surveys .edit-view .menu-container .active .items .item .text {
   color: #9E9B90;
   border-radius: 6px;
   padding-top: .6em;
@@ -12113,77 +12153,78 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   top: 0;
   left: 0;
 }
-.dashboard .child-view .surveys .edit .menu-container .active .items .item .text:hover {
+.dashboard .child-view .surveys .edit-view .menu-container .active .items .item .text:hover {
   background-color: #FDFACB;
 }
 @media (max-width: 991px) and (max-width: 767px) {
-  .dashboard .child-view .surveys .edit .menu-container .active .items .item .text {
+  .dashboard .child-view .surveys .edit-view .menu-container .active .items .item .text {
     display: none !important;
   }
 }
-.dashboard .child-view .surveys .edit .menu-container .inactive {
+.dashboard .child-view .surveys .edit-view .menu-container .inactive {
   border-bottom: 1px solid #FFF;
   z-index: -1;
   background-color: #706F65;
 }
-.dashboard .child-view .surveys .edit .menu-container .inactive:last-child {
+.dashboard .child-view .surveys .edit-view .menu-container .inactive:last-child {
   border-bottom: 0px solid #FFF;
   border-top: 1px solid #FFF;
 }
-.dashboard .child-view .surveys .edit .menu-container .inactive .items {
+.dashboard .child-view .surveys .edit-view .menu-container .inactive .items {
   display: none;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit .menu-container {
+  .dashboard .child-view .surveys .edit-view .menu-container {
     padding-right: 1em;
   }
 }
-.dashboard .child-view .surveys .edit .canvas-container {
+.dashboard .child-view .surveys .edit-view .canvas-container {
   z-index: 1000000;
   padding: 2em;
   padding-right: 0;
   padding-left: 1em;
 }
-.dashboard .child-view .surveys .edit .canvas-container .setup {
+.dashboard .child-view .surveys .edit-view .canvas-container .setup {
   padding: 1em 1.5em;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  min-height: 50em;
   border-radius: 5px 5px 0 0;
   background-color: #FFF;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit .canvas-container .setup {
+  .dashboard .child-view .surveys .edit-view .canvas-container .setup {
     padding: 1em .5em;
   }
 }
-.dashboard .child-view .surveys .edit .canvas-container .builder {
+.dashboard .child-view .surveys .edit-view .canvas-container .builder {
   padding: 1em;
   min-height: 50em;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
   background-color: #FFF;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit .canvas-container .builder {
+  .dashboard .child-view .surveys .edit-view .canvas-container .builder {
     padding: 1em .5em;
   }
 }
-.dashboard .child-view .surveys .edit .canvas-container .billing {
+.dashboard .child-view .surveys .edit-view .canvas-container .billing {
   padding: 1em;
   height: 50em;
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.5);
   background-color: #FFF;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit .canvas-container .billing {
+  .dashboard .child-view .surveys .edit-view .canvas-container .billing {
     padding: 1em .5em;
   }
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit .canvas-container {
+  .dashboard .child-view .surveys .edit-view .canvas-container {
     padding-left: 0;
   }
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit {
+  .dashboard .child-view .surveys .edit-view {
     padding: 2em .5em;
   }
 }
@@ -12228,27 +12269,36 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   padding-bottom: 0;
   color: #005EA6;
 }
-.my-modal .modal-box h2 {
+.my-modal .modal-box .cancel {
+  position: absolute;
+  padding: 1em;
+  top: 0;
+  left: 90%;
+}
+.my-modal .modal-box .cancel i {
+  font-size: 2em;
+}
+.thank-you h2 {
   font-size: 2.4em;
   font-weight: 400px;
 }
-.my-modal .modal-box h3 {
+.thank-you h3 {
   font-size: 1.7em;
   color: #555555;
 }
 @media (max-width: 991px) {
-  .my-modal .modal-box {
+  .thank-you {
     padding: 2em;
   }
-  .my-modal .modal-box h2 {
+  .thank-you h2 {
     font-size: 2em;
   }
-  .my-modal .modal-box h3 {
+  .thank-you h3 {
     font-size: 1.5em;
     color: #FFF;
   }
 }
-.my-modal .modal-box .modal-footer {
+.thank-you .footer {
   position: absolute;
   text-align: left;
   bottom: 0;
@@ -12257,7 +12307,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   background-color: #EEF3FA;
   margin-top: 20em;
 }
-.my-modal .modal-box .modal-footer .social {
+.thank-you .footer .social {
   display: inline-block;
   color: #777777;
   font-size: 1.4em;
@@ -12266,7 +12316,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   padding: .2em .6em;
   margin-right: 1em;
 }
-.my-modal .modal-box .modal-footer .tel a {
+.thank-you .footer .tel a {
   display: inline-block;
   text-decoration: none;
   color: #b3c9e9 !important;
@@ -12274,16 +12324,16 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   font-weight: bold;
   padding: .5em;
 }
-.my-modal .modal-box .modal-footer .tel a:hover {
+.thank-you .footer .tel a:hover {
   color: #78a0d7 !important;
 }
-.my-modal .modal-box .invite-auth {
+.invite-auth {
   width: 550px;
   height: auto;
   position: relative;
   margin: 2em auto;
 }
-.my-modal .modal-box .invite-auth .facebook {
+.invite-auth .facebook {
   text-align: center;
   float: left;
   background: #365195;
@@ -12299,7 +12349,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth .facebook:hover {
+.invite-auth .facebook:hover {
   box-shadow: 0px 0px 10px 2px #161718;
   -webkit-transition: 0.5s ease;
   -moz-transition: 0.5s ease;
@@ -12307,7 +12357,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth .facebook .connect {
+.invite-auth .facebook .connect {
   font-weight: bold;
   color: #fff;
   font-size: .9em;
@@ -12315,12 +12365,12 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   font-family: verdana;
   padding-top: 10px;
 }
-.my-modal .modal-box .invite-auth .facebook .fa-facebook {
+.invite-auth .facebook .fa-facebook {
   color: #fff;
   font-size: 7em;
   display: block;
 }
-.my-modal .modal-box .invite-auth .mainlogin {
+.invite-auth .mainlogin {
   float: left;
   width: 250px;
   height: 220px;
@@ -12329,7 +12379,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   background: #555555;
   border-radius: 3px;
 }
-.my-modal .modal-box .invite-auth .mainlogin .or {
+.invite-auth .mainlogin .or {
   position: absolute;
   left: -25px;
   top: 10px;
@@ -12344,21 +12394,21 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   line-height: 38px;
   font-size: 13px;
 }
-.my-modal .modal-box .invite-auth .mainlogin .note {
+.invite-auth .mainlogin .note {
   color: #88887a;
   font-size: 0.8em;
   font-weight: bold;
   text-align: left;
   padding-left: 5px;
 }
-.my-modal .modal-box .invite-auth h1 {
+.invite-auth h1 {
   text-align: center;
   color: #fff;
   font-size: 1em;
   font-weight: bold;
   padding: 12px 0px;
 }
-.my-modal .modal-box .invite-auth a {
+.invite-auth a {
   color: #88887a;
   text-decoration: none;
   -webkit-transition: 0.5s ease;
@@ -12367,7 +12417,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth a:hover {
+.invite-auth a:hover {
   color: #fff;
   margin-left: 5px;
   -webkit-transition: 0.5s ease;
@@ -12376,7 +12426,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth input {
+.invite-auth input {
   display: block;
   margin: 0px auto 15px;
   border-radius: 5px;
@@ -12393,7 +12443,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth input:focus {
+.invite-auth input:focus {
   -webkit-transition: 0.5s ease;
   -moz-transition: 0.5s ease;
   -o-transition: 0.5s ease;
@@ -12401,7 +12451,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   transition: 0.5s ease;
   box-shadow: 0px 0px 5px 1px #161718;
 }
-.my-modal .modal-box .invite-auth button {
+.invite-auth button {
   background: #005EA6;
   border-radius: 50%;
   border: 10px solid #222526;
@@ -12421,7 +12471,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth button:hover {
+.invite-auth button:hover {
   background: #222526;
   border-color: #005EA6;
   -webkit-transition: 0.5s ease;
@@ -12430,7 +12480,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth button i {
+.invite-auth button i {
   font-size: 20px;
   -webkit-transition: 0.5s ease;
   -moz-transition: 0.5s ease;
@@ -12438,7 +12488,7 @@ fieldset[disabled] .home-container .features .feature .inner .f-body .action-btn
   -ms-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.my-modal .modal-box .invite-auth button i:hover {
+.invite-auth button i:hover {
   color: #ff5f32;
   -webkit-transition: 0.5s ease;
   -moz-transition: 0.5s ease;
