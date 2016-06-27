@@ -1,4 +1,60 @@
 angular.module('checkoutModule' , [])
+    //============================ pay auth factory ============================
+    .factory('taskcoinAuth' , function($timeout  , $q){
+         //Mocked out host data registered at taskcoin.io
+         var hostNames = ['http://localhost:5000'];
+         var users = [
+             {
+                username:'codemuhammed',
+                password:'12345'
+             }
+         ];
+
+         //
+         function find(person){
+            for(var i=0; i<users.length; i++){
+                if(person.username == users[i].username && person.password == users[i].password){
+                    return true;
+                }
+            }
+            return false;
+         }
+
+         //
+         function verifyHost(hostName){
+              var promise = $q.defer();
+              $timeout(function(){
+                  if(hostNames.indexOf(hostName)>=0){
+                       promise.resolve('Host verified successfully');
+                  }
+                  else{
+                      promise.reject('Failed to verify host');
+                  }
+              } , 2000);
+              return promise.promise;
+         }
+
+         //
+         function verifyUser(person){
+              console.log(person);
+              var promise = $q.defer();
+              $timeout(function(){
+                  if(find(person)){
+                       promise.resolve('user logged in successfully');
+                  }
+                  else{
+                      promise.reject('Failed to authenticate user');
+                  }
+              } , 1000);
+              return promise.promise;
+         }
+
+         //public facing functions
+         return {
+             verifyHost: verifyHost,
+             verifyUser: verifyUser
+         };
+    })
     //============================ pay controller ==============================
     .controller('payController' , function($scope , $window , $state , $timeout , taskcoinAuth){
          //send a message to host to send back his credentials for authentication
@@ -27,7 +83,7 @@ angular.module('checkoutModule' , [])
                 },
                 function(err){
                     $scope.init.msg = err;
-                    $state.go('home');
+                    //$state.go('home');
                 }
             );
          } , 4000);
@@ -65,61 +121,4 @@ angular.module('checkoutModule' , [])
                  $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
              } , 3000)
          }
-    })
-
-    //============================ pay auth factory ============================
-    .factory('taskcoinAuth' , function($timeout  , $q){
-         //Mocked out host data registered at taskcoin.io
-         var hostNames = ['http://localhost:5000'];
-         var users = [
-             {
-                username:'codemuhammed',
-                password:'12345'
-             }
-         ];
-
-         //
-         function find(person){
-            for(var i=0; i<users.length; i++){
-                if(person.username == users[i].username && person.password == users[i].password){
-                    return true;
-                }
-            }
-            return false;
-         }
-
-         //
-         function verifyHost(hostName){
-              var promise = $q.defer();
-              $timeout(function(){
-                  if(hostNames.indexOf(hostName)>=0){
-                       promise.resolve('Host verified successfully');
-                  }
-                  else{
-                      promise.reject('Failed to verify host');
-                  }
-              } , 3000);
-              return promise.promise;
-         }
-
-         //
-         function verifyUser(person){
-              console.log(person);
-              var promise = $q.defer();
-              $timeout(function(){
-                  if(find(person)){
-                       promise.resolve('user logged in successfully');
-                  }
-                  else{
-                      promise.reject('Failed to authenticate user');
-                  }
-              } , 3000);
-              return promise.promise;
-         }
-
-         //public facing functions
-         return {
-             verifyHost: verifyHost,
-             verifyUser: verifyUser
-         };
     });

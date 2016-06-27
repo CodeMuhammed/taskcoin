@@ -11851,6 +11851,69 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
     font-size: 1.1em;
   }
 }
+.pay-container {
+  padding: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  background-color: #EAEAE8;
+  min-height: 800px;
+}
+.pay-container .menu {
+  position: relative;
+  padding: 1em;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  z-index: 1000000;
+}
+.pay-container .menu .img-span {
+  display: inline-block;
+}
+.pay-container .menu .img-span img {
+  height: 1.5em;
+}
+.pay-container .menu .controls {
+  position: absolute;
+  right: .7em;
+  z-index: 10000001;
+}
+.pay-container .menu .controls i {
+  font-size: 1.3em;
+  margin-right: .6em;
+}
+.pay-container .setup {
+  text-align: center;
+}
+.pay-container .setup .init-host {
+  display: inline-block;
+  padding: 1em;
+  margin-top: 8em;
+}
+.pay-container .setup .init-user {
+  padding: 0 1em;
+  margin-top: 8em;
+}
+.pay-container .setup .init-user form {
+  margin-top: 1.3em;
+}
+.pay-container .setup .init-user form .form-group {
+  padding: 0 !important;
+}
+.pay-container .setup .init-user form .form-group input {
+  height: 3em !important;
+}
+.pay-container .setup .init-user form .form-group .submit {
+  height: 3em !important;
+}
+.pay-container .survey-container {
+  padding: 0;
+}
+.pay-container .survey-container .segment-title {
+  background-image: linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #EAEAE8 0%);
+  background-image: -moz-linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #EAEAE8 0%);
+  padding: .5em 1em;
+  margin-top: 1.3em;
+}
 .dashboard {
   padding: 0;
 }
@@ -12186,7 +12249,7 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
 }
 .dashboard .child-view .surveys .edit-view .canvas-container .setup {
   padding: 1em 1.5em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   min-height: 50em;
   border-radius: 5px 5px 0 0;
   background-color: #FFF;

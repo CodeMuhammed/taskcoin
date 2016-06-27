@@ -122,47 +122,74 @@ angular.module('taskcoin' , [
 
 })
 
+
+//
+.factory('Surveys' , function($q , $http , $timeout){
+     var surveys = [
+        {
+          _id:'236496586',
+          title:'Taskcoin User Experience Survey',
+          created:Date.now(),
+          modified:Date.now(),
+          responses:'568'
+        },
+        {
+          _id:'236487886',
+          title:'Taskcoin User Experience Survey',
+          created:Date.now(),
+          modified:Date.now(),
+          responses:'568'
+        },
+        {
+          _id:'2368797886',
+          title:'Microsoft Windows 10 Survey',
+          created:Date.now(),
+          modified:Date.now(),
+          responses:'568'
+        },
+        {
+          _id:'236489786',
+          title:'Music Taste survey',
+          created:Date.now(),
+          modified:Date.now(),
+          responses:'568'
+        },
+     ];
+
+     //
+     function all(){
+          var promise = $q.defer();
+
+          //
+          $timeout(function(){
+              promise.resolve(surveys);
+          } , 3000);
+          return promise.promise;
+     }
+
+     //
+     return {
+        all:all
+     };
+})
+
 //Abstract state controller for surveys route
 .controller('surveysController' , function($scope , $state){
        console.log('surveys abstract controller loaded');
-
+       //Act as a God to all its child-views
 })
 
 //
-.controller('surveysOverviewController' , function($scope , $state /*Add surveys factory*/){
-       $scope.hello = 'surveys/overview';
-
+.controller('surveysOverviewController' , function($scope , $state , myMedia , Surveys){
        //
-       $scope.surveys = [
-          {
-            _id:'236496586',
-            title:'Taskcoin User Experience Survey',
-            created:Date.now(),
-            modified:Date.now(),
-            responses:'568'
-          },
-          {
-            _id:'236487886',
-            title:'Taskcoin User Experience Survey',
-            created:Date.now(),
-            modified:Date.now(),
-            responses:'568'
-          },
-          {
-            _id:'2368797886',
-            title:'Microsoft Windows 10 Survey',
-            created:Date.now(),
-            modified:Date.now(),
-            responses:'568'
-          },
-          {
-            _id:'236489786',
-            title:'Music Taste survey',
-            created:Date.now(),
-            modified:Date.now(),
-            responses:'568'
-          },
-       ];
+       Surveys.all().then(
+            function(data){
+                $scope.surveys = data;
+            },
+            function(err){
+                console.log(err);
+            }
+       );
 })
 
 //
