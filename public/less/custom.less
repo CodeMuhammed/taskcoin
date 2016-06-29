@@ -100,7 +100,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
     border: 1px solid #777;
     padding: .6em 1.5em;
-    margin-top: 0.5em;
     font-weight:bold;
     font-size:1.3em;
     text-decoration: none;
@@ -125,20 +124,16 @@
         outline: 0;
         background: #fafafa;
     }
-
-    &:before {
-        background: #ccc;
-        background: rgba(0,0,0,.1);
-        float: left;
-        width: 1em;
-        text-align: center;
-        font-size: 1.5em;
-        margin: 0 1em 0 -1em;
-        padding: 0 .2em;
-        box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
-        border-radius: .15em 0 0 .15em;
-        pointer-events: none;
-    }
+}
+.button-sm{
+  padding: .3em 1em;
+  font-weight:bold;
+  font-size:1.1em;
+}
+.button-xs{
+  padding: .2em .6em;
+  font-weight:bold;
+  font-size:.9em;
 }
 //taskcoin custom classes
 
@@ -149,38 +144,69 @@
 
      .intro-container{
        padding:0;
-       background:#449dd1 url('../img/homme-bg.png') center center no-repeat;
+       background:#449dd1 url('../img/home-bg.svg') center center no-repeat;
        background-size: cover;
      .intro{
        .menu{
           padding:.5em 1em;
+          .menu-icon{
+             color: #fff;
+             font-size:1.6em;
+             margin-right:1em;
+             margin-top: .2em;
+             &:hover{
+                 color:@brand-primary;
+             }
+          }
           .logo{
+             margin-top: 1em;
              img{
                 height:33px;
              }
           }
-          .login{
-             .btn;
-             .btn-default;
-             display:inline-block;
-             color:lighten(#000 , 5%);
-             font-size:1.4em;
-             font-weight:bold;
-             padding:.3em .5em;
-             //border-radius:30px;
-             @media (max-width: @screen-sm-max) {
-                height:1.7em;
-                font-size: 1.3em;
-                padding-top:0em;
-             }
+          .access-btn{
+              display: inline-block;
+              margin-top: 1em;
+          }
+          .home-nav-c{
+              position: absolute;
+              top:0;
+              left:0;
+              margin-left: 50%;
+              transform: translate(-50% , 0);
+              display: inline-block;
+              ul{
+                display:inline-block;
+                float:left;
+                text-decoration: none;
+                list-style:none;
+                padding:.6em 1em;
+                font-size:1.3em;
+                li{
+                   color:#EFEFEF;
+                   &:hover{
+                     color:#fff;
+                     font-weight: bold;
+                   }
+                }
+              }
           }
           @media (max-width: @screen-sm-max) {
              padding:.5em .5em;
              .logo{
+               display: inline-block;
+                 position: absolute;
+                 top:0;
+                 left:0;
                  margin-top: 1em;
+                 margin-left: 50%;
+                 transform: translate(-50% , 0);
                  img{
                     height:25px;
                  }
+             }
+             .access-btn{
+                 margin-top: .5em;
              }
           }
        }
@@ -251,7 +277,7 @@
 
       }
       .feature{
-          padding:4em 4em;
+          padding:4em;
           //background-color:#FBFBFB;
           .inner{
               box-shadow:0px 2px 4px rgba(0 , 0 , 0 , .3);
@@ -288,9 +314,17 @@
               }
           }
           @media (max-width: @screen-sm-max) {
-               padding:2em;
+               padding:2em 0em;
                .inner{
                   height:28em;
+                  .f-body{
+                    h2{
+                        font-size:1.7em;
+                     }
+                    .text{
+
+                    }
+                  }
                }
           }
       }
@@ -299,7 +333,8 @@
    //
    .betalist{
       display:inline-block;
-      background-color: #449dd1;
+       background:#449dd1 url('../img/home-bg.svg') center center no-repeat;
+       background-size: cover;
       //background-image: linear-gradient(40% 100% 330deg,#001242, #000022, #000000 0%);
       //background-image: -moz-linear-gradient(40% 100% 330deg,#001242, #000022, #000000 0%);
       color:@gray-light;
@@ -450,8 +485,10 @@
          }
 
          .init-user{
+             text-align: center;
              padding:0 1em;
              margin-top:8em;
+             position:relative;
              form{
                  margin-top:1.3em;
                 .form-group{
@@ -469,7 +506,7 @@
      }
 
       //
-      .survey-container{
+      .pay-survey-container{
          padding:0;
          .segment-title{
              background-image: linear-gradient(40% 100% 330deg,#FDC740 , #FDC740 , #EAEAE8  0%);
@@ -974,8 +1011,11 @@
    width:550px;
    height:auto;
    position:relative;
-   margin:2em auto;
-
+   margin:2em 50%;
+   transform: translate(-45% , 0);
+   @media (max-width: @screen-sm-max) {
+      transform: translate(-25% , 0);
+   }
    .facebook{
        text-align:center;
        float:left;

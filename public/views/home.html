@@ -37,7 +37,9 @@
          <div class="cancel" ng-click="auth=!auth">
               <i class="icon fa fa-times"></i>
          </div>
-         <authy auth="auth"></authy>
+         <authy destination = "dashboard.surveys.overview">
+              Invited users login form
+         </authy>
       </div>
 </div>
 
@@ -55,10 +57,24 @@
 
            <div class="col-xs-12 intro">
                <div class="col-xs-12 menu text-center">
+                   <span class="menu-icon pull-left" ng-show="isSmall()">
+                       <i class="icon fa fa-navicon"></i>
+                   </span>
                     <span class="logo pull-left">
                          <img src="img/logo-w.png" alt="taskcoin.io" />
                     </span>
-                    <span class="pull-right login button" ng-click="auth=!auth">Invited? login</span>
+                    <span class="home-nav-c" ng-show="!isSmall()">
+                         <ul>
+                            <li>Concept</li>
+                            <li>Developers</li>
+                            <li>Blog</li>
+                         </ul>
+                    </span>
+                    <span class="access-btn pull-right">
+                       <span class="pull-right button button-sm hidden-xs" style="margin-left:1em;">Request Invite</span>
+                       <span class="pull-right button" ng-class="isSmall() ? 'button-xs' : 'button-sm'" ng-click="auth=!auth">Login</span>
+                    </span>
+
                </div>
                 <div class="col-xs-12 tag-line text-center">
                      <h1>THE NEW MONEY</h1>

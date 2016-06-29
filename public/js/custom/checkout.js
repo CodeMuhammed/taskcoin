@@ -3,13 +3,7 @@ angular.module('checkoutModule' , [])
     .factory('taskcoinAuth' , function($timeout  , $q){
          //Mocked out host data registered at taskcoin.io
          var hostNames = ['http://localhost:5000'];
-         var users = [
-             {
-                username:'codemuhammed',
-                password:'12345'
-             }
-         ];
-
+         
          //
          function find(person){
             for(var i=0; i<users.length; i++){
@@ -34,29 +28,32 @@ angular.module('checkoutModule' , [])
               return promise.promise;
          }
 
-         //
-         function verifyUser(person){
-              console.log(person);
-              var promise = $q.defer();
-              $timeout(function(){
-                  if(find(person)){
-                       promise.resolve('user logged in successfully');
-                  }
-                  else{
-                      promise.reject('Failed to authenticate user');
-                  }
-              } , 1000);
-              return promise.promise;
-         }
-
          //public facing functions
          return {
-             verifyHost: verifyHost,
-             verifyUser: verifyUser
+             verifyHost: verifyHost
          };
     })
     //============================ pay controller ==============================
     .controller('payController' , function($scope , $window , $state , $timeout , taskcoinAuth){
+         //
+         $window.parent.postMessage({msg:'Please send a message', status:'verify'}, '*');
+         $window.addEventListener('message', function(event) {
+             var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+             if(event.data.status === 'verify'){
+                console.log(event.data.config);
+                $scope.hostName = origin;
+                taskcoinAuth.verifyHost($scope.hostName).then(
+                    function(status){
+                        $scope.init.msg = status;
+                        $scope.init.host = true;
+                    },
+                    function(err){
+                        $scope.init.msg = err;
+                    }
+                );
+             }
+         });
+
          //send a message to host to send back his credentials for authentication
          $scope.hostName = '';
          $scope.init = {
@@ -66,46 +63,12 @@ angular.module('checkoutModule' , [])
              msg:'Verifying host. please wait'
          };
 
-         $window.parent.postMessage({msg:'Please send a message', status:'verify'}, '*');
-         $window.addEventListener('message', function(event) {
-              var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-              if(event.data.status === 'verify'){
-                 $scope.hostName = origin;
-              }
-         });
-
          //
-         $timeout(function(){
-            taskcoinAuth.verifyHost($scope.hostName).then(
-                function(status){
-                    $scope.init.msg = status;
-                    $scope.init.host = true;
-                },
-                function(err){
-                    $scope.init.msg = err;
-                    //$state.go('home');
-                }
-            );
-         } , 4000);
-
-         //
-         $scope.person = {};
-         $scope.login = function(person){
-              $scope.authenticating = true;
-              taskcoinAuth.verifyUser(person).then(
-                  function(status){
-                      $scope.authenticating = false;
-                      $scope.init.auth = true;
-                  } ,
-                  function(err){
-                      $scope.authenticating = false;
-                      $scope.init.msg = err;
-                      $scope.init.auth = false;
-                      $scope.init.loginError = true;
-                  }
-              );
+         $scope.notifyLogin = function(){
+            $scope.init.auth = true;
          }
 
+         //
          $scope.resetError = function(){
              $scope.init.loginError = false;
          }
@@ -115,10 +78,16 @@ angular.module('checkoutModule' , [])
              $window.parent.postMessage({msg:'User cancelled the task', status:'cancel'}, '*');
          }
 
+         //
          $scope.doneTask = function(){
              $scope.doneMsg = "Thank you !"
              $timeout(function(){
                  $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
              } , 3000)
          }
+    })
+
+    //
+    .controller('paySurveyController' , function($scope){
+          $scope.hello = 'pay survey controller';
     });

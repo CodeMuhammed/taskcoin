@@ -2,9 +2,11 @@ angular.module('authyComponent' , ['LocalStorageModule'])
     //
     .directive('authy' , function(){
         return{
-           scope: {
-              auth:'=auth'
+           link:function(scope , elem , attrs){
+               scope.destination = attrs.destination;
+               attrs.notify ? scope.notify = attrs.notify : '';
            },
+           transclude:true,
            templateUrl:'views/auth.html',
            controller: 'authController'
         };
@@ -66,7 +68,7 @@ angular.module('authyComponent' , ['LocalStorageModule'])
              .error(function(err){
                  promise.reject(err);
              });
-             
+
              return promise.promise;
          }
 
@@ -95,7 +97,10 @@ angular.module('authyComponent' , ['LocalStorageModule'])
                  function(user){
                     console.log('logged iin');
                     localStorageService.set('lastpass' , userAuth);
-                    $state.go('dashboard.surveys.overview');
+                    if($scope.notify){
+                         $scope.$eval($scope.notify);
+                    }
+                    $state.go($scope.destination);
                  },
                  function(err){
                      alert(err)

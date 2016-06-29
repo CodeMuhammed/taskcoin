@@ -11386,7 +11386,6 @@ button.close {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
   border: 1px solid #777;
   padding: .6em 1.5em;
-  margin-top: 0.5em;
   font-weight: bold;
   font-size: 1.3em;
   text-decoration: none;
@@ -11409,18 +11408,15 @@ button.close {
   outline: 0;
   background: #fafafa;
 }
-.button:before {
-  background: #ccc;
-  background: rgba(0, 0, 0, 0.1);
-  float: left;
-  width: 1em;
-  text-align: center;
-  font-size: 1.5em;
-  margin: 0 1em 0 -1em;
-  padding: 0 .2em;
-  box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5), 2px 0 0 rgba(255, 255, 255, 0.5);
-  border-radius: .15em 0 0 .15em;
-  pointer-events: none;
+.button-sm {
+  padding: .3em 1em;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.button-xs {
+  padding: .2em .6em;
+  font-weight: bold;
+  font-size: .9em;
 }
 .home-container {
   overflow-x: hidden;
@@ -11429,7 +11425,7 @@ button.close {
 }
 .home-container .intro-container {
   padding: 0;
-  background: #449dd1 url('../img/homme-bg.png') center center no-repeat;
+  background: #449dd1 url('../img/home-bg.svg') center center no-repeat;
   background-size: cover;
 }
 .home-container .intro-container .intro {
@@ -11439,125 +11435,66 @@ button.close {
 .home-container .intro-container .intro .menu {
   padding: .5em 1em;
 }
+.home-container .intro-container .intro .menu .menu-icon {
+  color: #fff;
+  font-size: 1.6em;
+  margin-right: 1em;
+  margin-top: .2em;
+}
+.home-container .intro-container .intro .menu .menu-icon:hover {
+  color: #005EA6;
+}
+.home-container .intro-container .intro .menu .logo {
+  margin-top: 1em;
+}
 .home-container .intro-container .intro .menu .logo img {
   height: 33px;
 }
-.home-container .intro-container .intro .menu .login {
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
+.home-container .intro-container .intro .menu .access-btn {
   display: inline-block;
-  color: #0d0d0d;
-  font-size: 1.4em;
-  font-weight: bold;
-  padding: .3em .5em;
+  margin-top: 1em;
 }
-.home-container .intro-container .intro .menu .login:focus,
-.home-container .intro-container .intro .menu .login:active:focus,
-.home-container .intro-container .intro .menu .login.active:focus,
-.home-container .intro-container .intro .menu .login.focus,
-.home-container .intro-container .intro .menu .login:active.focus,
-.home-container .intro-container .intro .menu .login.active.focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+.home-container .intro-container .intro .menu .home-nav-c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  display: inline-block;
 }
-.home-container .intro-container .intro .menu .login:hover,
-.home-container .intro-container .intro .menu .login:focus,
-.home-container .intro-container .intro .menu .login.focus {
-  color: #333;
+.home-container .intro-container .intro .menu .home-nav-c ul {
+  display: inline-block;
+  float: left;
   text-decoration: none;
+  list-style: none;
+  padding: .6em 1em;
+  font-size: 1.3em;
 }
-.home-container .intro-container .intro .menu .login:active,
-.home-container .intro-container .intro .menu .login.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+.home-container .intro-container .intro .menu .home-nav-c ul li {
+  color: #EFEFEF;
 }
-.home-container .intro-container .intro .menu .login.disabled,
-.home-container .intro-container .intro .menu .login[disabled],
-fieldset[disabled] .home-container .intro-container .intro .menu .login {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.home-container .intro-container .intro .menu .login:hover,
-.home-container .intro-container .intro .menu .login:focus,
-.home-container .intro-container .intro .menu .login.focus,
-.home-container .intro-container .intro .menu .login:active,
-.home-container .intro-container .intro .menu .login.active,
-.open > .dropdown-toggle.home-container .intro-container .intro .menu .login {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
-}
-.home-container .intro-container .intro .menu .login:active,
-.home-container .intro-container .intro .menu .login.active,
-.open > .dropdown-toggle.home-container .intro-container .intro .menu .login {
-  background-image: none;
-}
-.home-container .intro-container .intro .menu .login.disabled,
-.home-container .intro-container .intro .menu .login[disabled],
-fieldset[disabled] .home-container .intro-container .intro .menu .login,
-.home-container .intro-container .intro .menu .login.disabled:hover,
-.home-container .intro-container .intro .menu .login[disabled]:hover,
-fieldset[disabled] .home-container .intro-container .intro .menu .login:hover,
-.home-container .intro-container .intro .menu .login.disabled:focus,
-.home-container .intro-container .intro .menu .login[disabled]:focus,
-fieldset[disabled] .home-container .intro-container .intro .menu .login:focus,
-.home-container .intro-container .intro .menu .login.disabled.focus,
-.home-container .intro-container .intro .menu .login[disabled].focus,
-fieldset[disabled] .home-container .intro-container .intro .menu .login.focus,
-.home-container .intro-container .intro .menu .login.disabled:active,
-.home-container .intro-container .intro .menu .login[disabled]:active,
-fieldset[disabled] .home-container .intro-container .intro .menu .login:active,
-.home-container .intro-container .intro .menu .login.disabled.active,
-.home-container .intro-container .intro .menu .login[disabled].active,
-fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
-  background-color: #fff;
-  border-color: #ccc;
-}
-.home-container .intro-container .intro .menu .login .badge {
+.home-container .intro-container .intro .menu .home-nav-c ul li:hover {
   color: #fff;
-  background-color: #333;
-}
-@media (max-width: 991px) {
-  .home-container .intro-container .intro .menu .login {
-    height: 1.7em;
-    font-size: 1.3em;
-    padding-top: 0em;
-  }
+  font-weight: bold;
 }
 @media (max-width: 991px) {
   .home-container .intro-container .intro .menu {
     padding: .5em .5em;
   }
   .home-container .intro-container .intro .menu .logo {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
     margin-top: 1em;
+    margin-left: 50%;
+    transform: translate(-50%, 0);
   }
   .home-container .intro-container .intro .menu .logo img {
     height: 25px;
+  }
+  .home-container .intro-container .intro .menu .access-btn {
+    margin-top: .5em;
   }
 }
 @media (max-width: 991px) {
@@ -11619,7 +11556,7 @@ fieldset[disabled] .home-container .intro-container .intro .menu .login.active {
   }
 }
 .home-container .value-container .feature {
-  padding: 4em 4em;
+  padding: 4em;
 }
 .home-container .value-container .feature .inner {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
@@ -11745,15 +11682,19 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
 }
 @media (max-width: 991px) {
   .home-container .value-container .feature {
-    padding: 2em;
+    padding: 2em 0em;
   }
   .home-container .value-container .feature .inner {
     height: 28em;
   }
+  .home-container .value-container .feature .inner .f-body h2 {
+    font-size: 1.7em;
+  }
 }
 .home-container .betalist {
   display: inline-block;
-  background-color: #449dd1;
+  background: #449dd1 url('../img/home-bg.svg') center center no-repeat;
+  background-size: cover;
   color: #777777;
   padding: 6em 4em;
 }
@@ -11890,8 +11831,10 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
   margin-top: 8em;
 }
 .pay-container .setup .init-user {
+  text-align: center;
   padding: 0 1em;
   margin-top: 8em;
+  position: relative;
 }
 .pay-container .setup .init-user form {
   margin-top: 1.3em;
@@ -11905,10 +11848,10 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
 .pay-container .setup .init-user form .form-group .submit {
   height: 3em !important;
 }
-.pay-container .survey-container {
+.pay-container .pay-survey-container {
   padding: 0;
 }
-.pay-container .survey-container .segment-title {
+.pay-container .pay-survey-container .segment-title {
   background-image: linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #EAEAE8 0%);
   background-image: -moz-linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #EAEAE8 0%);
   padding: .5em 1em;
@@ -12394,7 +12337,13 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
   width: 550px;
   height: auto;
   position: relative;
-  margin: 2em auto;
+  margin: 2em 50%;
+  transform: translate(-45%, 0);
+}
+@media (max-width: 991px) {
+  .invite-auth {
+    transform: translate(-25%, 0);
+  }
 }
 .invite-auth .facebook {
   text-align: center;

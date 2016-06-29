@@ -12,6 +12,12 @@ angular.module('config' , ['LocalStorageModule'])
                      controller : 'payController',
                      data :{}
                  })
+                 .state('pay.survey' , {
+                     url : '/survey',
+                     templateUrl : 'views/pay.survey.html',
+                     controller : 'paySurveyController',
+                     data :{}
+                 })
                  .state('home' , {
                      url : '/home',
                      templateUrl : 'views/home.html',
