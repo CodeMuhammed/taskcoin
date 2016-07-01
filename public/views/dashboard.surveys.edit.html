@@ -91,7 +91,67 @@
     </div>
     <div class="canvas-container col-xs-10 col-sm-8">
           <div class="col-xs-12 setup" ng-show="stage == 'setup'">
-                Setup
+                <form class="col-xs-12" name="setupform" novalidate>
+                    <div class="col-xs-12 segment-title">
+                        <h4><b>1. Introduction</b></h4>
+                    </div>
+                    <div class="content col-xs-12">
+                        <span class="input">
+                           <label class="input-label">Title *</label>
+                           <input type="text" placeholder="Enter survey title here" class="form-control" required>
+                        </span>
+                        <span class="input">
+                           <label class="input-label">Description *</label>
+                           <textarea rows="8" type="text" placeholder="Describe your survey" class="form-control" required></textarea>
+                        </span>
+                    </div>
+                     <div class="col-xs-12 segment-title">
+                         <h4><b>2. Target Respondents</b></h4>
+                     </div>
+                     <div class="content col-xs-12">
+                         <span class="input">
+                            <label class="input-label">Countries *</label>
+                            <input-options list="{{country.suggessions}}" selected="country.selected" placeholder="Add country"></input-options>
+                         </span>
+                         <span class="input">
+                            <label class="input-label">Interests *</label>
+                            <input-options list="{{interest.suggessions}}" selected="interest.selected" placeholder="Add interest"></input-options>
+                         </span>
+                     </div>
+                     <div class="col-xs-12 segment-title">
+                         <h4><b>3. Package Description</b></h4>
+                     </div>
+                     <div class="content col-xs-12">
+                       <span class="input">
+                          <label class="input-label">Questioneer length *</label>
+                          <span class="packages-c col-xs-12">
+                               <span class="package-c col-xs-12 col-sm-4" ng-repeat="package in packages">
+                                    <span class="col-xs-12 package" ng-class="activePackageClass(package)" ng-click="setPackage(package)">
+                                        <div class="col-xs-12 popular-tag" ng-if="package.highlight">
+                                             <i class="icon fa fa-star"></i>
+                                             Most popular
+                                        </div>
+                                        <span class="text">
+                                             <h1>{{package.title}}</h1>
+                                             <h3>Questions</h3>
+                                        </span>
+                                    </span>
+                               </span>
+                          </span>
+                       </span>
+                       <span class="input">
+                          <label class="input-label">Number of responses *</label>
+                          <input type="number" placeholder="Number of responses" class="form-control" required>
+                       </span>
+                     </div>
+                    <div style="margin-bottom:5em" class="col-xs-12"></div><!--Divider that helps creates padding from footer-->
+                    <div class="col-xs-12 footer">
+                         <span class="pull-right">
+                              <button class="btn btn-sm btn-default" name="button">Cancel</button>
+                              <button class="btn btn-primary btn-sm" ng-disabled="setupform.$invalid" name="button">Save changes</button>
+                         </span>
+                    </div>
+                </form>
           </div>
           <div class="builder" ng-show="stage == 'builder'">
                Builder view

@@ -7,13 +7,18 @@
                   <span class="logo">
                       <img src="img/logof.png" alt="" />
                   </span>
-                  <a class="btn btn-navbar btn-primary action" href="#!/dashboard/surveys/edit?id=1">
+
+                  <span class="profile pull-right" data-animation="am-flip-x" placement="auto" bs-dropdown="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="icon fa fa-user"></i>
+                      <i class="icon fa fa-caret-down"></i>
+                  </span>
+                  <a class="btn btn-navbar btn-primary action hidden-xs" href="#!/dashboard/surveys/edit?id=1">
                       <i class="icon fa fa-plus"></i>
-                      Create Survey
+                      Survey
                   </a>
             </div>
-            <div class="col-xs-12 bottom-m" ng-show="submenuVisible" bs-affix>
-                  <ul class="menu-items">
+            <div class="col-xs-12 bottom-m" ng-show="submenuVisible">
+                  <ul class="menu-items col-xs-12">
                        <li class="item" ng-class="isActiveClass('surveys')">
                          <a href="#!/dashboard/surveys/overview">Surveys</a>
                        </li>
@@ -27,11 +32,6 @@
                            <a href="#!/dashboard/betalist">Betalist</a>
                        </li>
                   </ul>
-                  <span class="profile-btn btn btn-xs btn-default pull-right" data-animation="am-flip-x" placement="auto" bs-dropdown="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{user.userInfo.email}}
-                        <i class="icon fa fa-caret-down"></i>
-                  </span>
-
             </div>
       </div>
       <div class="col-xs-12 child-view">

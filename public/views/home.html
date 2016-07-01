@@ -65,7 +65,7 @@
                     </span>
                     <span class="home-nav-c" ng-show="!isSmall()">
                          <ul>
-                            <li>Concept</li>
+                            <li>About</li>
                             <li>Developers</li>
                             <li>Blog</li>
                          </ul>
@@ -79,10 +79,10 @@
                 <div class="col-xs-12 tag-line text-center">
                      <h1>THE NEW MONEY</h1>
                      <h2>FOR MICRO-PAYMENTS</h2>
-                     <span class="btn btn-default button" ng-click="concept=!concept">
-                         <i class="icon fa fa-youtube-play"></i>
-                         Watch concept video
-                     </span>
+                     <a class="btn btn-default button" href="http://localhost:5000" target="_blank"><!--@TODO point to actual minicards on heroku-->
+                         <i class="icon fa fa-eye"></i>
+                         View Demo
+                     </a>
                 </div>
           </div>
      </div>
@@ -90,7 +90,7 @@
      <div class="col-xs-12 value-container">
        <div class="col-xs-12 value">
          <h1>
-              <span style="color:#005EA6">payments</span> powered by <span style="color:#005EA6">surveys</span>.
+              <span style="color:#005EA6">micropayments</span> powered by <span style="color:#005EA6">surveys</span>.
          </h1>
          <div class="feature col-xs-12 col-sm-4" ng-repeat="feature in features">
               <div class="inner col-xs-12">
@@ -159,7 +159,6 @@
        <span class="foot-item">blog</span>
        <span class="foot-item">API</span>
        <span class="foot-item">Jobs</span>
-       <span class="foot-item">Concept</span>
        <hr class="hr">
        <span class="copy-right">
            <i class="icon fa fa-copyright"></i> 2016 taskcoin.io

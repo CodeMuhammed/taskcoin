@@ -2,8 +2,8 @@ angular.module('checkoutModule' , [])
     //============================ pay auth factory ============================
     .factory('taskcoinAuth' , function($timeout  , $q){
          //Mocked out host data registered at taskcoin.io
-         var hostNames = ['http://localhost:5000'];
-         
+         var hostNames = ['http://localhost:5000']; //@TODO update hostnames from database
+
          //
          function find(person){
             for(var i=0; i<users.length; i++){

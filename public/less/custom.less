@@ -135,6 +135,10 @@
   font-weight:bold;
   font-size:.9em;
 }
+.button-primary{
+    background-color: @brand-primary;
+    color:#fff;
+}
 //taskcoin custom classes
 
  .home-container{
@@ -173,6 +177,7 @@
               top:0;
               left:0;
               margin-left: 50%;
+              margin-top:1.3em;
               transform: translate(-50% , 0);
               display: inline-block;
               ul{
@@ -183,10 +188,14 @@
                 padding:.6em 1em;
                 font-size:1.3em;
                 li{
+                   margin-right:1em;
+                   font-weight: bold;
+                   width:5em;
+                   display: inline-block;
+                   float: left;
                    color:#EFEFEF;
                    &:hover{
                      color:#fff;
-                     font-weight: bold;
                    }
                 }
               }
@@ -218,8 +227,8 @@
          }
 
          .tag-line{
-             margin-top:4em;
-             margin-bottom:4em;
+             margin-top:8em;
+             margin-bottom:12em;
              //font-style: oblique;
              color:darken(#fff , 5%);
              h1{
@@ -415,9 +424,10 @@
          display:inline-block;
          text-decoration:none;
          color:darken(#fff , 40%);
-         font-size:1.4em;
+         font-size:2em;
          font-weight:bold;
          padding:.5em;
+         margin-top: -.5em;
        }
        .foot-item{
           //.pull-right;
@@ -521,11 +531,12 @@
      padding:0;
      .menu-tall{
          padding:0;
-         background:#2098D1 url('../img/home-bg.png') center center repeat-x;
+         background:#2098D1 url('../img/home-bg.svg') center center no-repeat;
+         background-size: cover;
          //background-image:linear-gradient(180deg, darken(#2098D1 , 30%), darken(#2098D1 , 10%));// darken(#005EA6 , 10%);
          box-shadow:0px 2px 4px rgba(0 , 0 , 0 , .3);
          .top-m{
-             //border-bottom:1px solid lighten(@gray , 50%);
+           z-index: 100000;
              padding:.7em 10em;
              .menu-icon{
                 color: #fff;
@@ -542,6 +553,17 @@
                      height:30px;
                  }
              }
+             .profile{
+
+                display: inline-block;
+                margin-top:.5em;
+                i{
+                  &:first-child{
+                    font-size:1.6em;
+                    margin-left:1em;
+                  }
+                }
+             }
              .action{
                  .pull-right;
              }
@@ -550,18 +572,19 @@
                padding:.6em 1em;
                .logo{
                    .pull-left;
+                   margin-top: .4em;
                    img{
-                       height:30px;
+                       height:20px;
                    }
                }
              }
          }
          .bottom-m{
-             z-index:100000;
-             padding:.7em 10em;
-             background:#2098D1 url('../img/home-bg.png') center center repeat-x;
+             padding:0;
              .menu-items{
-                 padding: 0;
+                  background-color: rgba(0,0,0,.5);
+                  padding:.7em 10em;
+                  margin-bottom: 0;
                  .item{
                      display:inline-block;
                      float:left;
@@ -590,21 +613,15 @@
                      }
                  }
              }
-             .profile-btn{
-                 .pull-right;
-                 margin-top:.5em;
-             }
+
 
              @media (max-width: @screen-sm-max) {
-                padding:.6em 1em;
                 .menu-items{
+                   padding:.6em 1em;
                    .item{
                         .col-xs-6;
                         padding-left:0;
                    }
-                }
-                .profile-btn{
-                    .pull-left;
                 }
              }
          }
@@ -724,7 +741,7 @@
               }
               .edit-view{
                   z-index:10000;
-                  padding:4em 10em;
+                  padding:2em 10em;
                   background-color: #EFEFEF;
                   min-height: 60em;
                   .menu-container{
@@ -862,16 +879,188 @@
                        padding-right:0;
                        padding-left:1em;
                        .setup{
-                           padding:1em 1.5em;
-                           box-shadow: 0 1px 2px rgba(0,0,0,.5);
-                           min-height:50em;
-                           border-radius: 5px 5px 0 0;
-                           background-color: #FFF;
-                           @media (max-width: @screen-sm-max) {
-                              padding:1em .5em;
-                           }
+                            min-height:50em;
+                            padding:0;
+                           form{
+                               padding:1em 1.5em;
+                               box-shadow: 0 1px 2px rgba(0,0,0,.5);
+                               border-radius: 0;
+                               background-color: #FFF;
+                               .segment-title{
+                                   background-image: linear-gradient(40% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                                   background-image: -moz-linear-gradient(40% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                                   padding:.4em 1em;
+                                   margin-top:1.3em;
+                                   margin-bottom: 1em;
+                                   @media (max-width: @screen-sm-max) {
+                                       background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                                       background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                                   }
+                               }
+                               .content{
+                                 margin-bottom: 1.5em;
+                                   .input{
+                                       display: inline-block;
+                                       width:100%;
+                                       margin-bottom: 2em;
+                                       .options-c{
+                                           padding:0;
+                                           margin-top:.3em;
+                                           .option{
+                                               display: inline-block;
+                                               border:1px solid #ccc;
+                                               height:2em;
+                                               padding:0 1em;
+                                               border-radius: 20px;
+                                               margin-right: .5em;
+                                               label{
+                                                  margin-top:.2em;
+                                                  margin-right: .2em;
+                                               }
+                                               &:hover{
+                                                    border: 1px solid #FDC740;
+                                                    i{
+                                                       color:#FDC740;
+                                                    }
+                                               }
+                                           }
+                                           .options-input{
+                                                position: relative;
+                                                display: block;
+                                                margin-bottom: .5em;
+                                                  width:12em;
+                                                input{
+                                                    display: inline-block !important;
+                                                    height:2em;
+                                                    .form-control;
+                                                    width:12em;
+                                                    border-radius: 20px;
+                                                }
+                                                .icon-c{
+                                                    position:absolute;
+                                                    width:1.4em;
+                                                    height:1.4em;
+                                                    border:1px solid #ccc;
+                                                    border-radius: 190px;
+                                                    font-size: 1.1em;
+                                                    right:1em;
+                                                    top:50%;
+                                                    transform: translate(0 , -50%);
+                                                    i{
+                                                        margin-left:.25em;
+                                                    }
+                                                    &:hover{
+                                                        i{
+                                                           color:#FDC740;
+                                                        }
+                                                    }
+                                                }
+                                                .suggestions{
+                                                   z-index:10000000;
+                                                   position: relative;
+                                                   .list{
+                                                     position:absolute;
+                                                     display:inline-block;
+                                                     padding:0em;
+                                                     min-height: 20em;
+                                                     margin-top: -6em;
+                                                     margin-left:100%;
+                                                     width:200px;
+                                                     background-color: #FFF;
+                                                     color: #706F65;
+                                                     box-shadow: 0 5px 15px rgba(0,0,0,.5);
+                                                     li{
+                                                         padding: .7em;
+                                                         list-style: none;
+                                                         display: block;
+                                                         width: 100%;
+                                                         a{
+                                                            text-decoration: none;
+                                                            color:@gray;
+                                                         }
+                                                         &:hover{
+                                                             a{
+                                                                color:#FDC740;
+                                                             }
+                                                         }
+                                                     }
+                                                     &:before {
+                                                       pointer-events: none;
+                                                       position: absolute;
+                                                       z-index: -1;
+                                                       content: '';
+                                                       border-style: solid;
+                                                       top: calc(4em);
+                                                       left: -15px;
+                                                       border-width: 10px 15px 10px 0;
+                                                       border-color: transparent #FFF transparent transparent;
+                                                     }
 
-                       }
+                                                     -webkit-transform: translateX(0px);
+                                                     transform: translateX(0px);
+                                                   }
+
+                                                }
+                                           }
+                                       }
+                                       .packages-c{
+                                            padding:0;
+                                            .package-c{
+                                              margin-bottom: 1em;
+                                              padding:0;
+                                              outline:1px solid #ccc;
+                                              .package{
+                                                  position: relative;
+                                                  padding:0;
+                                                  min-height: 15em;
+                                                  .text-center;
+                                                  .popular-tag{
+                                                    .text-left;
+                                                    position:absolute;
+                                                    top:0;
+                                                    left:0;
+                                                    background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                                                    background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                                                    color:#FFF;
+                                                  }
+                                                  .text{
+                                                       display: block;
+                                                       margin-top: 4em;
+                                                  }
+                                                  &:hover{
+                                                      background-color: lighten(#FDC740, 20%);
+                                                      .popular-tag{
+                                                        background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 20%)  0%);
+                                                        background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 20%)  0%);
+                                                      }
+                                                  }
+                                              }
+                                              .active{
+                                                  background-color: lighten(#FDC740, 15%);
+                                                  .popular-tag{
+                                                    background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 15%)  0%);
+                                                    background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 15%)  0%);
+                                                  }
+                                              }
+                                            }
+                                       }
+                                   }
+                               }
+                               .footer{
+                                   padding:1em 1.5em;
+                                   background-color: #EEF3FA;
+                                   position: absolute;
+                                   bottom:0;
+                                   left:0;
+                                   .button{
+                                      margin-left:.5em;
+                                   }
+                               }
+                               @media (max-width: @screen-sm-max) {
+                                  padding:1em .5em;
+                               }
+                            }
+                        }
                        .builder{
                            padding:1em;
                            min-height:50em;

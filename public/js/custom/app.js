@@ -7,6 +7,116 @@ angular.module('taskcoin' , [
 ])
 
 //
+.directive('inputOptions' , function(){
+     return {
+         scope:{
+             selected:'=selected'
+         },
+
+         link: function(scope , elem , attrs){
+             scope.placeholder  = attrs.placeholder;
+             scope.list = scope.$eval(attrs.list);
+         },
+
+         template:['<span class="options-c col-xs-12">',
+                       '<span class="options-input">',
+                             '<input type="text" placeholder="{{placeholder}}" ng-model="newItem" input-focused="focused">',
+                             '<span class="icon-c"  ng-click="addItem(newItem)">',
+                                   '<i class="icon fa fa-plus"></i>',
+                             '</span>',
+                             '<suggestions list="list" select="newItem" ng-show="focused"></suggestions>',
+                       '</span>',
+                       '<span class="option" ng-repeat="option in selected" ng-click="removeItem(item)">',
+                            '<label class="">{{option}}</label>',
+                            '<i class="icon fa fa-times"></i>',
+                         '</span>',
+                   '</span>'].join(''),
+
+         controller: function($scope , $timeout){
+             //
+             $scope.$watch('list' , function(newVal){
+                  if(newVal){
+                      $scope.list = newVal;
+                  }
+             });
+
+             //
+             $scope.$watch('selected' , function(newVal){
+                  console.log(newVal);
+             });
+
+             $scope.removeItem = function(item){
+                  $scope.selected.splice($scope.selected.indexOf(item),1);
+             }
+
+             //
+             $scope.addItem = function(item){
+                  if(item && $scope.selected.indexOf(item) == -1 && $scope.list.indexOf(item) != -1){
+                       $scope.selected.push(item);
+                  }
+                  else{
+                      console.log('invalid option');
+                  }
+             }
+
+             $timeout(function () {
+
+             }, 1000);
+         }
+     }
+})
+
+//
+.directive('inputFocused' , function($timeout){
+     return{
+         scope:{focused:'=inputFocused'},
+         link:function(scope , elem , attrs){
+             elem.bind('focus' , function(e){
+                  console.log('focus');
+                  scope.focused = true;
+             }).bind('blur' , function(e){
+                 console.log('Blur');
+                 $timeout(function(){
+                      scope.focused = false;
+                 } , 300);
+             });
+         }
+     }
+})
+
+//
+.directive('suggestions'  , function(){
+      return{
+           scope: {
+               list:'=list',
+               select:'=select'
+           },
+
+           template:[
+               '<div class="suggestions">',
+                    '<ul class="list">',
+                        '<li ng-repeat="item in list | filter:select"><a href="" ng-click="selectItem(item)">{{item}}</a></li>',
+                    '</ul>',
+               '</div>',
+           ].join(''),
+           controller:function($scope){
+               //
+               $scope.$watch('list' , function(newVal){
+                    if(newVal){
+                        $scope.list = newVal;
+                    }
+               });
+
+               //
+               $scope.selectItem = function(item){
+                    console.log(item);
+                    $scope.select
+               }
+           }
+      }
+})
+
+//
 .factory('profile' , function($q , $http , $timeout){
       var user;
 
@@ -163,7 +273,7 @@ angular.module('taskcoin' , [
           //
           $timeout(function(){
               promise.resolve(surveys);
-          } , 3000);
+          } , 100);
           return promise.promise;
      }
 
@@ -232,6 +342,45 @@ angular.module('taskcoin' , [
              return '';
            }
        }
+
+       //Setup partial view controls defined here============================//
+       $scope.packages = [
+            {
+               title:'10',
+               highlight:false
+            },
+            {
+               title:'20',
+               highlight:true
+            },
+            {
+               title:'30',
+               highlight:false
+            },
+       ];
+
+       //
+       $scope.activePackage  = '';
+       $scope.setPackage = function(package){
+           $scope.activePackage = package;
+           console.log($scope.activePackage);
+       }
+
+       //
+       $scope.activePackageClass = function(package){
+            return $scope.activePackage == package ? 'active' : '';
+       }
+
+       $scope.interest = {
+           suggessions:['merron' , 'jay'],
+           selected:[]
+       };
+
+       $scope.country = {
+           suggessions:['nigeria' , 'united states' , 'united kingdom' , 'ghana' , 'kenya' , 'merge' , 'hera' , 'jerr'  ,'puri' ,'juni'],
+           selected:[]
+       };
+
 })
 
 //

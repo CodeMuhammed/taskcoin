@@ -5,7 +5,7 @@ angular.module('general.factories' , [])
         //@TODO get media breakpoints constants
         //Define media queries on the returned object
         //Set up a watch function on the window property
-
+        $rootScope.window  = $window;
         //All values for media in px
         var MAX = 100000000;
 
@@ -34,9 +34,13 @@ angular.module('general.factories' , [])
 
         //Setup a watch to update values when width changePurpose
         //Research a more optimal solution that does not use interval
-        $interval(function(){
-           initBool($window.outerWidth);
-        } , 1000);
+        $rootScope.$watch('window.outerWidth' , function(newVal , oldVal){
+            initBool($window.outerWidth);
+            console.log('Width changed');
+        });
+
+        //why does this work ?
+        $interval(function(){} , 10);
 
         return mediaBool;
     });
