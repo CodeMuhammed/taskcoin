@@ -110,7 +110,7 @@ angular.module('taskcoin' , [
                //
                $scope.selectItem = function(item){
                     console.log(item);
-                    $scope.select
+                    $scope.select  = item;
                }
            }
       }
