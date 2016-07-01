@@ -21,10 +21,10 @@
                     <td>{{survey.modified | date:'fullDate'}}</td>
                     <td>{{survey.responses}}</td>
                     <td>
-                        <a href="#!/dashboard/surveys/edit?id={{survey._id}}" class="icon fa fa-edit" bs-tooltip="'Design your survey'"></a>
-                        <a href="#!/dashboard/surveys/preview?id={{survey._id}}" class="icon fa fa-eye" bs-tooltip="'preview and test your survey'"></a>
-                        <a href="" class="icon fa fa-play" bs-tooltip="'Resume campaign'"></a>
-                        <a href="#!/dashboard/surveys/stats?id={{survey._id}}" class="icon fa fa-line-chart" bs-tooltip="'View survey stats'"></a>
+                        <a ng-click="transition(survey , 'edit')" class="icon fa fa-edit" bs-tooltip="'Design your survey'"></a>
+                        <a ng-click="transition(survey , 'preview')"  class="icon fa fa-eye" bs-tooltip="'preview and test your survey'"></a>
+                        <a class="icon fa fa-play" bs-tooltip="'Resume campaign'"></a>
+                        <a ng-click="transition(survey , 'stats')"  class="icon fa fa-line-chart" bs-tooltip="'View survey stats'"></a>
                     </td>
                   </tr>
               </tbody>

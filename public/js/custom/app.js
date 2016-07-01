@@ -41,10 +41,6 @@ angular.module('taskcoin' , [
              });
 
              //
-             $scope.$watch('selected' , function(newVal){
-                  console.log(newVal);
-             });
-
              $scope.removeItem = function(item){
                   $scope.selected.splice($scope.selected.indexOf(item),1);
              }
@@ -58,10 +54,6 @@ angular.module('taskcoin' , [
                       console.log('invalid option');
                   }
              }
-
-             $timeout(function () {
-
-             }, 1000);
          }
      }
 })
@@ -239,32 +231,51 @@ angular.module('taskcoin' , [
         {
           _id:'236496586',
           title:'Taskcoin User Experience Survey',
+          description:'Taskcoin user experience survey trying to get users to give genuine feeback about how they feel',
+          targetRespondents:{
+              countries:[],
+              interests:[]
+          },
+          packageDescription:{
+             questioneerLength:'',
+             numResponses:''
+          },
+          questionsId:'',
+          answersId:'',
+          billingInfo:{
+              //@TODO contains info about the payment made
+          },
           created:Date.now(),
           modified:Date.now(),
-          responses:'568'
+          responses:'568',
+          campaignStatus:'paused'
         },
         {
-          _id:'236487886',
-          title:'Taskcoin User Experience Survey',
+          _id:'2364889999',
+          title:'Household Toothpaste OralB Survey',
+          description:'If you have used OralB Toothpaste before or still use your feedbacks about the product would be appeciated',
+          targetRespondents:{
+              countries:[],
+              interests:[]
+          },
+          packageDescription:{
+             questioneerLength:'',
+             numResponses:''
+          },
+          questionsId:'',
+          answersId:'',
+          billingInfo:{
+              //@TODO contains info about the payment made
+          },
           created:Date.now(),
           modified:Date.now(),
-          responses:'568'
-        },
-        {
-          _id:'2368797886',
-          title:'Microsoft Windows 10 Survey',
-          created:Date.now(),
-          modified:Date.now(),
-          responses:'568'
-        },
-        {
-          _id:'236489786',
-          title:'Music Taste survey',
-          created:Date.now(),
-          modified:Date.now(),
-          responses:'568'
-        },
+          responses:'568',
+          campaignStatus:'paused'
+        }
      ];
+
+     //
+     var activeSurvey = {};
 
      //
      function all(){
@@ -278,8 +289,20 @@ angular.module('taskcoin' , [
      }
 
      //
+     function getActive(){
+         return activeSurvey;
+     }
+
+     //
+     function setActive(survey){
+         activeSurvey = survey;
+     }
+
+     //
      return {
-        all:all
+        all:all,
+        setActive:setActive,
+        getActive:getActive
      };
 })
 
@@ -300,10 +323,33 @@ angular.module('taskcoin' , [
                 console.log(err);
             }
        );
+
+       //trasition to /surveys' child view
+       $scope.transition = function(survey , view){
+            Surveys.setActive(survey);
+            switch (view) {
+              case 'edit':
+                 console.log('edit');
+                 $state.go('dashboard.surveys.edit' , {id:survey._id});
+                 break;
+              case 'preview':
+                 console.log('preview');
+                 $state.go('dashboard.surveys.preview' , {id:survey._id});
+                 break;
+              case 'stats':
+                 console.log('stats');
+                 $state.go('dashboard.surveys.stats' , {id:survey._id});
+                 break;
+            }
+       }
 })
 
 //
-.controller('surveysEditController' , function($scope , $state , $stateParams){
+.controller('surveysEditController' , function($scope , $state , $stateParams , Surveys){
+       //
+       var original = Surveys.getActive();
+       $scope.survey = angular.copy(original);
+
        //Setup default stage
        $scope.stage = 'setup';
 
@@ -380,6 +426,20 @@ angular.module('taskcoin' , [
            suggessions:['nigeria' , 'united states' , 'united kingdom' , 'ghana' , 'kenya' , 'merge' , 'hera' , 'jerr'  ,'puri' ,'juni'],
            selected:[]
        };
+
+       //Watch interest and country object and update $scope.survey
+       $scope.$watchCollection('country.selected' , function(newVal){
+            if(newVal){
+                console.log(newVal);
+            }
+       });
+
+       //
+       $scope.$watchCollection('interest.selected' , function(newVal){
+            if(newVal){
+                console.log(newVal);
+            }
+       });
 
 })
 
