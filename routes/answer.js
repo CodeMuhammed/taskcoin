@@ -8,6 +8,11 @@ module.exports = function(dbResource){
     router.route('/')
       .get(function(req , res){
            res.status(200).send('answer get called');
+      })
+
+      //
+      .post(function(req , res){
+           res.status(200).send('987674667');
       });
    //
    return router;//

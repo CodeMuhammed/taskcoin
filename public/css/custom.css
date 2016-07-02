@@ -12023,6 +12023,9 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
 .dashboard .child-view .surveys .overview .o-body .table-style thead th:last-child {
   border-right: none;
 }
+.dashboard .child-view .surveys .overview .o-body .table-style tbody tr:hover {
+  background-color: #FDFACB;
+}
 .dashboard .child-view .surveys .overview .o-body .table-style tbody tr td {
   color: #5f5f57;
 }

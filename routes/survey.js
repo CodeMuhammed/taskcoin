@@ -4,7 +4,14 @@ var ObjectId = require('mongodb').ObjectId;
 var router = express.Router();
 
 module.exports = function(dbResource){
-    console.log('/survey loaded');
+   console.log('/survey loaded');
+   request.post({url:'http://localhost:5001/questioneer', form: {key:'value'}}, function(err,httpResponse,body){
+       if(err){
+           console.log(err);
+       }
+       console.log(body);
+   });
+   
    //define data schemas
    var Surveys = dbResource.model('Surveys');
 
@@ -34,9 +41,7 @@ module.exports = function(dbResource){
            //Mock out questioneerId and answersId in survey object for now
            req.body.questioneerId = '1234567898';
            req.body.answerId = '876543232';
-           //@TODO when id is defined save directly else create questioneer and response objects on the database
 
-           
            function saveSurvey(){
                //construct query
                var query = {'_':'_'}; //look for non-existent entity: good for creation of database

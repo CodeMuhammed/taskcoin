@@ -14,7 +14,7 @@
               </thead>
               <tbody>
                   <tr ng-repeat="survey in surveys">
-                    <td>
+                    <td ng-click="transition(survey , 'stats')">
                       {{survey.title}}<br>
                       <span class="sub-title">created : {{survey.created | date:'shortDate'}}</span>
                     </td>

@@ -51,13 +51,18 @@
                          el.appendChild(div.children[0]);
                        }
                        appendHtml(document.body);
+                       setTimeout(function(){
+                            document.getElementById('taskcoinframe').setAttribute('class' , 'animate');
+                       } , 200);
                    })(document.head);
 
                    //Append taskcoin iframe to the body
                    function appendHtml(el) {
                         var div = document.createElement('div');
                         div.innerHTML = '<div class="taskcoin" id="taskcoin">'+
-                                           '<iframe src="http://localhost:5001#!/pay" class="frame"></iframe>'+
+                                           '<div class="frame">'+
+                                             '<iframe id="taskcoinframe" src="http://localhost:5001#!/pay"></iframe>'+
+                                           '</div>'+
                                          '</div>';
                         while (div.children.length > 0) {
                           el.appendChild(div.children[0]);
