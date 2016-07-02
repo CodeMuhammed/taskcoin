@@ -7,6 +7,19 @@ angular.module('taskcoin' , [
 ])
 
 //
+.directive('minResponse' , function(){
+    return {
+       restrict:'A',
+       require: 'ngModel',
+   	   link: function(scope , elem , attrs , ngModel){
+         ngModel.$validators.minResponse = function(modelValue){
+               return modelValue >= 500 && /^[0-9]+$/.test(modelValue);
+          }
+   	   }
+    }
+})
+
+//
 .directive('inputOptions' , function(){
      return {
          scope:{
@@ -49,6 +62,7 @@ angular.module('taskcoin' , [
              $scope.addItem = function(item){
                   if(item && $scope.selected.indexOf(item) == -1 && $scope.list.indexOf(item) != -1){
                        $scope.selected.push(item);
+                       $scope.newItem = '';
                   }
                   else{
                       console.log('invalid option');
@@ -87,7 +101,7 @@ angular.module('taskcoin' , [
            template:[
                '<div class="suggestions">',
                     '<ul class="list">',
-                        '<li ng-repeat="item in list | filter:select"><a href="" ng-click="selectItem(item)">{{item}}</a></li>',
+                        '<li ng-repeat="item in list | filter:select" ng-click="selectItem(item)"><a href="">{{item}}</a></li>',
                     '</ul>',
                '</div>',
            ].join(''),
@@ -232,13 +246,13 @@ angular.module('taskcoin' , [
           _id:'236496586',
           title:'Taskcoin User Experience Survey',
           description:'Taskcoin user experience survey trying to get users to give genuine feeback about how they feel',
-          targetRespondents:{
+          target:{
               countries:[],
               interests:[]
           },
-          packageDescription:{
-             questioneerLength:'',
-             numResponses:''
+          package:{
+             type:'',
+             responses:'0'
           },
           questionsId:'',
           answersId:'',
@@ -254,13 +268,13 @@ angular.module('taskcoin' , [
           _id:'2364889999',
           title:'Household Toothpaste OralB Survey',
           description:'If you have used OralB Toothpaste before or still use your feedbacks about the product would be appeciated',
-          targetRespondents:{
+          target:{
               countries:[],
               interests:[]
           },
-          packageDescription:{
-             questioneerLength:'',
-             numResponses:''
+          package:{
+             type:'',
+             responses:'0'
           },
           questionsId:'',
           answersId:'',
@@ -275,7 +289,7 @@ angular.module('taskcoin' , [
      ];
 
      //
-     var activeSurvey = {};
+     var activeSurvey;
 
      //
      function all(){
@@ -299,10 +313,31 @@ angular.module('taskcoin' , [
      }
 
      //
+     function save(survey){
+         var promise = $q.defer();
+         $timeout(function(){
+              activeSurvey = survey; //use data from server in actual implementation
+              if(survey._id){ //survey data from editor
+                  for(var i=0; i<surveys.length; i++){
+                      surveys[i]._id == survey._id ? //survey data from editor
+                         surveys[i]=survey : ''; //use data from server in actual implementation
+                  }
+              }
+              else{
+                 surveys.push(survey); //use data from server in actual implementation
+              }
+
+              promise.resolve('stats from server');
+         } , 3000);
+
+         return promise.promise;
+     }
+     //
      return {
         all:all,
         setActive:setActive,
-        getActive:getActive
+        getActive:getActive,
+        save:save
      };
 })
 
@@ -346,8 +381,15 @@ angular.module('taskcoin' , [
 
 //
 .controller('surveysEditController' , function($scope , $state , $stateParams , Surveys){
-       //
+       //In case user cancels editing
        var original = Surveys.getActive();
+
+       //@TODO for now redirect to surveys overview on refresh
+       if(!angular.isDefined(original)){
+          $state.go('dashboard.surveys.overview');
+       }
+
+       //For use in this scope only
        $scope.survey = angular.copy(original);
 
        //Setup default stage
@@ -406,40 +448,65 @@ angular.module('taskcoin' , [
        ];
 
        //
-       $scope.activePackage  = '';
        $scope.setPackage = function(package){
-           $scope.activePackage = package;
-           console.log($scope.activePackage);
+           $scope.survey.package.type = package.title;
+           console.log($scope.survey.package.type);
+       }
+
+       //
+       $scope.invalidPackage = function(){
+         if($scope.survey){
+             return $scope.survey.package.type == '';
+         }
+         else{
+            return false;
+         }
+       }
+
+       //
+       $scope.invalidTarget = function(){
+         if($scope.survey){
+             return $scope.survey.target.countries.length ==0 || $scope.survey.target.interests.length==0;
+         }
+         else{
+            return false;
+         }
        }
 
        //
        $scope.activePackageClass = function(package){
-            return $scope.activePackage == package ? 'active' : '';
+            if($scope.survey){
+                return $scope.survey.package.type == package.title ? 'active' : '';
+            }
+            return '';
        }
 
-       $scope.interest = {
-           suggessions:['merron' , 'jay'],
-           selected:[]
+       //For country options and interests
+       $scope.suggessions = {
+           interest:['merron' , 'jay'],
+           country:['nigeria' , 'united states' , 'united kingdom' , 'ghana' , 'kenya' , 'merge' , 'hera' , 'jerr'  ,'puri' ,'juni']
        };
-
-       $scope.country = {
-           suggessions:['nigeria' , 'united states' , 'united kingdom' , 'ghana' , 'kenya' , 'merge' , 'hera' , 'jerr'  ,'puri' ,'juni'],
-           selected:[]
-       };
-
-       //Watch interest and country object and update $scope.survey
-       $scope.$watchCollection('country.selected' , function(newVal){
-            if(newVal){
-                console.log(newVal);
-            }
-       });
 
        //
-       $scope.$watchCollection('interest.selected' , function(newVal){
-            if(newVal){
-                console.log(newVal);
-            }
-       });
+       $scope.cancel=function(){
+            $scope.survey = angular.copy(original);
+       }
+
+       //
+       $scope.save = function(survey){
+            //@TODO surveys.save here
+            $scope.saving = true;
+            Surveys.save(survey).then(
+                function(stats){
+                    original = Surveys.getActive();
+                    $scope.survey = angular.copy(original);
+                    $scope.saving = false;
+                },
+                function(err){
+                    console.log(err);
+                }
+            );
+       }
 
 })
 

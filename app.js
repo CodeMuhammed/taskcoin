@@ -56,9 +56,8 @@ dbResource.initColls(['Betalist' ,  'Users'] , function(){
 		//routes implementations
 		app.use('/betalist' , require('./routes/betalist')(emailClient , dbResource));
     app.use('/auth' , Auth.router);
-		app.use('/profile' , Auth.authorize() , require('./routes/profile')(dbResource));
-
-
+		app.use('/profile' , Auth.authorize({}) , require('./routes/profile')(dbResource));
+		app.use('/survey' , Auth.authorize({except:['GET']}) , require('./routes/survey')(dbResource));
 
 		//handle errors using custom or 3rd party middle-wares
 		app.use(errorHandler());

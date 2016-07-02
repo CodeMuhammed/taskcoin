@@ -98,11 +98,11 @@
                     <div class="content col-xs-12">
                         <span class="input">
                            <label class="input-label">Title *</label>
-                           <input type="text" placeholder="Enter survey title here" class="form-control" required>
+                           <input type="text" placeholder="Enter survey title here" class="form-control" ng-model="survey.title" required>
                         </span>
                         <span class="input">
                            <label class="input-label">Description *</label>
-                           <textarea rows="8" type="text" placeholder="Describe your survey" class="form-control" required></textarea>
+                           <textarea rows="8" type="text" placeholder="Describe your survey" class="form-control" ng-model="survey.description" required></textarea>
                         </span>
                     </div>
                      <div class="col-xs-12 segment-title">
@@ -111,11 +111,11 @@
                      <div class="content col-xs-12">
                          <span class="input">
                             <label class="input-label">Countries *</label>
-                            <input-options list="{{country.suggessions}}" selected="country.selected" placeholder="Add country"></input-options>
+                            <input-options list="{{suggessions.country}}" selected="survey.target.countries" placeholder="Add country"></input-options>
                          </span>
                          <span class="input">
                             <label class="input-label">Interests *</label>
-                            <input-options list="{{interest.suggessions}}" selected="interest.selected" placeholder="Add interest"></input-options>
+                            <input-options list="{{suggessions.interest}}" selected="survey.target.interests" placeholder="Add interest"></input-options>
                          </span>
                      </div>
                      <div class="col-xs-12 segment-title">
@@ -141,14 +141,17 @@
                        </span>
                        <span class="input">
                           <label class="input-label">Number of responses *</label>
-                          <input type="number" placeholder="Number of responses" class="form-control" required>
+                          <input type="text" placeholder="Number of responses" class="form-control" ng-model="survey.package.responses" min-response required>
                        </span>
                      </div>
                     <div style="margin-bottom:5em" class="col-xs-12"></div><!--Divider that helps creates padding from footer-->
                     <div class="col-xs-12 footer">
                          <span class="pull-right">
-                              <button class="btn btn-sm btn-default" name="button">Cancel</button>
-                              <button class="btn btn-primary btn-sm" ng-disabled="setupform.$invalid" name="button">Save changes</button>
+                              <button class="btn btn-sm btn-default" ng-click="cancel()">Cancel</button>
+                              <button class="btn btn-primary btn-sm" ng-disabled="setupform.$invalid || invalidPackage() || invalidTarget() || saving" ng-click="save(survey)">
+                                  <span ng-show="saving"><i class="icon fa fa-spin fa-spinner"></i> Saving changes ...</span>
+                                 <span ng-hide="saving"> Save changes</span>
+                              </button>
                          </span>
                     </div>
                 </form>

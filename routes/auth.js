@@ -2,9 +2,16 @@ var express = require('express');
 var router = express.Router();
 module.exports = function(passport){
    //
-   var authorize = function(){
+   var authorize = function(options){
+      if(options){
+          options.except ? '' : options.except = [];
+      }
+      else{
+         options = {except:[]};
+      }
       return function(req , res , next){
-           if(req.isAuthenticated()){
+           console.log(req.method , options);
+           if(req.isAuthenticated() || options.except.indexOf(req.method)>=0 ){
                console.log('User authorized');
                next();
            }
