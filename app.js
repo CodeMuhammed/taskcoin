@@ -19,7 +19,7 @@ var app = express();
 var dbResource = require('./app_server/models/dbResource')('restapi' , app);
 
 //initialize database
-dbResource.initColls(['Betalist' ,  'Users'] , function(){
+dbResource.initColls(['Betalist','Users','Surveys','Questioneers','Answers'] , function(){
 		//Email client
 		var emailClient = require('./app_server/controllers/emailClient')();
 
@@ -58,6 +58,8 @@ dbResource.initColls(['Betalist' ,  'Users'] , function(){
     app.use('/auth' , Auth.router);
 		app.use('/profile' , Auth.authorize({}) , require('./routes/profile')(dbResource));
 		app.use('/survey' , Auth.authorize({except:['GET']}) , require('./routes/survey')(dbResource));
+		app.use('/questioneer' , Auth.authorize({except:['GET']}) , require('./routes/questioneer')(dbResource));
+		app.use('/answer' , Auth.authorize({except:['GET']}) , require('./routes/answer')(dbResource));
 
 		//handle errors using custom or 3rd party middle-wares
 		app.use(errorHandler());

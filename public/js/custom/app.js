@@ -241,11 +241,10 @@ angular.module('taskcoin' , [
 
 //
 .factory('Surveys' , function($q , $http , $timeout){
-     var surveys = [
-        {
-          _id:'236496586',
-          title:'Taskcoin User Experience Survey',
-          description:'Taskcoin user experience survey trying to get users to give genuine feeback about how they feel',
+     //New Survey schema
+     var surveySchema = {
+          title:'Generic survey title',
+          description:'Describe your survey here',
           target:{
               countries:[],
               interests:[]
@@ -254,51 +253,43 @@ angular.module('taskcoin' , [
              type:'',
              responses:'0'
           },
-          questionsId:'',
+          questioneerId:'',
           answersId:'',
+          creator:'palingramblog@gmail.com',
           billingInfo:{
               //@TODO contains info about the payment made
           },
-          created:Date.now(),
-          modified:Date.now(),
-          responses:'568',
+          created:Date.now(), // will be modified on the server
+          modified:Date.now(), // will be modified on server
+          responses:'0',
           campaignStatus:'paused'
-        },
-        {
-          _id:'2364889999',
-          title:'Household Toothpaste OralB Survey',
-          description:'If you have used OralB Toothpaste before or still use your feedbacks about the product would be appeciated',
-          target:{
-              countries:[],
-              interests:[]
-          },
-          package:{
-             type:'',
-             responses:'0'
-          },
-          questionsId:'',
-          answersId:'',
-          billingInfo:{
-              //@TODO contains info about the payment made
-          },
-          created:Date.now(),
-          modified:Date.now(),
-          responses:'568',
-          campaignStatus:'paused'
-        }
-     ];
+     };
 
      //
+     var surveys;
      var activeSurvey;
 
      //
-     function all(){
+     function all(user){
           var promise = $q.defer();
-
           //
-          $timeout(function(){
-              promise.resolve(surveys);
-          } , 100);
+          if(!surveys){
+              $http({
+                  method: 'GET',
+                  url:'/survey'+ (user ? '?creator='+user : '')
+              })
+              .success(function(data){
+                   surveys = data;
+                   promise.resolve(surveys);
+              })
+              .error(function(err){
+                  promise.reject(err);
+              });
+          }
+          else{
+             promise.resolve(surveys);
+          }
+
           return promise.promise;
      }
 
@@ -315,29 +306,51 @@ angular.module('taskcoin' , [
      //
      function save(survey){
          var promise = $q.defer();
-         $timeout(function(){
-              activeSurvey = survey; //use data from server in actual implementation
-              if(survey._id){ //survey data from editor
-                  for(var i=0; i<surveys.length; i++){
-                      surveys[i]._id == survey._id ? //survey data from editor
-                         surveys[i]=survey : ''; //use data from server in actual implementation
-                  }
-              }
-              else{
-                 surveys.push(survey); //use data from server in actual implementation
-              }
 
-              promise.resolve('stats from server');
-         } , 3000);
+
+         $http({
+            method: 'POST',
+            url: '/survey',
+            data: survey
+         })
+         .success(function(data){
+              console.log(data);
+               activeSurvey = data;
+               if(survey._id){
+                   console.log('old');
+                   for(var i=0; i<surveys.length; i++){
+                       surveys[i]._id == data._id ?
+                          surveys[i]=data : '';
+                   }
+               }
+               else{
+                  console.log('new');
+                  surveys.unshift(data);
+               }
+               console.log(surveys.length);
+               promise.resolve();
+         })
+         .error(function(err){
+              promise.reject(err);
+         });
 
          return promise.promise;
      }
+
+     //
+     function initNew(user){
+          activeSurvey = surveySchema;
+          activeSurvey.creator = user;
+          return true;
+     }
+
      //
      return {
         all:all,
         setActive:setActive,
         getActive:getActive,
-        save:save
+        save:save,
+        initNew : initNew
      };
 })
 
@@ -348,34 +361,54 @@ angular.module('taskcoin' , [
 })
 
 //
-.controller('surveysOverviewController' , function($scope , $state , myMedia , Surveys){
+.controller('surveysOverviewController' , function($scope , $state , myMedia , Surveys , profile){
        //
-       Surveys.all().then(
-            function(data){
-                $scope.surveys = data;
-            },
-            function(err){
-                console.log(err);
-            }
+       profile.getUser().then(
+          function(user){
+            Surveys.all(user.userInfo.email).then(
+                 function(data){
+                     $scope.surveys = data;
+                 },
+                 function(err){
+                     console.log(err);
+                 }
+            );
+          },
+          function(err){
+              console.log(err);
+          }
        );
 
        //trasition to /surveys' child view
        $scope.transition = function(survey , view){
             Surveys.setActive(survey);
+            console.log(view);
+
             switch (view) {
               case 'edit':
-                 console.log('edit');
                  $state.go('dashboard.surveys.edit' , {id:survey._id});
                  break;
               case 'preview':
-                 console.log('preview');
                  $state.go('dashboard.surveys.preview' , {id:survey._id});
                  break;
               case 'stats':
-                 console.log('stats');
                  $state.go('dashboard.surveys.stats' , {id:survey._id});
                  break;
             }
+       }
+
+       //create a new survey schema and send user to editor
+       $scope.createSurvey = function(){
+           profile.getUser().then(
+               function(user){
+                   console.log('Called');
+                   Surveys.initNew(user.userInfo.email);
+                   $state.go('dashboard.surveys.edit' , {id:1});
+               },
+               function(err){
+                   console.log(err);
+               }
+           );
        }
 })
 
@@ -494,10 +527,9 @@ angular.module('taskcoin' , [
 
        //
        $scope.save = function(survey){
-            //@TODO surveys.save here
             $scope.saving = true;
             Surveys.save(survey).then(
-                function(stats){
+                function(){
                     original = Surveys.getActive();
                     $scope.survey = angular.copy(original);
                     $scope.saving = false;

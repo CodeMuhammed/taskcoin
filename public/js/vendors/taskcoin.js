@@ -43,19 +43,26 @@
         //
         var initialize = function(options){
               (function(){
-                   var taskcoin = '<div id="taskcoin" style="display:block;width:100%;height:100%;padding:0;position:fixed;top:0;background-color:rgba(0,0,0,.5)">'+
-                                    '<iframe id="frame" src="http://localhost:5001#!/pay" class="col-xs-12 col-sm-6 col-sm-offset-3"'+
-                                        'style="padding:0; height:100%; border:none; box-shadow:0px 5px 10px rgba(100 , 100 , 100 , .3);">'+
-                                    '</iframe>'+
-                                  '</div>';
-                   //
-                   (function appendHtml(el, str) {
+                   //Append taskcoin css to  the head
+                   (function(el){
+                       var div = document.createElement('div');
+                       div.innerHTML = '<link rel="stylesheet" type="text/css" href="http://localhost:5001/css/taskcoin.css"/>';
+                       while (div.children.length > 0) {
+                         el.appendChild(div.children[0]);
+                       }
+                       appendHtml(document.body);
+                   })(document.head);
+
+                   //Append taskcoin iframe to the body
+                   function appendHtml(el) {
                         var div = document.createElement('div');
-                        div.innerHTML = str;
+                        div.innerHTML = '<div class="taskcoin" id="taskcoin">'+
+                                           '<iframe src="http://localhost:5001#!/pay" class="frame"></iframe>'+
+                                         '</div>';
                         while (div.children.length > 0) {
                           el.appendChild(div.children[0]);
                         }
-                   })(document.body, taskcoin);
+                   };
 
                    //Temporarily disable the scroll for parent frame
                    document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:hidden');

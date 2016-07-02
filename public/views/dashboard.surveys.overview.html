@@ -28,16 +28,18 @@
                     </td>
                   </tr>
               </tbody>
-
         </table>
+        <div class="alert alert-info" ng-hide="surveys.length>0">
+              You do not have any survey yet. Click below to get started
+        </div>
       </div>
 
       <div class="col-xs-12 o-footer">
         <div class="col-xs-12 o-foot-h">
-          <a class="btn btn-primary action" href="#!/dashboard/surveys/edit?id=1">
+          <button class="btn btn-primary" ng-click="createSurvey()">
               <i class="icon fa fa-plus"></i>
               Create Survey
-          </a>
+          </button>
         </div>
         <span class="col-xs-12 o-foot-b">
              <h2>ALL SURVEYS : 1 of 1</h2>

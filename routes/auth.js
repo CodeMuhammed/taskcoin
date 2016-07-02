@@ -10,7 +10,6 @@ module.exports = function(passport){
          options = {except:[]};
       }
       return function(req , res , next){
-           console.log(req.method , options);
            if(req.isAuthenticated() || options.except.indexOf(req.method)>=0 ){
                console.log('User authorized');
                next();
