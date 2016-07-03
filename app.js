@@ -29,6 +29,12 @@ dbResource.initColls(['Betalist','Users','Surveys','Questioneers','Answers'] , f
 		//Auth module
 		var Auth =  require('./routes/auth')(localStrategy);
 
+		//Qusestioneer module
+		var questioneer = require('./routes/questioneer')(dbResource);
+
+		//answers module
+    var answer = require('./routes/answer')(dbResource);
+
 		//Configure the express app
 		app.set('view cache' , true);
 	  app.set('views' , 'views');
@@ -56,10 +62,12 @@ dbResource.initColls(['Betalist','Users','Surveys','Questioneers','Answers'] , f
 		//routes implementations
 		app.use('/betalist' , require('./routes/betalist')(emailClient , dbResource));
     app.use('/auth' , Auth.router);
+
 		app.use('/profile' , Auth.authorize({}) , require('./routes/profile')(dbResource));
-		app.use('/survey' , Auth.authorize({except:['GET']}) , require('./routes/survey')(dbResource));
-		app.use('/questioneer' , Auth.authorize({except:['GET']}) , require('./routes/questioneer')(dbResource));
-		app.use('/answer' , Auth.authorize({except:['GET']}) , require('./routes/answer')(dbResource));
+		app.use('/questioneer' , Auth.authorize({}) , questioneer.router);
+		app.use('/answer' , Auth.authorize({}) , answer.router);
+		app.use('/survey' , Auth.authorize({}) , require('./routes/survey')(dbResource , questioneer.api , answer.api));
+
 
 		//handle errors using custom or 3rd party middle-wares
 		app.use(errorHandler());

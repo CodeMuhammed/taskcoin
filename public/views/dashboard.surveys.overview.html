@@ -13,7 +13,7 @@
                    <th>ACTIONS</th>
               </thead>
               <tbody>
-                  <tr ng-repeat="survey in surveys">
+                  <tr ng-repeat="survey in surveys | orderBy:'-created'">
                     <td ng-click="transition(survey , 'stats')">
                       {{survey.title}}<br>
                       <span class="sub-title">created : {{survey.created | date:'shortDate'}}</span>
@@ -25,6 +25,7 @@
                         <a ng-click="transition(survey , 'preview')"  class="icon fa fa-eye" bs-tooltip="'preview and test your survey'"></a>
                         <a class="icon fa fa-play" bs-tooltip="'Resume campaign'"></a>
                         <a ng-click="transition(survey , 'stats')"  class="icon fa fa-line-chart" bs-tooltip="'View survey stats'"></a>
+                        <a class="icon fa fa-trash pull-right" bs-tooltip="'Delete survey'"></a>
                     </td>
                   </tr>
               </tbody>

@@ -5,16 +5,6 @@ angular.module('checkoutModule' , [])
          var hostNames = ['http://localhost:5000']; //@TODO update hostnames from database
 
          //
-         function find(person){
-            for(var i=0; i<users.length; i++){
-                if(person.username == users[i].username && person.password == users[i].password){
-                    return true;
-                }
-            }
-            return false;
-         }
-
-         //
          function verifyHost(hostName){
               var promise = $q.defer();
               $timeout(function(){
@@ -33,7 +23,33 @@ angular.module('checkoutModule' , [])
              verifyHost: verifyHost
          };
     })
-    //============================ pay controller ==============================
+
+    //============================ questioneer factory ============================
+    .factory('Questioneer' , function($http , $q , $timeout , profile){
+
+          //
+          function refresh(){
+              var promise = $q.defer();
+
+              $http({
+                 method:'GET',
+                 url:'/survey/preview'
+              })
+              .success(function(data){
+                  promise.resolve(data);
+              })
+              .error(function(err){
+                  promise.reject(err);
+              });
+
+              return promise.promise
+          }
+          //
+          return {
+              refresh:refresh
+          }
+    })
+    //============================ pay controller =================================
     .controller('payController' , function($scope , $window , $state , $timeout , taskcoinAuth){
          //
          $window.parent.postMessage({msg:'Please send a message', status:'verify'}, '*');
@@ -80,14 +96,24 @@ angular.module('checkoutModule' , [])
 
          //
          $scope.doneTask = function(){
-             $scope.doneMsg = "Thank you !"
+             $scope.doneMsg = "Thank you !";
+             $scope.processingCheckout = true;
              $timeout(function(){
                  $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
+                 $scope.processingCheckout = false;
              } , 3000)
          }
     })
 
     //
-    .controller('paySurveyController' , function($scope){
-          $scope.hello = 'pay survey controller';
+    .controller('paySurveyController' , function($scope , Questioneer){
+          Questioneer.refresh().then(
+              function(data){
+                  $scope.warning = true;
+                  $scope.questioneer = data;
+              },
+              function(err){
+                  console.log(err);
+              }
+          );
     });

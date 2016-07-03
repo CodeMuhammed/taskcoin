@@ -262,6 +262,7 @@ angular.module('taskcoin' , [
           created:Date.now(), // will be modified on the server
           modified:Date.now(), // will be modified on server
           responses:'0',
+          respondents:[],
           campaignStatus:'paused'
      };
 
