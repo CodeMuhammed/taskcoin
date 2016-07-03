@@ -46,7 +46,15 @@ module.exports = function(dbResource){
     router.route('/')
       //
       .get(function(req , res){
-           
+           console.log(req.query);
+           Questioneers.findOne({_id:ObjectId(req.query.id)} , {questions:1} , function(err , result){
+                if(err){
+                    res,status(500).send('Error getting questions');
+                }
+                else{
+                    res.status(200).send(result.questions);
+                }
+           });
       })
 
       //The web api for PUT only

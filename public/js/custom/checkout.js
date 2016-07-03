@@ -25,15 +25,46 @@ angular.module('checkoutModule' , [])
     })
 
     //============================ questioneer factory ============================
-    .factory('Questioneer' , function($http , $q , $timeout , profile){
+    .factory('Questioneer' , function($http , $q , $timeout){
+          //Tracks surveys that has been served so far
+          var served = [];
 
           //
-          function refresh(){
+          function refresh(user){
+              var promise = $q.defer();
+
+              console.log(user);
+              $http({
+                 method:'POST',
+                 url:'/survey/preview',
+                 data:{served:served , user:[user]}
+              })
+              .success(function(data){
+                  getQuestions(data.questioneerId).then(
+                       function(questions){
+                           data.questions = questions;
+                           served.indexOf(data._id)<0 ? served.push(data._id) : '';
+                           promise.resolve(data);
+                       },
+                       function(err){
+                           promise.reject(err);
+                       }
+                  );
+              })
+              .error(function(err){
+                  promise.reject(err);
+              });
+
+              return promise.promise
+          }
+
+          //
+          function getQuestions(id){
               var promise = $q.defer();
 
               $http({
-                 method:'GET',
-                 url:'/survey/preview'
+                method:'GET',
+                url:'/questioneer?id='+id
               })
               .success(function(data){
                   promise.resolve(data);
@@ -42,7 +73,7 @@ angular.module('checkoutModule' , [])
                   promise.reject(err);
               });
 
-              return promise.promise
+              return promise.promise;
           }
           //
           return {
@@ -88,32 +119,55 @@ angular.module('checkoutModule' , [])
          $scope.resetError = function(){
              $scope.init.loginError = false;
          }
-
-         //send a message to host to signal the status of the survey
-         $scope.cancelTask = function(){
-             $window.parent.postMessage({msg:'User cancelled the task', status:'cancel'}, '*');
-         }
-
-         //
-         $scope.doneTask = function(){
-             $scope.doneMsg = "Thank you !";
-             $scope.processingCheckout = true;
-             $timeout(function(){
-                 $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
-                 $scope.processingCheckout = false;
-             } , 3000)
-         }
     })
 
     //
-    .controller('paySurveyController' , function($scope , Questioneer){
-          Questioneer.refresh().then(
+    .controller('paySurveyController' , function($scope ,  $window , $timeout , Questioneer , profile){
+          $scope.userData;
+          //Serves a new surveys
+          $scope.refresh = function(user){
+              $scope.refreshing = true;
+              Questioneer.refresh(user).then(
+                  function(data){
+                      $timeout(function(){
+                        $scope.warning = true;
+                        $scope.questioneer = data;
+                        $scope.refreshing = false;
+                      } , 3000);
+                  },
+                  function(err){
+                      $scope.error = err;
+                      $scope.questioneer = [];
+                  }
+              );
+          };
+
+          //Serves the first survey automatically
+          $scope.refreshing = true;
+          profile.getUser().then(
               function(data){
-                  $scope.warning = true;
-                  $scope.questioneer = data;
+                    console.log(data);
+                    $scope.userData = data;
+                    $scope.refresh(data.userInfo.email);
               },
               function(err){
-                  console.log(err);
+                   $scope.error = err;
               }
           );
+
+          //send a message to host to signal the status of the survey
+          $scope.cancelTask = function(){
+              $window.parent.postMessage({msg:'User cancelled the task', status:'cancel'}, '*');
+          }
+
+          //
+          $scope.doneTask = function(){
+              $scope.doneMsg = "Thank you !";
+              $scope.processingCheckout = true;
+              $timeout(function(){
+                  $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
+                  $scope.processingCheckout = false;
+              } , 3000)
+          }
+
     });

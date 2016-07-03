@@ -14,9 +14,12 @@ module.exports = function(dbResource , questioneerApi , answerApi){
       .get(function(req , res){
            console.log(req.query);
            //construct query from query
-           var query = {}; //getAll surveys in the database
+           var query;
            if(req.query.creator){
                 query = {creator:req.query.creator}; // All sureveys by a particular user
+           }
+           else{
+                query = {'_':'_'}; // query to search for nothing when no creator is provided
            }
 
            //
@@ -88,10 +91,27 @@ module.exports = function(dbResource , questioneerApi , answerApi){
 
       //
       router.route('/preview')
-         .get(function(req , res){
-              console.log(req.query);
-              //
-              Surveys.findOne({/*criteria*/},
+         .post(function(req , res){
+              console.log(req.body.user);
+
+              //Transform the array of ids to mongoDB $OId's
+              var served = req.body.served;
+              for(var i=0; i<served.length; i++){
+                  served[i] = ObjectId(served[i]);
+              }
+
+              //Get a survey that passes the following criteria
+              //1.Not already served in this session
+              //2.Not already answered by this user
+              Surveys.findOne(
+                  {
+                   _id : {
+                      "$nin":served
+                    },
+                    respondents : {
+                       "$nin":req.body.user
+                    }
+                  },
                   {
                      title:1,
                      description:1,
@@ -103,8 +123,12 @@ module.exports = function(dbResource , questioneerApi , answerApi){
                       res.status(500).send('Unable to get preview data');
                   }
                   else{
-                      console.log(result);
-                      res.status(200).send(result);
+                      if(!result){
+                          res.status(400).send('Sorry no more survey available');
+                      }
+                      else{
+                          res.status(200).send(result);
+                      }
                   }
               });
          });
