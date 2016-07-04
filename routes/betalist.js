@@ -13,7 +13,6 @@ module.exports = function(emailClient , dbResource){
 	//Init collections
 	var Betalist = dbResource.model('Betalist');
 	var Users = dbResource.model('Users');
-	var defaultId = 346798;
 
 	router.route('/')
 	   .get(function(req , res){
@@ -72,8 +71,8 @@ module.exports = function(emailClient , dbResource){
 																updateBetalist(req.body)
 														 }
 														 else{
-																req.body.inviteId = defaultId;
-																console.log(req.body.inviteId);
+																req.body.inviteId = 34679;
+																console.log(req.body.inviteId , 'here new id');
 																req.body._id = ObjectId(req.body._id);
 																updateBetalist(req.body)
 														 }
