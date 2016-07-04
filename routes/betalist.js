@@ -53,32 +53,30 @@ module.exports = function(emailClient , dbResource){
 		 router.route('/invite')
         .post(function(req , res){
 					   //
-
-					   (function generateId(cb){
-                  Betalist.find({})
-								     .sort({"inviteId":-1})
-										 .limit(1)
-										 .toArray(function(err , result){
-											    if(err){
-														  console.log(err);
-														  res.status(500).send('Err generating inviteId');
-													}
-													else{
-														 if(result[0]){
-																req.body.inviteId = (++result[0].inviteId);
-																console.log(req.body.inviteId);
-																req.body._id = ObjectId(req.body._id);
-																updateBetalist(req.body)
-														 }
-														 else{
-																req.body.inviteId = 34679;
-																console.log(req.body.inviteId , 'here new id');
-																req.body._id = ObjectId(req.body._id);
-																updateBetalist(req.body)
-														 }
-													}
-										 });
-						 })();
+						 Betalist.find({})
+					 		 .sort({"inviteId":-1})
+					 		 .limit(1)
+					 		 .toArray(function(err , result){
+					 					if(err){
+					 							console.log(err);
+					 							res.status(500).send('Err generating inviteId');
+					 					}
+					 					else{
+					 						 if(result[0]){
+												  console.log(result[0] , 'here we go again');
+					 								req.body.inviteId = (++result[0].inviteId);
+					 								console.log(req.body.inviteId);
+					 								req.body._id = ObjectId(req.body._id);
+					 								updateBetalist(req.body)
+					 						 }
+					 						 else{
+					 								req.body.inviteId = 34679;
+					 								console.log(req.body.inviteId , 'here new id');
+					 								req.body._id = ObjectId(req.body._id);
+					 								updateBetalist(req.body)
+					 						 }
+					 					}
+					 		 });
 
 						 //
 						 function updateBetalist(betauser){
