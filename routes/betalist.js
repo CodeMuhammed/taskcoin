@@ -52,8 +52,9 @@ module.exports = function(emailClient , dbResource){
      //
 		 router.route('/invite')
         .post(function(req , res){
-					   //
-						 Betalist.find({})
+
+					   //Get the most recent assigned id
+						 Users.find({})
 					 		 .sort({"inviteId":-1})
 					 		 .limit(1)
 					 		 .toArray(function(err , result){
@@ -121,7 +122,8 @@ module.exports = function(emailClient , dbResource){
 												 lastname:'@lastname',
 												 phone:'+@code@phone',
 												 companyname:'@parent company name'
-										 }
+										 },
+										 inviteId:betauser.inviteId
 								 };
 
 							   Users.update({'auth.username':betauser.email} , newUser, {upsert:true} , function(err , stats){
