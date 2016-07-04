@@ -183,7 +183,7 @@ angular.module('taskcoin' , [
 //======================== Dashboard controller logged in state=============================
 .controller('dashboardController' , function($scope , $state ,$timeout,  authy , myMedia , profile , betalistFactory){
        //Logic that requires user to be authenticated goes here
-       authy.isAuth().then(
+       /*authy.isAuth().then(
           function(stutus){
              profile.getUser().then(
                  function(user){
@@ -197,7 +197,7 @@ angular.module('taskcoin' , [
           function(err){
               $state.go('home');
           }
-       );
+       );*/
 
        //logic for logging out
       $scope.logout = function(){
