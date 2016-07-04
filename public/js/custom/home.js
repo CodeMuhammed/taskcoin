@@ -26,7 +26,14 @@ angular.module('homeModule' , [])
     })
 
     //============================ Home controller logged out state=============================
-    .controller('homeController' , function($scope , $document ,  Mailer , myMedia){
+    .controller('homeController' , function($scope , $document ,  Mailer , myMedia , demoUrl){
+          //
+          demoUrl.getUrl().then(function(url){
+               $scope.demoUrl = url;
+          } , function(err){
+              console.log(err);
+          });
+
           //Media query for small screen
           $scope.isSmall = function(){
               if(myMedia['gt-xs']){

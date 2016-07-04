@@ -43,4 +43,28 @@ angular.module('general.factories' , [])
         $interval(function(){} , 10);
 
         return mediaBool;
+    })
+
+    //
+    .factory('demoUrl' , function($http , $q){
+
+          function getUrl(){
+              var promise = $q.defer();
+              $http({
+                  method:'GET',
+                  url:'/demourl'
+              })
+              .success(function(url){
+                   promise.resolve(url);
+              })
+              .error(function(err){
+                  promise.reject(err);
+              });
+              return promise.promise;
+          }
+          //
+          return {
+              getUrl : getUrl
+          }
+
     });

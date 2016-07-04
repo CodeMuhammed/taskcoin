@@ -62,11 +62,15 @@ dbResource.initColls(['Betalist','Users','Surveys','Questioneers','Answers'] , f
 		//routes implementations
 		app.use('/betalist' , require('./routes/betalist')(emailClient , dbResource));
     app.use('/auth' , Auth.router);
-
 		app.use('/profile' , Auth.authorize({}) , require('./routes/profile')(dbResource));
 		app.use('/questioneer' , Auth.authorize({}) , questioneer.router);
 		app.use('/answer' , Auth.authorize({}) , answer.router);
 		app.use('/survey' , Auth.authorize({}) , require('./routes/survey')(dbResource , questioneer.api , answer.api));
+
+		app.use('/demourl' , function(req , res){
+			    var url = process.NODE_ENV == 'production'? 'https://minicards.herokuapp.com' : 'http://localhost:5000';
+					res.status(200).send(url);
+		});
 
 
 		//handle errors using custom or 3rd party middle-wares
