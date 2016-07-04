@@ -68,7 +68,7 @@ dbResource.initColls(['Betalist','Users','Surveys','Questioneers','Answers'] , f
 		app.use('/survey' , Auth.authorize({}) , require('./routes/survey')(dbResource , questioneer.api , answer.api));
 
 		app.use('/demourl' , function(req , res){
-			    var url = process.NODE_ENV == 'production'? 'https://minicards.herokuapp.com' : 'http://localhost:5000';
+			    var url = process.env.NODE_ENV == 'production'? 'https://minicards.herokuapp.com' : 'http://localhost:5000';
 					res.status(200).send(url);
 		});
 
