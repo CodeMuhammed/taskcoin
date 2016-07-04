@@ -54,6 +54,7 @@ module.exports = function(emailClient , dbResource){
 		 router.route('/invite')
         .post(function(req , res){
 					   //
+
 					   (function generateId(cb){
                   Betalist.find({})
 								     .sort({"inviteId":-1})
@@ -65,13 +66,13 @@ module.exports = function(emailClient , dbResource){
 													}
 													else{
 														 if(result[0]){
-																req.body.inviteId = (++result[0].inviteId)+'';
+																req.body.inviteId = (++result[0].inviteId);
 																console.log(req.body.inviteId);
 																req.body._id = ObjectId(req.body._id);
 																updateBetalist(req.body)
 														 }
 														 else{
-																req.body.inviteId = defaultId+'';
+																req.body.inviteId = defaultId;
 																console.log(req.body.inviteId);
 																req.body._id = ObjectId(req.body._id);
 																updateBetalist(req.body)
@@ -82,7 +83,7 @@ module.exports = function(emailClient , dbResource){
 
 						 //
 						 function updateBetalist(betauser){
-							  Betalist.update({email:betauser.email} , betauser, {upsert:false} , function(err , stats){
+							  Betalist.update({email:betauser.email} , betauser , function(err , stats){
 										if(err){
 											 console.log(err);
 											 res.status(500).send('Err updating betalist');
@@ -133,7 +134,7 @@ module.exports = function(emailClient , dbResource){
 			 							 }
 			 							 else{
 											 //@TODO send email to user informing them of the invite
-											 res.status(200).send(betauser.inviteId);
+											 res.status(200).send(betauser.inviteId+'');
 			 							 }
 			 					});
 
