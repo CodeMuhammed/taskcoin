@@ -11476,14 +11476,18 @@ button.close {
   font-size: 1.3em;
 }
 .home-container .intro-container .intro .menu .home-nav-c ul li {
+  cursor: pointer;
   margin-right: 1em;
-  font-weight: bold;
   width: 5em;
   display: inline-block;
   float: left;
-  color: #EFEFEF;
 }
-.home-container .intro-container .intro .menu .home-nav-c ul li:hover {
+.home-container .intro-container .intro .menu .home-nav-c ul li a {
+  font-weight: bold;
+  color: #EFEFEF;
+  text-decoration: none;
+}
+.home-container .intro-container .intro .menu .home-nav-c ul li:hover a {
   color: #fff;
 }
 @media (max-width: 991px) {
@@ -11542,7 +11546,7 @@ button.close {
 .home-container .value-container {
   background: #2098D1 url('../img/val-bg.png') center center;
   min-height: 35em;
-  padding: 8em 4em;
+  padding: 4em;
 }
 @media (max-width: 991px) {
   .home-container .value-container {
@@ -11553,8 +11557,8 @@ button.close {
   text-align: center;
 }
 .home-container .value-container .value h1 {
-  font-size: 3.5em;
-  margin-bottom: 2em;
+  font-size: 3em;
+  margin-bottom: 1.7em;
 }
 @media (max-width: 991px) {
   .home-container .value-container .value h1 {
@@ -11565,27 +11569,32 @@ button.close {
   }
 }
 .home-container .value-container .feature {
-  padding: 4em;
+  padding: 2em;
 }
 .home-container .value-container .feature .inner {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  height: 25em;
+  height: 20em;
   background-color: #fff;
+  padding: 0;
+}
+.home-container .value-container .feature .inner .f-body {
+  text-align: left;
 }
 .home-container .value-container .feature .inner .f-body h2 {
   color: #005EA6;
-  font-size: 2em;
+  font-size: 1.3em;
   font-weight: bolder;
   margin-bottom: 1em;
 }
 .home-container .value-container .feature .inner .f-body .text {
   display: inline-block;
   height: 10em;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
   color: #555555;
 }
-.home-container .value-container .feature .inner .f-body .action-btn {
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn {
+  display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
@@ -11603,45 +11612,44 @@ button.close {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
-  display: inline-block;
-  font-size: 1.2em;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  font-size: 1em;
   font-weight: bold;
   border: 2px solid  #FFC73F;
   background-color: transparent;
   color: #555555;
   padding: .5em;
-  margin-top: 1em;
-  margin-right: 1em;
+  bottom: 0;
 }
-.home-container .value-container .feature .inner .f-body .action-btn:focus,
-.home-container .value-container .feature .inner .f-body .action-btn:active:focus,
-.home-container .value-container .feature .inner .f-body .action-btn.active:focus,
-.home-container .value-container .feature .inner .f-body .action-btn.focus,
-.home-container .value-container .feature .inner .f-body .action-btn:active.focus,
-.home-container .value-container .feature .inner .f-body .action-btn.active.focus {
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn:focus,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn:active:focus,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn.active:focus,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn.focus,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn:active.focus,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.home-container .value-container .feature .inner .f-body .action-btn:hover,
-.home-container .value-container .feature .inner .f-body .action-btn:focus,
-.home-container .value-container .feature .inner .f-body .action-btn.focus {
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn:hover,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn:focus,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn.focus {
   color: #333;
   text-decoration: none;
 }
-.home-container .value-container .feature .inner .f-body .action-btn:active,
-.home-container .value-container .feature .inner .f-body .action-btn.active {
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn:active,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.home-container .value-container .feature .inner .f-body .action-btn.disabled,
-.home-container .value-container .feature .inner .f-body .action-btn[disabled],
-fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn {
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn.disabled,
+.home-container .value-container .feature .inner .f-body .btn-c .action-btn[disabled],
+fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn-c .action-btn {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -11649,45 +11657,10 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.home-container .value-container .feature .inner .f-body .action-btn:hover,
-.home-container .value-container .feature .inner .f-body .action-btn:focus,
-.home-container .value-container .feature .inner .f-body .action-btn.focus,
-.home-container .value-container .feature .inner .f-body .action-btn:active,
-.home-container .value-container .feature .inner .f-body .action-btn.active,
-.open > .dropdown-toggle.home-container .value-container .feature .inner .f-body .action-btn {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
-}
-.home-container .value-container .feature .inner .f-body .action-btn:active,
-.home-container .value-container .feature .inner .f-body .action-btn.active,
-.open > .dropdown-toggle.home-container .value-container .feature .inner .f-body .action-btn {
-  background-image: none;
-}
-.home-container .value-container .feature .inner .f-body .action-btn.disabled,
-.home-container .value-container .feature .inner .f-body .action-btn[disabled],
-fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn,
-.home-container .value-container .feature .inner .f-body .action-btn.disabled:hover,
-.home-container .value-container .feature .inner .f-body .action-btn[disabled]:hover,
-fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn:hover,
-.home-container .value-container .feature .inner .f-body .action-btn.disabled:focus,
-.home-container .value-container .feature .inner .f-body .action-btn[disabled]:focus,
-fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn:focus,
-.home-container .value-container .feature .inner .f-body .action-btn.disabled.focus,
-.home-container .value-container .feature .inner .f-body .action-btn[disabled].focus,
-fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn.focus,
-.home-container .value-container .feature .inner .f-body .action-btn.disabled:active,
-.home-container .value-container .feature .inner .f-body .action-btn[disabled]:active,
-fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn:active,
-.home-container .value-container .feature .inner .f-body .action-btn.disabled.active,
-.home-container .value-container .feature .inner .f-body .action-btn[disabled].active,
-fieldset[disabled] .home-container .value-container .feature .inner .f-body .action-btn.active {
-  background-color: #fff;
-  border-color: #ccc;
-}
-.home-container .value-container .feature .inner .f-body .action-btn .badge {
-  color: #fff;
-  background-color: #333;
+.home-container .value-container .feature .inner:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease-out;
+  transition: 0.2s ease-in;
 }
 @media (max-width: 991px) {
   .home-container .value-container .feature {
@@ -11702,13 +11675,13 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
 }
 .home-container .betalist {
   display: inline-block;
-  background: #449dd1 url('../img/home-bg.svg') center center no-repeat;
+  background: #449dd1 url('../img/home-bg.svg') center center no-repeat fixed;
   background-size: cover;
   color: #777777;
   padding: 6em 4em;
 }
 .home-container .betalist .inner {
-  padding: 0;
+  padding: 2em;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   background-color: #FFF;
 }
@@ -11746,6 +11719,11 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
   font-size: 1.4em;
 }
 @media (max-width: 991px) {
+  .home-container .betalist .inner {
+    padding: 1em;
+  }
+}
+@media (max-width: 991px) {
   .home-container .betalist {
     padding: 2em 1em;
   }
@@ -11772,35 +11750,14 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .act
 }
 .home-container .footer .tel {
   display: inline-block;
-  text-decoration: none;
+  padding: .5em 1em;
+  margin-top: -0.5em;
+}
+.home-container .footer .tel a {
   color: #999999;
   font-size: 2em;
   font-weight: bold;
-  padding: .5em;
-  margin-top: -0.5em;
-}
-.home-container .footer .foot-item {
-  display: inline-block;
-  color: #999999;
-  font-size: 1.3em;
-  font-weight: bold;
-  margin-right: 1em;
-  padding: .5em;
-}
-.home-container .footer .foot-item:hover {
-  color: #FFF;
-}
-.home-container .footer hr {
-  border: 0.0008em solid #555555;
-}
-@media (max-width: 991px) {
-  .home-container .footer {
-    padding: 1em 1em;
-  }
-  .home-container .footer .foot-item {
-    float: left !important !important;
-    font-size: 1.1em;
-  }
+  text-decoration: none;
 }
 .pay-container {
   padding: 0;
@@ -12404,20 +12361,57 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   background-color: #FFF;
   color: #706F65;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  -webkit-transform: translateX(0px);
-  transform: translateX(0px);
 }
 .dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li {
   padding: .7em;
   list-style: none;
   display: block;
   width: 100%;
-}
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li a {
-  text-decoration: none;
   color: #555555;
+  border-bottom: 1px solid #ccc;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li:hover a {
+.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li:hover {
+  color: #FDC740;
+}
+.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub {
+  width: 200px;
+  height: 20em;
+  margin-left: 100%;
+  position: absolute;
+  margin-top: -4em;
+  z-index: 10000000000000;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  border-style: solid;
+  top: calc(4em);
+  left: -15px;
+  border-width: 10px 15px 10px 0;
+  border-color: transparent #FFF transparent transparent;
+}
+.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub .sub-list {
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  padding: 0em;
+  min-height: 20em;
+  width: 200px;
+  background-color: #FFF;
+  color: #706F65;
+}
+.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub .sub-list li {
+  padding: .7em;
+  list-style: none;
+  display: block;
+  width: 100%;
+  color: #555555;
+  border-bottom: 1px solid #ccc;
+}
+.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub .sub-list li:hover {
   color: #FDC740;
 }
 .dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list:before {

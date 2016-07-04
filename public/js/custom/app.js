@@ -33,11 +33,11 @@ angular.module('taskcoin' , [
 
          template:['<span class="options-c col-xs-12">',
                        '<span class="options-input">',
-                             '<input type="text" placeholder="{{placeholder}}" ng-model="newItem" input-focused="focused">',
+                             '<input type="text" placeholder="{{placeholder}}" ng-model="newItem" input-focused="focused" ng-readonly="true">',
                              '<span class="icon-c"  ng-click="addItem(newItem)">',
                                    '<i class="icon fa fa-plus"></i>',
                              '</span>',
-                             '<suggestions list="list" select="newItem" ng-show="focused"></suggestions>',
+                             '<suggestions list="list" select="newItem" ng-show="focused" focused="focused"></suggestions>',
                        '</span>',
                        '<span class="option" ng-repeat="option in selected" ng-click="removeItem(item)">',
                             '<label class="">{{option}}</label>',
@@ -60,7 +60,7 @@ angular.module('taskcoin' , [
 
              //
              $scope.addItem = function(item){
-                  if(item && $scope.selected.indexOf(item) == -1 && $scope.list.indexOf(item) != -1){
+                  if(item && $scope.selected.indexOf(item) == -1){
                        $scope.selected.push(item);
                        $scope.newItem = '';
                   }
@@ -95,13 +95,23 @@ angular.module('taskcoin' , [
       return{
            scope: {
                list:'=list',
-               select:'=select'
+               select:'=select',
+               focused:'=focused'
            },
 
            template:[
                '<div class="suggestions">',
                     '<ul class="list">',
-                        '<li ng-repeat="item in list | filter:select" ng-click="selectItem(item)"><a href="">{{item}}</a></li>',
+                        '<li ng-repeat="(key , val) in list" ng-mouseenter="setSubIndex($index , val)">',
+                           '<div ng-show="$index==subIndex" class="sub">',
+                              '<ul class="sub-list">',
+                                  '<li ng-repeat="item in subVal" ng-click="selectItem(item)">',
+                                      '{{item}}',
+                                  '</li>',
+                              '</ul>',
+                           '</div>',
+                           '{{key}}',
+                        '</li>',
                     '</ul>',
                '</div>',
            ].join(''),
@@ -114,9 +124,17 @@ angular.module('taskcoin' , [
                });
 
                //
+               $scope.subIndex = -1;
+               $scope.subVal = [];
+               $scope.setSubIndex = function(index , val){
+                    $scope.subIndex = index;
+                    $scope.subVal = val;
+               }
+
+               //
                $scope.selectItem = function(item){
-                    console.log(item);
                     $scope.select  = item;
+                    $scope.subIndex = -1;
                }
            }
       }
@@ -517,9 +535,17 @@ angular.module('taskcoin' , [
 
        //For country options and interests
        $scope.suggessions = {
-           interest:['merron' , 'jay'],
-           country:['nigeria' , 'united states' , 'united kingdom' , 'ghana' , 'kenya' , 'merge' , 'hera' , 'jerr'  ,'puri' ,'juni']
+           interest:{
+               'music':['hiphop' , 'jazz' , 'r&b'],
+               'movies':['triller' , 'animation' , 'comedy']
+           },
+           country:{
+                'nigeria':['lagos' , 'porthacourt' , 'kano'],
+                'united states':['califonia' , 'newyork']
+           }
        };
+
+       //console.log(Object.keys($scope.suggessions));
 
        //
        $scope.cancel=function(){

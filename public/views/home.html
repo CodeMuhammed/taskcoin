@@ -65,9 +65,9 @@
                     </span>
                     <span class="home-nav-c" ng-show="!isSmall()">
                          <ul>
-                            <li>About</li>
-                            <li>Developers</li>
-                            <li>Blog</li>
+                            <li><a>About</a></li>
+                            <li><a>Developers</a></li>
+                            <li><a href="http://bit.ly/29cM12I" target="_blank">Blog</a></li>
                          </ul>
                     </span>
                     <span class="access-btn pull-right">
@@ -88,9 +88,9 @@
      </div>
 
      <div class="col-xs-12 value-container">
-       <div class="col-xs-12 value">
+       <div class="col-xs-12 value col-md-10 col-md-offset-1 col-xs-offset-0 value-container">
          <h1>
-              <span style="color:#005EA6">micropayments</span> powered by <span style="color:#005EA6">surveys</span>.
+              <span style="color:#005EA6">micro-payments</span> powered by <span style="color:#005EA6">surveys</span>.
          </h1>
          <div class="feature col-xs-12 col-sm-4" ng-repeat="feature in features">
               <div class="inner col-xs-12">
@@ -99,10 +99,12 @@
                          <span class="text">
                             {{feature.text}}
                          </span>
-                         <a href="{{feature.url}}" class="action-btn">
-                             Learn more
-                             <i class="icon fa fa-arrow-right"></i>
-                         </a>
+                         <span class="btn-c">
+                           <a href="{{feature.url}}" class="action-btn">
+                               Learn more
+                               <i class="icon fa fa-arrow-right"></i>
+                           </a>
+                         </span>
                    </div>
               </div>
          </div>
@@ -155,11 +157,6 @@
            </div>
      </div>
      <div class="col-xs-12 footer">
-       <span class="foot-item">About</span>
-       <a class="foot-item" href="http://bit.ly/29cM12I" target="_blank">blog</a>
-       <span class="foot-item">API</span>
-       <span class="foot-item">Jobs</span>
-       <hr class="hr">
        <span class="copy-right">
            <i class="icon fa fa-copyright"></i> 2016 taskcoin.io
        </span>
@@ -168,12 +165,11 @@
            <a href="email:hello@taskcoin.io" class="icon fa fa-envelope"></a>
        </span>
        <span class="tel pull-right">
-           <a href="" class="icon fa fa-twitter"></a>
+           <a href="http://twitter.com/palingram" class="icon fa fa-twitter"></a>
        </span>
        <span class="tel pull-right">
            <a href="tel:+2348101639251" class="icon fa fa-whatsapp"></a>
        </span>
-
 
      </div>
 </div>
