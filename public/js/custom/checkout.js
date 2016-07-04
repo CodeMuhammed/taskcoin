@@ -2,10 +2,11 @@ angular.module('checkoutModule' , [])
     //============================ pay auth factory ============================
     .factory('taskcoinAuth' , function($timeout  , $q){
          //Mocked out host data registered at taskcoin.io
-         var hostNames = ['http://localhost:5000']; //@TODO update hostnames from database
+         var hostNames = ['http://localhost:5000' , 'https://minicards.herokuapp.com' , 'http://minicards.herokuapp.com']; //@TODO update hostnames from database
 
          //
          function verifyHost(hostName){
+              console.log(hostName);
               var promise = $q.defer();
               $timeout(function(){
                   if(hostNames.indexOf(hostName)>=0){
