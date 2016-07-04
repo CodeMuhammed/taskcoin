@@ -11864,7 +11864,8 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
 .pay-container .pay-survey-container .body .heading {
   padding: 1em;
   padding-top: 2.5em;
-  background-color: #005EA6;
+  background: #449dd1 url('../img/home-bg.svg') center center no-repeat;
+  background-size: cover;
   color: #fff;
 }
 .pay-container .pay-survey-container .body .questions {
