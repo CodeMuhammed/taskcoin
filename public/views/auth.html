@@ -13,8 +13,9 @@
             <span class="input">
                <input type="password" placeholder="password" ng-model="userAuth.password" required>
             </span>
-            <button type="button" class="btn" ng-disabled="authform.$invalid" ng-click="loginUser(userAuth)">
-              <i class="fa fa-arrow-right"></i>
+            <button type="button" class="btn" ng-disabled="authform.$invalid || loggingin" ng-click="loginUser(userAuth)">
+               <i class="fa fa-arrow-right" ng-hide="loggingin"></i>
+               <i class="fa fa-spinner fa-spin" ng-show="loggingin"></i>
             </button>
         </form>
         <div class="note">

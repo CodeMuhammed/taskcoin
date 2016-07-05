@@ -1,0 +1,88 @@
+<div class="menu col-xs-12" ng-click="changeState('setup')" ng-class="getView('setup')">
+<span class="heading">
+   <i class="icon fa fa-caret-right  hidden-xs"></i>
+   <i class="icon fa fa-question-circle info-box" ng-class="getInfoClass('setup')" ng-click="setAndDisplayInfo('setup')">
+       <span class="info">
+            Setup your campaign, by providing useful informations like survey title and description,
+            geographical targeting, number of feedbacks etc.
+       </span>
+   </i>
+   <span class="hidden-xs">SET UP</span>
+</span>
+</div>
+<div class="menu col-xs-12" ng-click="changeState('builder')" ng-class="getView('builder')">
+  <span class="heading">
+     <i class="icon fa fa-caret-down hidden-xs"></i>
+     <i class="icon fa fa-question-circle info-box" ng-class="getInfoClass('builder')" ng-click="setAndDisplayInfo('builder')">
+       <span class="info">
+            This interface allows you to add components such as multiple-choice, dropdowns and
+            much more to your survey.
+       </span>
+     </i>
+     <span class="hidden-xs">BUILDER</span>
+  </span>
+  <span class="items">
+    <a class="item">
+      <span class="icon-c">
+          <i class="icon fa fa-list-alt"></i>
+      </span>
+      <span class="text"> Multiple Choice</span>
+    </a>
+    <a class="item">
+        <span class="icon-c">
+            <i class="icon fa fa-chevron-circle-down"></i>
+        </span>
+        <span class="text">Dropdown</span>
+    </a>
+    <a class="item">
+        <span class="icon-c">
+            <i class="icon fa fa-thumbs-o-up"></i>
+        </span>
+        <span class="text">Net Promoter Score</span>
+    </a>
+    <a class="item">
+        <span class="icon-c">
+            <i class="icon fa fa-credit-card"></i>
+        </span>
+        <span class="text">Single Textbox</span>
+    </a>
+    <a class="item">
+        <span class="icon-c">
+            <i class="icon fa fa-user"></i>
+        </span>
+        <span class="text">Contact Information</span>
+    </a>
+    <a class="item">
+      <span class="icon-c">
+          <i class="icon fa fa-outdent"></i>
+      </span>
+      <span class="text">New Segment</span>
+    </a>
+  </span>
+</div>
+<div class="menu col-xs-12" ng-click="changeState('billing')" ng-class="getView('billing')">
+  <span class="heading">
+     <i class="icon fa fa-caret-right  hidden-xs"></i>
+     <i class="icon fa fa-question-circle info-box" ng-class="getInfoClass('billing')" ng-click="setAndDisplayInfo('billing')">
+       <span class="info">
+            There are two options for payment at the moment, credit-card transfer
+            or manual bank transfer.
+       </span>
+     </i>
+     <span class="hidden-xs">BILLING</span>
+  </span>
+  <span class="items">
+    <a class="item">
+      <span class="icon-c">
+          <i class="icon fa fa-list-alt"></i>
+      </span>
+      <span class="text">Credit Card</span>
+    </a>
+    <a class="item">
+        <span class="icon-c">
+            <i class="icon fa fa-bank"></i>
+        </span>
+        <span class="text">Manual Bank Transfer</span>
+    </a>
+  </span>
+</div>

@@ -1,4 +1,4 @@
-angular.module('authyComponent' , ['LocalStorageModule'])
+angular.module('authyComponent' , [])
     //
     .directive('authy' , function(){
         return{
@@ -93,6 +93,7 @@ angular.module('authyComponent' , ['LocalStorageModule'])
         $scope.userAuth = lastpass;
         //
         $scope.loginUser = function(userAuth){
+             $scope.loggingin =true;
              authy.login(userAuth).then(
                  function(user){
                     console.log('logged iin');
@@ -100,9 +101,11 @@ angular.module('authyComponent' , ['LocalStorageModule'])
                     if($scope.notify){
                          $scope.$eval($scope.notify);
                     }
+                    $scope.loggingin = false;
                     $state.go($scope.destination);
                  },
                  function(err){
+                     $scope.loggingin  = false;
                      alert(err)
                  }
              );
