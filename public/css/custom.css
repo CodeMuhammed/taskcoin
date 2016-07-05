@@ -12109,17 +12109,6 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   padding-right: 0;
   padding-left: 1em;
 }
-.survey-editor .canvas-container .builder {
-  padding: 1em;
-  min-height: 50em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-  background-color: #FFF;
-}
-@media (max-width: 991px) {
-  .survey-editor .canvas-container .builder {
-    padding: 1em .5em;
-  }
-}
 .survey-editor .canvas-container .billing {
   padding: 1em;
   height: 50em;
@@ -12530,6 +12519,70 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
 }
 @media (max-width: 991px) {
   .survey-editor-setup-container form {
+    padding: 1em .5em;
+  }
+}
+.survey-editor-builder-container {
+  padding: 0em;
+  min-height: 50em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  background-color: #FFF;
+}
+.survey-editor-builder-container .heading {
+  height: 8em;
+  background-color: #005999;
+  position: relative;
+}
+.survey-editor-builder-container .heading .text {
+  display: inline-block;
+  padding: 1em;
+  position: absolute;
+  bottom: 0;
+  color: #FFF;
+  font-size: 1.3em;
+}
+.survey-editor-builder-container .questions-container {
+  padding: 2em;
+}
+.survey-editor-builder-container .questions-container .question-c {
+  padding: 0;
+}
+.survey-editor-builder-container .questions-container .question-c .question {
+  padding: 0;
+  background-color: #EAEAE8;
+  border-radius: 5px;
+  min-height: 30em;
+  margin-bottom: 1.5em;
+}
+.survey-editor-builder-container .questions-container .question-c .question .Q {
+  height: 4em;
+  border-bottom: 1px solid #FFF;
+}
+.survey-editor-builder-container .questions-container .question-c .question .answers {
+  min-height: 20em;
+  border-bottom: 1px solid #FFF;
+}
+.survey-editor-builder-container .questions-container .question-c .question .options {
+  min-height: 4em;
+  border-bottom: 1px solid #FFF;
+}
+.survey-editor-builder-container .questions-container .question-c .question .footer {
+  padding: .6em;
+  border-top: 1px solid #FFF;
+}
+.survey-editor-builder-container .questions-container .empty-box {
+  height: 30em;
+  border-radius: 5px;
+  border: 2px dashed #EFEFEF;
+  text-align: center;
+}
+.survey-editor-builder-container .questions-container .empty-box h1 {
+  font-size: 1.4em;
+  color: #eeeeee;
+  margin-top: 30%;
+}
+@media (max-width: 991px) {
+  .survey-editor-builder-container .questions-container {
     padding: 1em .5em;
   }
 }

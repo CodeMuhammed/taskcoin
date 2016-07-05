@@ -116,6 +116,13 @@ angular.module('surveysModule' , [])
      };
 })
 
+//Questions factory
+.factory('Questions' , function($q , $http , $timeout){
+       return {
+
+       }
+})
+
 //Abstract state controller for surveys route
 .controller('surveysController' , function($scope , $state){
        console.log('surveys abstract controller loaded');
@@ -172,11 +179,6 @@ angular.module('surveysModule' , [])
                }
            );
        }
-})
-
-//
-.controller('surveysEditController' , function($scope , $state){
-     //Acts as the god of this view
 })
 
 //
@@ -283,15 +285,18 @@ angular.module('surveysModule' , [])
 
       //
       if(!angular.isDefined(original)){
-         $state.go('dashboard.surveys.overview');
+        // $state.go('dashboard.surveys.overview');
       }
 
       //For use in this scope only
       $scope.survey = angular.copy(original);
 
+      //
+      $scope.questions = [];
+
       //This triggers this view to create a new question when user click on a type in the sidemenu
       $scope.createQuestion = function(type){
-          alert(type);
+          $scope.questions.push({type:type});
       }
 
 })

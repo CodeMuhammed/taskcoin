@@ -42,8 +42,7 @@ angular.module('config' , ['LocalStorageModule'])
                          .state('dashboard.surveys.edit' , {
                              url : '/edit',
                              abstract : true,
-                             templateUrl : 'views/dashboard.surveys.edit.html',
-                             controller : 'surveysEditController',
+                             templateUrl : 'views/dashboard.surveys.edit.html'
                          })
                              .state('dashboard.surveys.edit.setup' , {
                                  url : '/setup?id',

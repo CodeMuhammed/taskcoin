@@ -826,16 +826,6 @@
           padding:2em;
           padding-right:0;
           padding-left:1em;
-          .builder{
-              padding:1em;
-              min-height:50em;
-              box-shadow: 0 3px 10px rgba(0,0,0,.5);
-              background-color: #FFF;
-              @media (max-width: @screen-sm-max) {
-                 padding:1em .5em;
-                 //padding-left: 0;
-              }
-          }
           .billing{
               padding:1em;
               height:50em;
@@ -1205,6 +1195,78 @@
          @media (max-width: @screen-sm-max) {
             padding:1em .5em;
          }
+      }
+  }
+
+  //
+  .survey-editor-builder-container{
+      padding:0em;
+      min-height:50em;
+      box-shadow: 0 1px 2px rgba(0,0,0,.5);
+      background-color: #FFF;
+
+      //
+      .heading{
+           height:8em;
+           background-color: #005999;
+           position: relative;
+           .text{
+               display:inline-block;
+               padding: 1em;
+               position: absolute;
+               bottom:0;
+               color:#FFF;
+               font-size: 1.3em;
+           }
+       }
+      //
+      .questions-container{
+          padding:2em;
+          //
+          .question-c{
+              padding:0;
+              .question{
+                  padding: 0;
+                  background-color: #EAEAE8;
+                  border-radius: 5px;
+                  min-height:30em;
+                  margin-bottom:1.5em;
+                  .Q{
+                     height: 4em;
+                     border-bottom: 1px solid #FFF;
+                  }
+                  .answers{
+                     min-height: 20em;
+                     border-bottom: 1px solid #FFF;
+                  }
+                  .options{
+                      min-height: 4em;
+                      border-bottom: 1px solid #FFF;
+                  }
+                  .footer{
+                      padding:.6em;
+                      border-top: 1px solid #FFF;
+                  }
+              }
+
+          }
+          .empty-box{
+             height:30em;
+             border-radius: 5px;
+             border:2px dashed #EFEFEF;
+             .text-center;
+             h1{
+                font-size: 1.4em;
+                color:@gray-lighter;
+                margin-top:30%;
+             }
+          }
+
+          @media (max-width: @screen-sm-max) {
+             padding:1em .5em;
+             //padding-left: 0;
+          }
+
       }
   }
 
