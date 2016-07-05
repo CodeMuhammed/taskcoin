@@ -1,74 +1,50 @@
-<div class="menu col-xs-12" ng-click="changeState('setup')" ng-class="getView('setup')">
+<div class="menu col-xs-12" ng-click="changeState('setup')" ng-class="isViewActive('setup')">
 <span class="heading">
    <i class="icon fa fa-caret-right  hidden-xs"></i>
-   <i class="icon fa fa-question-circle info-box" ng-class="getInfoClass('setup')" ng-click="setAndDisplayInfo('setup')">
+   <span class="info-box" ng-class="getInfoClass('setup')" ng-click="setAndDisplayInfo('setup')">
+       <i class="icon fa fa-question-circle"></i>
        <span class="info">
-            Setup your campaign, by providing useful informations like survey title and description,
-            geographical targeting, number of feedbacks etc.
+         Setup your campaign, by providing useful informations like survey title and description,
+         geographical targeting, number of feedbacks etc.
        </span>
-   </i>
+   </span>
    <span class="hidden-xs">SET UP</span>
 </span>
 </div>
-<div class="menu col-xs-12" ng-click="changeState('builder')" ng-class="getView('builder')">
+
+<div class="menu col-xs-12" ng-click="changeState('builder')" ng-class="isViewActive('builder')">
   <span class="heading">
      <i class="icon fa fa-caret-down hidden-xs"></i>
-     <i class="icon fa fa-question-circle info-box" ng-class="getInfoClass('builder')" ng-click="setAndDisplayInfo('builder')">
-       <span class="info">
-            This interface allows you to add components such as multiple-choice, dropdowns and
-            much more to your survey.
-       </span>
-     </i>
+     <span class="info-box" ng-class="getInfoClass('builder')" ng-click="setAndDisplayInfo('builder')">
+         <i class="icon fa fa-question-circle"></i>
+         <span class="info">
+              This interface allows you to add components such as multiple-choice, dropdowns and
+              much more to your survey.
+         </span>
+     </span>
      <span class="hidden-xs">BUILDER</span>
   </span>
   <span class="items">
-    <a class="item">
-      <span class="icon-c">
-          <i class="icon fa fa-list-alt"></i>
-      </span>
-      <span class="text"> Multiple Choice</span>
-    </a>
-    <a class="item">
-        <span class="icon-c">
-            <i class="icon fa fa-chevron-circle-down"></i>
-        </span>
-        <span class="text">Dropdown</span>
-    </a>
-    <a class="item">
-        <span class="icon-c">
-            <i class="icon fa fa-thumbs-o-up"></i>
-        </span>
-        <span class="text">Net Promoter Score</span>
-    </a>
-    <a class="item">
-        <span class="icon-c">
-            <i class="icon fa fa-credit-card"></i>
-        </span>
-        <span class="text">Single Textbox</span>
-    </a>
-    <a class="item">
-        <span class="icon-c">
-            <i class="icon fa fa-user"></i>
-        </span>
-        <span class="text">Contact Information</span>
-    </a>
-    <a class="item">
-      <span class="icon-c">
-          <i class="icon fa fa-outdent"></i>
-      </span>
-      <span class="text">New Segment</span>
-    </a>
+      <a class="item" ng-click="selectItem(qType.name)" ng-repeat="qType in questionsTypes">
+          <span class="icon-c">
+              <i class="icon fa {{qType.icon}}"></i>
+          </span>
+          <span class="text">{{qType.name}}</span>
+      </a>
   </span>
 </div>
-<div class="menu col-xs-12" ng-click="changeState('billing')" ng-class="getView('billing')">
+
+<div class="menu col-xs-12" ng-click="changeState('billing')" ng-class="isViewActive('billing')">
   <span class="heading">
      <i class="icon fa fa-caret-right  hidden-xs"></i>
-     <i class="icon fa fa-question-circle info-box" ng-class="getInfoClass('billing')" ng-click="setAndDisplayInfo('billing')">
-       <span class="info">
-            There are two options for payment at the moment, credit-card transfer
-            or manual bank transfer.
-       </span>
-     </i>
+     
+     <span class="info-box" ng-class="getInfoClass('billing')" ng-click="setAndDisplayInfo('billing')">
+         <i class="icon fa fa-question-circle"></i>
+         <span class="info">
+           There are two options for payment at the moment, credit-card transfer
+           or manual bank transfer.
+         </span>
+     </span>
      <span class="hidden-xs">BILLING</span>
   </span>
   <span class="items">

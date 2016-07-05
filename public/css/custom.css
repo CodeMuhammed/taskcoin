@@ -12081,29 +12081,207 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
     padding: 2em .5em;
   }
 }
-.dashboard .child-view .surveys .edit-view {
+.dashboard .child-view .merchant {
+  padding: 4em 10em;
+}
+@media (max-width: 991px) {
+  .dashboard .child-view .merchant {
+    padding: 2em 1em;
+  }
+}
+.dashboard .child-view .history {
+  padding: 4em 10em;
+}
+@media (max-width: 991px) {
+  .dashboard .child-view .history {
+    padding: 2em 1em;
+  }
+}
+.survey-editor {
   z-index: 10000;
   padding: 2em 10em;
   background-color: #EFEFEF;
   min-height: 60em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container {
+.survey-editor .canvas-container {
   z-index: 1000000;
   padding: 2em;
   padding-right: 0;
   padding-left: 1em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup {
+.survey-editor .canvas-container .builder {
+  padding: 1em;
+  min-height: 50em;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  background-color: #FFF;
+}
+@media (max-width: 991px) {
+  .survey-editor .canvas-container .builder {
+    padding: 1em .5em;
+  }
+}
+.survey-editor .canvas-container .billing {
+  padding: 1em;
+  height: 50em;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.5);
+  background-color: #FFF;
+}
+@media (max-width: 991px) {
+  .survey-editor .canvas-container .billing {
+    padding: 1em .5em;
+  }
+}
+@media (max-width: 991px) {
+  .survey-editor .canvas-container {
+    padding-left: 0;
+  }
+}
+@media (max-width: 991px) {
+  .survey-editor {
+    padding: 2em .5em;
+  }
+}
+.survey-editor-menu-container {
+  z-index: 1000001;
+  padding: 2em;
+  padding-left: 0;
+}
+.survey-editor-menu-container .menu {
+  padding: .6em;
+  background-color: #9E9B90;
+}
+.survey-editor-menu-container .menu:last-child {
+  border-radius: 0 0 5px 5px;
+}
+.survey-editor-menu-container .menu:first-child {
+  border-radius: 5px 5px 0 0;
+}
+.survey-editor-menu-container .menu .heading {
+  color: #EFEFEF;
+  font-weight: bold;
+  display: inline-block;
+  padding: .5em 0;
+  width: 100%;
+}
+.survey-editor-menu-container .menu .heading .info-box {
+  position: relative;
+  display: inline-block;
+  float: right !important;
+}
+.survey-editor-menu-container .menu .heading .info-box .info {
+  display: none;
+}
+@media (max-width: 991px) {
+  .survey-editor-menu-container .menu .heading .info-box {
+    float: left !important;
+  }
+}
+.survey-editor-menu-container .menu .heading .info-box i {
+  font-size: 1.3em;
+}
+.survey-editor-menu-container .menu .heading .active .info {
+  position: absolute;
+  display: inline-block;
+  padding: 1.3em;
+  margin-top: -1.7em;
+  font-size: .9em;
+  width: 200px;
+  height: 200px;
+  overflow: visible;
+  background-color: #FFF;
+  color: #706F65;
+  margin-left: 1.3em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+.survey-editor-menu-container .menu .heading .active .info:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  border-style: solid;
+  top: calc(11%);
+  left: -15px;
+  border-width: 10px 15px 10px 0;
+  border-color: transparent #FFF transparent transparent;
+}
+.survey-editor-menu-container .active .items .item {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin-bottom: .2em;
+}
+.survey-editor-menu-container .active .items .item .icon-c {
+  border-radius: 6px 0 0 6px;
+  width: 2.5em;
+  height: 2.5em;
+  padding: .7em .3em;
+  display: block;
+}
+.survey-editor-menu-container .active .items .item .icon-c i {
+  font-size: 1.2em;
+  color: #6b685d;
+  z-index: 100001 !important;
+}
+.survey-editor-menu-container .active .items .item .icon-c i:hover {
+  color: #EFEFEF;
+}
+@media (max-width: 991px) {
+  .survey-editor-menu-container .active .items .item .icon-c i {
+    float: right !important;
+  }
+}
+.survey-editor-menu-container .active .items .item .text {
+  color: #9E9B90;
+  border-radius: 6px;
+  padding-top: .6em;
+  padding-left: 3em;
+  font-weight: bold;
+  display: inline-block;
+  background-color: #fff;
+  position: absolute;
+  height: 2.5em;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.survey-editor-menu-container .active .items .item .text:hover {
+  background-color: #FDFACB;
+}
+@media (max-width: 991px) and (max-width: 767px) {
+  .survey-editor-menu-container .active .items .item .text {
+    display: none !important;
+  }
+}
+.survey-editor-menu-container .inactive {
+  border-bottom: 1px solid #FFF;
+  z-index: -1;
+  background-color: #706F65;
+}
+.survey-editor-menu-container .inactive:last-child {
+  border-bottom: 0px solid #FFF;
+  border-top: 1px solid #FFF;
+}
+.survey-editor-menu-container .inactive .items {
+  display: none;
+}
+@media (max-width: 991px) {
+  .survey-editor-menu-container {
+    padding-right: 1em;
+  }
+}
+.survey-editor-setup-container {
   min-height: 50em;
   padding: 0;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form {
+.survey-editor-setup-container form {
   padding: 1em 1.5em;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   border-radius: 0;
   background-color: #FFF;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .segment-title {
+.survey-editor-setup-container form .segment-title {
   background-image: linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
   background-image: -moz-linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
   padding: .4em 1em;
@@ -12111,24 +12289,24 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   margin-bottom: 1em;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit-view .canvas-container .setup form .segment-title {
+  .survey-editor-setup-container form .segment-title {
     background-image: linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
     background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
   }
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content {
+.survey-editor-setup-container form .content {
   margin-bottom: 1.5em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input {
+.survey-editor-setup-container form .content .input {
   display: inline-block;
   width: 100%;
   margin-bottom: 2em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c {
+.survey-editor-setup-container form .content .input .options-c {
   padding: 0;
   margin-top: .3em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .option {
+.survey-editor-setup-container form .content .input .options-c .option {
   display: inline-block;
   border: 1px solid #ccc;
   height: 2em;
@@ -12136,23 +12314,23 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   border-radius: 20px;
   margin-right: .5em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .option label {
+.survey-editor-setup-container form .content .input .options-c .option label {
   margin-top: .2em;
   margin-right: .2em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .option:hover {
+.survey-editor-setup-container form .content .input .options-c .option:hover {
   border: 1px solid #FDC740;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .option:hover i {
+.survey-editor-setup-container form .content .input .options-c .option:hover i {
   color: #FDC740;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input {
+.survey-editor-setup-container form .content .input .options-c .options-input {
   position: relative;
   display: block;
   margin-bottom: .5em;
   width: 12em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input {
+.survey-editor-setup-container form .content .input .options-c .options-input input {
   display: inline-block !important;
   height: 2em;
   display: block;
@@ -12174,36 +12352,36 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   width: 12em;
   border-radius: 20px;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input:focus {
+.survey-editor-setup-container form .content .input .options-c .options-input input:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input::-moz-placeholder {
+.survey-editor-setup-container form .content .input .options-c .options-input input::-moz-placeholder {
   color: #999;
   opacity: 1;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input:-ms-input-placeholder {
+.survey-editor-setup-container form .content .input .options-c .options-input input:-ms-input-placeholder {
   color: #999;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input::-webkit-input-placeholder {
+.survey-editor-setup-container form .content .input .options-c .options-input input::-webkit-input-placeholder {
   color: #999;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input[disabled],
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input[readonly],
-fieldset[disabled] .dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input {
+.survey-editor-setup-container form .content .input .options-c .options-input input[disabled],
+.survey-editor-setup-container form .content .input .options-c .options-input input[readonly],
+fieldset[disabled] .survey-editor-setup-container form .content .input .options-c .options-input input {
   background-color: #eeeeee;
   opacity: 1;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input[disabled],
-fieldset[disabled] .dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input {
+.survey-editor-setup-container form .content .input .options-c .options-input input[disabled],
+fieldset[disabled] .survey-editor-setup-container form .content .input .options-c .options-input input {
   cursor: not-allowed;
 }
-textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input input {
+textarea.survey-editor-setup-container form .content .input .options-c .options-input input {
   height: auto;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .icon-c {
+.survey-editor-setup-container form .content .input .options-c .options-input .icon-c {
   position: absolute;
   width: 1.4em;
   height: 1.4em;
@@ -12214,17 +12392,17 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   top: 50%;
   transform: translate(0, -50%);
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .icon-c i {
+.survey-editor-setup-container form .content .input .options-c .options-input .icon-c i {
   margin-left: .25em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .icon-c:hover i {
+.survey-editor-setup-container form .content .input .options-c .options-input .icon-c:hover i {
   color: #FDC740;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions {
   z-index: 10000000;
   position: relative;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list {
   position: absolute;
   display: inline-block;
   padding: 0em;
@@ -12236,7 +12414,7 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   color: #706F65;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list li {
   padding: .7em;
   list-style: none;
   display: block;
@@ -12244,10 +12422,10 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   color: #555555;
   border-bottom: 1px solid #ccc;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li:hover {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list li:hover {
   color: #FDC740;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list li .sub {
   width: 200px;
   height: 20em;
   margin-left: 100%;
@@ -12256,7 +12434,7 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   z-index: 10000000000000;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub:before {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list li .sub:before {
   pointer-events: none;
   position: absolute;
   z-index: -1;
@@ -12267,7 +12445,7 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   border-width: 10px 15px 10px 0;
   border-color: transparent #FFF transparent transparent;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub .sub-list {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list li .sub .sub-list {
   position: absolute;
   left: 0;
   display: inline-block;
@@ -12277,7 +12455,7 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   background-color: #FFF;
   color: #706F65;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub .sub-list li {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list li .sub .sub-list li {
   padding: .7em;
   list-style: none;
   display: block;
@@ -12285,10 +12463,10 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   color: #555555;
   border-bottom: 1px solid #ccc;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list li .sub .sub-list li:hover {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list li .sub .sub-list li:hover {
   color: #FDC740;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .options-c .options-input .suggestions .list:before {
+.survey-editor-setup-container form .content .input .options-c .options-input .suggestions .list:before {
   pointer-events: none;
   position: absolute;
   z-index: -1;
@@ -12299,21 +12477,21 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   border-width: 10px 15px 10px 0;
   border-color: transparent #FFF transparent transparent;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c {
+.survey-editor-setup-container form .content .input .packages-c {
   padding: 0;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c {
+.survey-editor-setup-container form .content .input .packages-c .package-c {
   margin-bottom: 1em;
   padding: 0;
   outline: 1px solid #ccc;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c .package {
+.survey-editor-setup-container form .content .input .packages-c .package-c .package {
   position: relative;
   padding: 0;
   min-height: 15em;
   text-align: center;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c .package .popular-tag {
+.survey-editor-setup-container form .content .input .packages-c .package-c .package .popular-tag {
   text-align: left;
   position: absolute;
   top: 0;
@@ -12322,85 +12500,37 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
   background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
   color: #FFF;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c .package .text {
+.survey-editor-setup-container form .content .input .packages-c .package-c .package .text {
   display: block;
   margin-top: 4em;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c .package:hover {
+.survey-editor-setup-container form .content .input .packages-c .package-c .package:hover {
   background-color: #fee5a5;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c .package:hover .popular-tag {
+.survey-editor-setup-container form .content .input .packages-c .package-c .package:hover .popular-tag {
   background-image: linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fee5a5 0%);
   background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fee5a5 0%);
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c .active {
+.survey-editor-setup-container form .content .input .packages-c .package-c .active {
   background-color: #fedd8c;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .content .input .packages-c .package-c .active .popular-tag {
+.survey-editor-setup-container form .content .input .packages-c .package-c .active .popular-tag {
   background-image: linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fedd8c 0%);
   background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fedd8c 0%);
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .footer {
+.survey-editor-setup-container form .footer {
   padding: 1em 1.5em;
   background-color: #EEF3FA;
   position: absolute;
   bottom: 0;
   left: 0;
 }
-.dashboard .child-view .surveys .edit-view .canvas-container .setup form .footer .button {
+.survey-editor-setup-container form .footer .button {
   margin-left: .5em;
 }
 @media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit-view .canvas-container .setup form {
+  .survey-editor-setup-container form {
     padding: 1em .5em;
-  }
-}
-.dashboard .child-view .surveys .edit-view .canvas-container .builder {
-  padding: 1em;
-  min-height: 50em;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-  background-color: #FFF;
-}
-@media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit-view .canvas-container .builder {
-    padding: 1em .5em;
-  }
-}
-.dashboard .child-view .surveys .edit-view .canvas-container .billing {
-  padding: 1em;
-  height: 50em;
-  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.5);
-  background-color: #FFF;
-}
-@media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit-view .canvas-container .billing {
-    padding: 1em .5em;
-  }
-}
-@media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit-view .canvas-container {
-    padding-left: 0;
-  }
-}
-@media (max-width: 991px) {
-  .dashboard .child-view .surveys .edit-view {
-    padding: 2em .5em;
-  }
-}
-.dashboard .child-view .merchant {
-  padding: 4em 10em;
-}
-@media (max-width: 991px) {
-  .dashboard .child-view .merchant {
-    padding: 2em 1em;
-  }
-}
-.dashboard .child-view .history {
-  padding: 4em 10em;
-}
-@media (max-width: 991px) {
-  .dashboard .child-view .history {
-    padding: 2em 1em;
   }
 }
 .my-modal {
@@ -12665,131 +12795,4 @@ textarea.dashboard .child-view .surveys .edit-view .canvas-container .setup form
 }
 .no-outline {
   outline: none !important;
-}
-.survey-editor-menu-container {
-  z-index: 1000001;
-  padding: 2em;
-  padding-left: 0;
-}
-.survey-editor-menu-container .menu {
-  padding: .6em;
-  background-color: #9E9B90;
-}
-.survey-editor-menu-container .menu:last-child {
-  border-radius: 0 0 5px 5px;
-}
-.survey-editor-menu-container .menu:first-child {
-  border-radius: 5px 5px 0 0;
-}
-.survey-editor-menu-container .menu .heading {
-  color: #EFEFEF;
-  font-weight: bold;
-  display: inline-block;
-  padding: .5em 0;
-  width: 100%;
-}
-.survey-editor-menu-container .menu .heading .info-box {
-  position: relative;
-  display: inline-block;
-  float: right !important;
-  font-size: 1.5em;
-}
-.survey-editor-menu-container .menu .heading .info-box .info {
-  display: none;
-}
-@media (max-width: 991px) {
-  .survey-editor-menu-container .menu .heading .info-box {
-    float: left !important;
-  }
-}
-.survey-editor-menu-container .menu .heading .active .info {
-  position: absolute;
-  display: inline-block;
-  padding: 1em;
-  margin-top: -1.7em;
-  width: 300px;
-  height: 200px;
-  overflow: visible;
-  background-color: #FFF;
-  color: #706F65;
-  margin-left: 1.3em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  -webkit-transform: translateX(0px);
-  transform: translateX(0px);
-}
-.survey-editor-menu-container .menu .heading .active .info:before {
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-  content: '';
-  border-style: solid;
-  top: calc(20%);
-  left: -15px;
-  border-width: 10px 15px 10px 0;
-  border-color: transparent #FFF transparent transparent;
-}
-.survey-editor-menu-container .active .items .item {
-  display: inline-block;
-  width: 100%;
-  position: relative;
-  margin-bottom: .2em;
-}
-.survey-editor-menu-container .active .items .item .icon-c {
-  border-radius: 6px 0 0 6px;
-  width: 2.5em;
-  height: 2.5em;
-  padding: .7em .3em;
-  display: block;
-}
-.survey-editor-menu-container .active .items .item .icon-c i {
-  font-size: 1.2em;
-  color: #6b685d;
-  z-index: 100001 !important;
-}
-.survey-editor-menu-container .active .items .item .icon-c i:hover {
-  color: #EFEFEF;
-}
-@media (max-width: 991px) {
-  .survey-editor-menu-container .active .items .item .icon-c i {
-    float: right !important;
-  }
-}
-.survey-editor-menu-container .active .items .item .text {
-  color: #9E9B90;
-  border-radius: 6px;
-  padding-top: .6em;
-  padding-left: 3em;
-  font-weight: bold;
-  display: inline-block;
-  background-color: #fff;
-  position: absolute;
-  height: 2.5em;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-.survey-editor-menu-container .active .items .item .text:hover {
-  background-color: #FDFACB;
-}
-@media (max-width: 991px) and (max-width: 767px) {
-  .survey-editor-menu-container .active .items .item .text {
-    display: none !important;
-  }
-}
-.survey-editor-menu-container .inactive {
-  border-bottom: 1px solid #FFF;
-  z-index: -1;
-  background-color: #706F65;
-}
-.survey-editor-menu-container .inactive:last-child {
-  border-bottom: 0px solid #FFF;
-  border-top: 1px solid #FFF;
-}
-.survey-editor-menu-container .inactive .items {
-  display: none;
-}
-@media (max-width: 991px) {
-  .survey-editor-menu-container {
-    padding-right: 1em;
-  }
 }

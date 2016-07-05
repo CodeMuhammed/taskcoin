@@ -140,19 +140,55 @@ angular.module('general.directives' , [])
           restrict:'E',
           templateUrl : '/views/directiveviews/survey.editor.menu.html',
           scope:{
-
+              select:'&select'
           },
           link:function(scope , elem , attrs){
               scope.view = attrs.view;
           },
           controller:function($scope , $state, $stateParams){
                 //
-                $scope.changeState = function(state){
-                    $state.go('dashboard.surveys.edit.'+state.trim()  , {id:$stateParams.id});
+                $scope.questionsTypes = [
+                   {
+                     icon:'fa-list-alt',
+                     name:'Multiple Choice'
+                   },
+                   {
+                     icon:'fa-chevron-circle-down',
+                     name:'Dropdown'
+                   },
+                   {
+                     icon:'fa-thumbs-o-up',
+                     name:'Net Promoter Score'
+                   },
+                   {
+                     icon:'fa-credit-card',
+                     name:'Single Textbox'
+                   },
+                   {
+                     icon:'fa-user',
+                     name:'Contact Information'
+                   },
+                   {
+                     icon:'fa-outdent',
+                     name:'New Segment'
+                   }
+                ];
+                
+                //
+                $scope.selectItem = function(type){
+                    type = type.trim().split(' ').join('_');
+                    if($scope.select){
+                       $scope.select({type:type});
+                    }
                 }
 
                 //
-                $scope.getView = function(view){
+                $scope.changeState = function(state){
+                    $state.go('dashboard.surveys.edit.'+state.trim() , {id:$stateParams.id});
+                }
+
+                //
+                $scope.isViewActive = function(view){
                      return view == $scope.view?'active':'inactive';
                 }
 

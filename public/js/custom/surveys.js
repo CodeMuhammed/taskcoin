@@ -289,6 +289,11 @@ angular.module('surveysModule' , [])
       //For use in this scope only
       $scope.survey = angular.copy(original);
 
+      //This triggers this view to create a new question when user click on a type in the sidemenu
+      $scope.createQuestion = function(type){
+          alert(type);
+      }
+
 })
 
 //
