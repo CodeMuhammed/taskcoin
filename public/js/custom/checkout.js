@@ -26,7 +26,7 @@ angular.module('checkoutModule' , [])
     })
 
     //============================ questioneer factory ============================
-    .factory('Questioneer' , function($http , $q , $timeout){
+    .factory('QuestioneerPreview' , function($http , $q , $timeout){
           //Tracks surveys that has been served so far
           var served = [];
 
@@ -123,12 +123,12 @@ angular.module('checkoutModule' , [])
     })
 
     //
-    .controller('paySurveyController' , function($scope ,  $window , $timeout , Questioneer , profile){
+    .controller('paySurveyController' , function($scope ,  $window , $timeout , QuestioneerPreview , profile){
           $scope.userData;
           //Serves a new surveys
           $scope.refresh = function(user){
               $scope.refreshing = true;
-              Questioneer.refresh(user).then(
+              QuestioneerPreview.refresh(user).then(
                   function(data){
                       $timeout(function(){
                         $scope.warning = true;
