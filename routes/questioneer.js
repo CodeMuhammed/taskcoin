@@ -25,7 +25,8 @@ module.exports = function(dbResource){
                 data = questioneerSchema;
             }
             else{
-                query= {_id:ObjectId(data._id)}; //specific when we are updating old data
+                data._id = ObjectId(data._id)
+                query= {_id:data._id}; //specific when we are updating old data
             }
 
             //
@@ -47,24 +48,26 @@ module.exports = function(dbResource){
       //
       .get(function(req , res){
            console.log(req.query);
-           Questioneers.findOne({_id:ObjectId(req.query.id)} , {questions:1} , function(err , result){
+           Questioneers.findOne({_id:ObjectId(req.query.id)}, function(err , result){
                 if(err){
                     res,status(500).send('Error getting questions');
                 }
                 else{
-                    res.status(200).send(result.questions);
+                    res.status(200).send(result);
                 }
            });
       })
 
       //The web api for PUT only
       .post(function(req , res){
+          console.log(req.body._id+' heree');
           api.post(req.body , null , function(err , data){
               if(err){
-                  res.status.send('Error trying to update questioneer');
+                  console.log(err);
+                  res.status(500).send('Error trying to update questioneer');
               }
               else{
-                  res.status.send(data);
+                  res.status(200).send(data);
               }
           });
       });

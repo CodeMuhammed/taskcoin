@@ -206,53 +206,92 @@ angular.module('general.directives' , [])
 //directive for multiple choice question
 .directive('multipleChoice' , function(){
      return {
-        scope:{
-            notifyRemove: '&remove',
-            notifySave: '&save',
-            mode: '@mode',
-            index:'@index',
-            question:'=question'
+          scope:{
+              notifyRemove: '&remove', //Notifies the parent directive to delete the question
+              notifySave: '&save',  //Notify the parent directive to save chages made to the question
+              mode: '@mode', //Tell the directive wether or not to enable editor
+              index:'@index', //Tells the directive the index position of question in the array
+              question:'=question', // The question to be used by the directive view
+          },
+          templateUrl:'/views/directiveviews/question.multiplechoice.html',
 
-        },
-        templateUrl:'/views/directiveviews/question.multiplechoice.html',
-        controller:function($scope, $timeout){
-            //
-            var original;
-            //
-            $scope.addAnswer = function(index){
-                $scope.question.answers.splice(index+1 , 0 , '');
-            }
+          controller:function($scope, $timeout , spinnerService){
+                //This keeps track of the prestine version of the question incase a user ever wants to revert
+                var original;
 
-            //
-            $scope.removeAnswer = function(index){
-                $scope.question.answers.splice(index , 1);
-            }
+                //This binds to the answers checkboxes
+                function initOptions(){
+                    $scope.answerOptions  = [];
+                    $scope.question.answer = -1;
+                    for(var i=0; i<$scope.question.answers.length; i++){
+                        $scope.answerOptions[i] = false;
+                        if($scope.question.answer == i && $scope.question.options.definite){
+                            $scope.answerOptions[i] = true;
+                        }
+                    }
+                };
+                initOptions();
 
-            //
-            $scope.cancel = function(){
-                 $scope.question = original;
-                 $scope.edit = false;
-            }
+                //This adds an option to the answers
+                $scope.addAnswer = function(index){
+                     $scope.question.answers.splice(index+1 , 0 , '');
+                     initOptions();
+                }
 
-            //
-            $scope.save = function(){
-                original = angular.copy($scope.question);
-                $scope.edit = false;
-                $scope.notifySave();
-            }
+                //As function name implies
+                $scope.removeAnswer = function(index){
+                    $scope.question.answers.splice(index , 1);
+                    initOptions();
+                }
 
-            //
-            $scope.deleteQuestion = function(){
-                console.log('delete called');
-                $scope.notifyRemove({index:$scope.index});
-            }
+                //When definite answer is set to true, users can pick an options as the answer to be expected from users : Good for validation
+                $scope.pickAsAnswer = function(index){
+                    for(var i=0; i<$scope.answerOptions.length; i++){
+                        if(i == index){
+                          $scope.answerOptions[i] = true;
+                        }
+                        else{
+                          $scope.answerOptions[i] = false;
+                        }
 
-            //
-            $scope.editQuestion = function(){
-                console.log('edit called');
-                $scope.edit = true;
-                original = angular.copy($scope.question);
-           }
-        }
+                    }
+                    $scope.question.answer = index;
+                    console.log(index);
+                }
+
+                //Reverts to previous prestine state
+                $scope.cancel = function(){
+                     $scope.question = original;
+                     $scope.edit = false;
+                }
+
+                //This method triggers the callback set on the parent scope to commence with saving the data
+                $scope.save = function(){
+                    spinnerService.show('Multiple_Choice_Save');
+                    $scope.notifySave();
+                }
+
+                //This method triggers the callback set on the parent scope to commence with deleting the data
+                $scope.deleteQuestion = function(){
+                    spinnerService.show('Multiple_Choice_Remove');
+                    $scope.notifyRemove({index:$scope.index});
+                }
+
+                //This saves the prestine state and switch to the editor mode
+                $scope.editQuestion = function(){
+                    $scope.edit = true;
+                    initOptions();
+                    original = angular.copy($scope.question);
+               }
+
+               //This rule ascertain that user actually selected an option when definete is true
+               $scope.definiteInValid = function(){
+                     if($scope.question.options.definite){
+                         return $scope.question.answer == -1;
+                     }
+                     return false;
+               }
+
+          }
      }
 });

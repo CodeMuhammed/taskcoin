@@ -273,6 +273,7 @@ angular.module('surveysModule' , [])
 
 //Questions factory
 .factory('Questioneer' , function($q , $http , $timeout){
+
        //
        var questionSchemas = {
             'Multiple_Choice' : {
@@ -284,9 +285,10 @@ angular.module('surveysModule' , [])
                      'Option here',
                      'Option here'
                  ],
+                 answer:-1,
                  options:{
                     multi:false,
-                    definite:0
+                    definite:false
                  }
             }
        };
@@ -304,54 +306,54 @@ angular.module('surveysModule' , [])
        //
        function getQuestions(questioneerId){
             var promise = $q.defer();
-            console.log(questioneerId);
 
-            $timeout(function(){
-                var questioneer = {//Mocked out @TODO actual data will follow soon
-                    _id:'3458765584',
-                    questions:[
-                        {
-                             type:'Multiple_Choice',
-                             query:'What feature of taskcoin most excites you ?',
-                             answers:[
-                                 'It allows me to get real time feedbacks for my surveys',
-                                 'It integrates seamlessly into my website as a payment processor',
-                                 'It allows me to buy stuff online with my opinion',
-                                 'I am a taskcoin freak i love all the options'
-                             ],
-                             options:{
-                                multi:false,
-                                definite:-1
-                             }
-                        }
-                    ]
-                    //... rest properties not needed now
-                };
+            $http({
+                method: 'GET',
+                url:'/questioneer',
+                params:{id:questioneerId}
+            })
+            .success(function(data){
+                 console.log(data);
+                 promise.resolve(data);
+            })
+            .error(function(err){
+                 console.log(err);
+            });
 
-                promise.resolve(questioneer);
-            } , 1000);
             return promise.promise;
        }
 
        //
-       function saveQuestion(questions){
-          var promise = $q.defer();
-          $timeout(function(){
-               promise.resolve();
-          } , 1000);
-          return promise.promise;
+       function saveQuestioneer(questioneer){
+            var promise = $q.defer();
+            console.log(questioneer);
+            $http({
+                method: 'POST',
+                url:'/questioneer',
+                data:questioneer
+            })
+            .success(function(data){
+                console.log(data);
+                promise.resolve(true);
+            })
+            .error(function(err){
+                 console.log(err);
+                 promise.reject(err);
+            });
+
+            return promise.promise;
        }
 
        //
        return {
            getSchema : getSchema,
            getQuestions:getQuestions,
-           saveQuestion:saveQuestion
+           saveQuestioneer:saveQuestioneer
        }
 })
 
 //
-.controller('surveysEditBuilderController' , function($scope , $state, Surveys , Questioneer){
+.controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer , spinnerService){
       //In case user cancels editing
       $scope.survey = Surveys.getActive();
 
@@ -378,14 +380,32 @@ angular.module('surveysModule' , [])
       }
 
       //this is triggered when a question is saved
-      $scope.saveQuestioneer = function(){
-          console.log($scope.questioneer.questions);
+      $scope.saveQuestioneer = function(spinner){
+          Questioneer.saveQuestioneer($scope.questioneer).then(
+              function(status){
+                  console.log(status);
+                  spinnerService.hide('Multiple_Choice_Save');
+              },
+              function(err){
+                  console.log('err');
+              }
+          );
       }
 
       //This is the callback triggered by the question types directive
       $scope.removeQuestion = function(index){
+          var oldQ = angular.copy( $scope.questioneer.questions);
           $scope.questioneer.questions.splice(index , 1);
-          console.log($scope.questioneer.questions);
+          Questioneer.saveQuestioneer($scope.questioneer).then(
+              function(status){
+                  console.log(status);
+                  spinnerService.hide('Multiple_Choice_Remove');
+              },
+              function(err){
+                  $scope.questioneer.questions = oldQ;
+                  spinnerService.hide('Multiple_Choice_Remove');
+              }
+          );
       }
 
 })

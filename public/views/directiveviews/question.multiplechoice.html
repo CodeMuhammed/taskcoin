@@ -1,76 +1,91 @@
+<!--Multiple_Choice view begins here-->
 <div class="question-view col-xs-12" ng-hide="edit" ng-mouseenter="mainActions = true" ng-mouseleave="mainActions=false">
     <div class="Q col-xs-12">
-        <b >Q{{index}}: {{question.query}}</b>
+        <b >Q{{(index*1+1)}}: {{question.query}}</b>
     </div>
-    <form name="questionOptions" class="answers col-xs-12" novalidate>
-        <div class="checkbox option" ng-repeat="option in question.answers track by $index">
+    <div class="answers col-xs-12">
+        <div class="option" ng-class="{{question.options.multi?'checkbox':'radio'}}" ng-repeat="option in question.answers track by $index">
           <label>
-             <input name="agreed" type="radio">
+             <input name="agreed" type="{{question.options.multi?'checkbox':'radio'}}" ng-disabled="true">
              {{option}}
            </label>
        </div>
-    </form>
-    <span class="action-btn" ng-show="mainActions">
-        <span class="delete-btn" ng-click="deleteQuestion()">
-             <i class="icon fa fa-times"></i>
+    </div>
+    <span class="action-btn" ng-show="mode=='edit' && !edit && mainActions">
+
+        <span class="delete-btn" >
+          <span ng-click="deleteQuestion()">
+             <spinner name="Multiple_Choice_Remove">
+                 <i class="icon fa fa-times"></i>
+             </spinner>
+          </span>
         </span>
 
         <span class="edit-btn" ng-click="editQuestion()">
              <i class="icon fa fa-edit"></i>
         </span>
     </span>
+</div>
+<!--Multiple_Choice view ends here-->
 
-</div>
-<div class="col-xs-12 question-editor" ng-show="mode=='edit' && edit">
-     <div class="Q col-xs-12">
-         <div class="input-group">
-             <span class="input-group-addon"><b>Q{{index}}:</b> </span>
-             <input type="text" class="form-control" placeholder="Enter question here" ng-model="question.query">
-         </div>
-     </div>
-     <div class="answers col-xs-12">
-          <h2>Answers</h2>
-          <div class="input-group answer" ng-repeat="_ in question.answers track by $index">
-              <span class="input-group-addon">
-                  <input type="radio" ng-disabled="true">
-               </span>
-               <span>
-                   <input type="text" class="form-control" placeholder="Enter an option here"  ng-model="question.answers[$index]">
-               </span>
-               <span class="input-group-addon action">
-                    <span ng-click="addAnswer($index)">
-                         <i class="icon fa fa-plus"></i>
-                    </span>
-                    <span ng-click="removeAnswer($index)">
-                        <i class="icon fa fa-times"></i>
-                    </span>
-               </span>
-         </div>
-     </div>
-     <div class="options col-xs-12">
-          <h2>Options</h2>
-          <form name="questionOptions" novalidate>
-              <div class="checkbox option">
-                <label>
-                   <input name="agreed" type="checkbox">
-                   Allow more than one answer to this question
-                 </label>
+<!--Multiple_Choice editor begins here-->
+<form name="questionOptions" class="col-xs-12" style="padding:0" novalidate ng-show="mode=='edit' && edit">
+    <div class="col-xs-12 question-editor" >
+         <div class="Q col-xs-12">
+             <div class="input-group">
+                 <span class="input-group-addon"><b>Q{{(index*1+1)}}:</b> </span>
+                 <input type="text" class="form-control" placeholder="Enter question here" ng-model="question.query" required>
              </div>
-             <div class="checkbox">
-               <label style="width:100%">
-                  <input name="agreed" type="checkbox">
-                  Require a specific answer to this question
-                  <span class="pull-right"><b>option 2</b></span>
-                </label>
-            </div>
-          </form>
-     </div>
-     <div class="footer col-xs-12">
-         <span class="pull-right">
-              <button class="btn btn-sm btn-default" ng-click="cancel()">Cancel</button>
-              <button class="btn btn-primary btn-sm" ng-click="save()">
-                    <span > Save</span>
-              </button>
-         </span>
-     </div>
-</div>
+         </div>
+         <div class="answers col-xs-12">
+              <h2>Answers* : (All fields should be filled)</h2>
+              <div class="input-group answer" ng-repeat="_ in question.answers track by $index">
+                  <span class="input-group-addon" ng-click="pickAsAnswer($index)">
+                      <input type="checkbox" ng-disabled="!question.options.definite" ng-model="answerOptions[$index]">
+                      <span ng-show="question.options.definite">{{answerOptions[$index]}}</span>
+                   </span>
+                   <span>
+                       <input type="text" class="form-control" placeholder="Enter an option here"  ng-model="question.answers[$index]" required>
+                   </span>
+                   <span class="input-group-addon action">
+                        <span ng-click="addAnswer($index)">
+                             <i class="icon fa fa-plus"></i>
+                        </span>
+                        <span ng-click="removeAnswer($index)">
+                            <i class="icon fa fa-times"></i>
+                        </span>
+                   </span>
+             </div>
+         </div>
+         <div class="options col-xs-12">
+              <h2>Options</h2>
+              <form name="questionOptions" novalidate>
+                  <div class="checkbox option">
+                    <label style="width:100%">
+                       <input name="agreed" type="checkbox" ng-model="question.options.multi">
+                       Allow more than one answer to this question
+                       <span class="pull-right">{{question.options.multi}}</span>
+                     </label>
+                 </div>
+                 <div class="checkbox">
+                   <label style="width:100%">
+                      <input name="agreed" type="checkbox" ng-model="question.options.definite">
+                      Require a specific answer to this question
+                      <span class="pull-right"><b>option {{question.answer*1+1}}</b></span>
+                    </label>
+                </div>
+              </form>
+         </div>
+         <div class="footer col-xs-12">
+             <span class="pull-right">
+                  <button class="btn btn-sm btn-default" ng-click="cancel()">Back</button>
+                  <button class="btn btn-primary btn-sm" ng-click="save()" ng-disabled="questionOptions.$invalid || definiteInValid()">
+                        <spinner name="Multiple_Choice_Save">
+                           Save
+                        </spinner>
+                  </button>
+             </span>
+         </div>
+    </div>
+</form>
+<!--Multiple_Choice editor ends here-->

@@ -4,7 +4,8 @@ angular.module('taskcoin' , [
      'config' , 'authyComponent' ,
      'general.factories' ,'general.directives',
      'checkoutModule', 'betalistModule' ,
-     'homeModule', 'surveysModule'
+     'homeModule', 'surveysModule',
+     'angularSpinners'
 ])
 
 //

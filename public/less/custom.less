@@ -1213,11 +1213,14 @@
            height:8em;
            background-color: #005999;
            position: relative;
+
            .text{
+               width:100%;
                display:inline-block;
                padding: 1em .5em;
                position: absolute;
                bottom:0;
+               left:0;
                color:#FFF;
                font-size: 1.3em;
            }
@@ -1232,12 +1235,13 @@
                 position: relative;
                 padding: 0;
                 background-color:lighten(#EAEAE8, 5%);
-                border-radius: 5px;
+                border-radius: 0px;
                 min-height:25em;
                 margin-bottom:1.5em;
                 .Q{
                    padding:.8em;
                    border-bottom: 1px solid #FFF;
+                   font-size: 1.2em;
                 }
                 .answers{
                     padding:.3em .8em;;
@@ -1245,6 +1249,9 @@
                     margin-top: 1.4em;
                     .option{
                        margin-bottom: 2em;
+                       label{
+                           font-weight: normal;;
+                       }
                     }
                 }
                 .action-btn{
@@ -1271,12 +1278,13 @@
               .question-editor{
                   padding: 0;
                   background-color: #EAEAE8;
-                  border-radius: 5px;
+                  border-radius: 0px;
                   min-height:25em;
                   margin-bottom:1.5em;
                   .Q{
                      padding:.8em;
                      border-bottom: 1px solid #FFF;
+                     font-size: 1.2em;
                   }
                   .answers{
                      padding:.3em .8em;
