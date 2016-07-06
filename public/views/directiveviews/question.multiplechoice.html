@@ -1,29 +1,36 @@
-<div class="question-view col-xs-12" ng-hide="edit">
+<div class="question-view col-xs-12" ng-hide="edit" ng-mouseenter="mainActions = true" ng-mouseleave="mainActions=false">
     <div class="Q col-xs-12">
-        <b >Q{{qIndex+1}}: {{question.query}}</b>
+        <b >Q{{index}}: {{question.query}}</b>
     </div>
     <form name="questionOptions" class="answers col-xs-12" novalidate>
-        <div class="checkbox option" ng-repeat="option in question.answers">
+        <div class="checkbox option" ng-repeat="option in question.answers track by $index">
           <label>
              <input name="agreed" type="radio">
              {{option}}
            </label>
        </div>
     </form>
-    <span class="edit-btn" ng-click="edit = true">
-         <i class="icon fa fa-edit"></i>
+    <span class="action-btn" ng-show="mainActions">
+        <span class="delete-btn" ng-click="deleteQuestion()">
+             <i class="icon fa fa-times"></i>
+        </span>
+
+        <span class="edit-btn" ng-click="editQuestion()">
+             <i class="icon fa fa-edit"></i>
+        </span>
     </span>
+
 </div>
 <div class="col-xs-12 question-editor" ng-show="mode=='edit' && edit">
      <div class="Q col-xs-12">
          <div class="input-group">
-             <span class="input-group-addon"><b>Q{{qIndex+1}}:</b> </span>
+             <span class="input-group-addon"><b>Q{{index}}:</b> </span>
              <input type="text" class="form-control" placeholder="Enter question here" ng-model="question.query">
          </div>
      </div>
      <div class="answers col-xs-12">
           <h2>Answers</h2>
-          <div class="input-group answer" ng-repeat="_ in question.answers">
+          <div class="input-group answer" ng-repeat="_ in question.answers track by $index">
               <span class="input-group-addon">
                   <input type="radio" ng-disabled="true">
                </span>
@@ -31,10 +38,10 @@
                    <input type="text" class="form-control" placeholder="Enter an option here"  ng-model="question.answers[$index]">
                </span>
                <span class="input-group-addon action">
-                    <span class="" ng-click="addOption($index)">
+                    <span ng-click="addAnswer($index)">
                          <i class="icon fa fa-plus"></i>
                     </span>
-                    <span>
+                    <span ng-click="removeAnswer($index)">
                         <i class="icon fa fa-times"></i>
                     </span>
                </span>

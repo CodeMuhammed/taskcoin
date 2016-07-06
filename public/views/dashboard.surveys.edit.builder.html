@@ -9,16 +9,18 @@
     <div class="canvas-container col-xs-10 col-sm-8">
           <div class="survey-editor-builder-container col-xs-12">
                <div class="col-xs-12 heading">
-                    <span class="text">{{survey.title}}</span>
+                    <span class="text">
+                      {{survey.title}}
+                    </span>
                </div>
                <div class="col-xs-12 questions-container">
-                   <div class="col-xs-12 empty-box" ng-show="questions.length==0">
+                   <div class="col-xs-12 empty-box" ng-show="questioneer.questions.length==0">
                          <h1>You have not added any questions yet.</h1>
                    </div>
                    <div class="col-xs-12 question-c"  ng-repeat="question in questioneer.questions">
                           <div ng-switch on="question.type">
                                <div ng-switch-when="Multiple_Choice">
-                                   <multiple-choice question="question" done="done(status)" mode="edit" qIndex="{{$index}}"></multiple-choice>
+                                   <multiple-choice question="questioneer.questions[$index]" remove="removeQuestion(index)" save="saveQuestioneer()" mode="edit" index="{{$index}}"></multiple-choice>
                                </div>
                           </div>
                    </div>

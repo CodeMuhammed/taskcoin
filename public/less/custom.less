@@ -763,12 +763,13 @@
                                     }
                                     &:last-child{
                                         a{
+                                          cursor: pointer;
                                           text-decoration: none;
                                           color:inherit;
                                           font-size:1.2em;
                                           margin-right:.4em;
+                                          font-weight: bold;
                                           &:hover{
-                                             font-weight: bold;
                                              color:@brand-primary;
                                           }
                                        }
@@ -989,14 +990,15 @@
          border-radius: 0;
          background-color: #FFF;
          .segment-title{
-             background-image: linear-gradient(40% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
-             background-image: -moz-linear-gradient(40% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+             color:#FFF;
+             background-image: linear-gradient(40% 100% 330deg,#005999 , #005999 , #FFF  0%);
+             background-image: -moz-linear-gradient(40% 100% 330deg,#005999 , #005999 , #FFF  0%);
              padding:.4em 1em;
              margin-top:1.3em;
              margin-bottom: 1em;
              @media (max-width: @screen-sm-max) {
-                 background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
-                 background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                 background-image: linear-gradient(70% 100% 330deg,#005999 , #005999 , #FFF  0%);
+                 background-image: -moz-linear-gradient(70% 100% 330deg,#005999 , #005999 , #FFF  0%);
              }
          }
          .content{
@@ -1245,16 +1247,25 @@
                        margin-bottom: 2em;
                     }
                 }
-                .edit-btn{
-                    font-size:2.5em;
-                    color:@gray-light;
-                    position: absolute;
-                    bottom:1em;
-                    right: 2em;
-                    &:hover{
-                        color: #FDC740;
-                        cursor: pointer;
-                    }
+                .action-btn{
+                  font-size:2.5em;
+                  color:@gray-light;
+                  position: absolute;
+                  bottom:1em;
+                  right: 2em;
+                  .edit-btn{
+                      margin-left:2em;
+                      &:hover{
+                          color: #FDC740;
+                          cursor: pointer;
+                      }
+                  }
+                  .delete-btn{
+                      &:hover{
+                          color: @brand-danger;
+                          cursor: pointer;
+                      }
+                  }
                 }
               }
               .question-editor{

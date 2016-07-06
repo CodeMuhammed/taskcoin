@@ -207,20 +207,27 @@ angular.module('general.directives' , [])
 .directive('multipleChoice' , function(){
      return {
         scope:{
-            question: '=question',
-            done: '&done',
+            notifyRemove: '&remove',
+            notifySave: '&save',
             mode: '@mode',
-            qIndex:'@qIndex'
+            index:'@index',
+            question:'=question'
+
         },
         templateUrl:'/views/directiveviews/question.multiplechoice.html',
-        controller:function($scope){
+        controller:function($scope, $timeout){
             //
-            var original = angular.copy($scope.question);
+            var original;
+            //
+            $scope.addAnswer = function(index){
+                $scope.question.answers.splice(index+1 , 0 , '');
+            }
 
             //
-            $scope.addOption = function(index){
-                $scope.question.answers.insert(index , 'data');
+            $scope.removeAnswer = function(index){
+                $scope.question.answers.splice(index , 1);
             }
+
             //
             $scope.cancel = function(){
                  $scope.question = original;
@@ -229,9 +236,23 @@ angular.module('general.directives' , [])
 
             //
             $scope.save = function(){
-                 original = angular.copy($scope.question);
-                 $scope.edit = false;
+                original = angular.copy($scope.question);
+                $scope.edit = false;
+                $scope.notifySave();
             }
+
+            //
+            $scope.deleteQuestion = function(){
+                console.log('delete called');
+                $scope.notifyRemove({index:$scope.index});
+            }
+
+            //
+            $scope.editQuestion = function(){
+                console.log('edit called');
+                $scope.edit = true;
+                original = angular.copy($scope.question);
+           }
         }
      }
 });

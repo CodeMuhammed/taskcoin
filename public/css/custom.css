@@ -12051,13 +12051,14 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   font-size: .8em;
 }
 .dashboard .child-view .surveys .overview .o-body .table-style tbody tr td:last-child a {
+  cursor: pointer;
   text-decoration: none;
   color: inherit;
   font-size: 1.2em;
   margin-right: .4em;
+  font-weight: bold;
 }
 .dashboard .child-view .surveys .overview .o-body .table-style tbody tr td:last-child a:hover {
-  font-weight: bold;
   color: #005EA6;
 }
 .dashboard .child-view .surveys .overview .o-footer {
@@ -12272,16 +12273,17 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   background-color: #FFF;
 }
 .survey-editor-setup-container form .segment-title {
-  background-image: linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
-  background-image: -moz-linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
+  color: #FFF;
+  background-image: linear-gradient(40% 100% 330deg, #005999, #005999, #FFF 0%);
+  background-image: -moz-linear-gradient(40% 100% 330deg, #005999, #005999, #FFF 0%);
   padding: .4em 1em;
   margin-top: 1.3em;
   margin-bottom: 1em;
 }
 @media (max-width: 991px) {
   .survey-editor-setup-container form .segment-title {
-    background-image: linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
-    background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
+    background-image: linear-gradient(70% 100% 330deg, #005999, #005999, #FFF 0%);
+    background-image: -moz-linear-gradient(70% 100% 330deg, #005999, #005999, #FFF 0%);
   }
 }
 .survey-editor-setup-container form .content {
@@ -12568,15 +12570,22 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
 .survey-editor-builder-container .questions-container .question-c .question-view .answers .option {
   margin-bottom: 2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .edit-btn {
+.survey-editor-builder-container .questions-container .question-c .question-view .action-btn {
   font-size: 2.5em;
   color: #777777;
   position: absolute;
   bottom: 1em;
   right: 2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .edit-btn:hover {
+.survey-editor-builder-container .questions-container .question-c .question-view .action-btn .edit-btn {
+  margin-left: 2em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-view .action-btn .edit-btn:hover {
   color: #FDC740;
+  cursor: pointer;
+}
+.survey-editor-builder-container .questions-container .question-c .question-view .action-btn .delete-btn:hover {
+  color: #d9534f;
   cursor: pointer;
 }
 .survey-editor-builder-container .questions-container .question-c .question-editor {

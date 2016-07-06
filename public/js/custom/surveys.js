@@ -277,16 +277,12 @@ angular.module('surveysModule' , [])
        var questionSchemas = {
             'Multiple_Choice' : {
                  type:'Multiple_Choice',
-                 questions:[
-                     {
-                         question:'What is the question again ?',
-                         answers:[
-                             'Option here',
-                             'Option here',
-                             'Option here',
-                             'Option here'
-                         ]
-                     }
+                 query:'What is the question again ?',
+                 answers:[
+                     'Option here',
+                     'Option here',
+                     'Option here',
+                     'Option here'
                  ],
                  options:{
                     multi:false,
@@ -308,6 +304,7 @@ angular.module('surveysModule' , [])
        //
        function getQuestions(questioneerId){
             var promise = $q.defer();
+            console.log(questioneerId);
 
             $timeout(function(){
                 var questioneer = {//Mocked out @TODO actual data will follow soon
@@ -337,9 +334,19 @@ angular.module('surveysModule' , [])
        }
 
        //
+       function saveQuestion(questions){
+          var promise = $q.defer();
+          $timeout(function(){
+               promise.resolve();
+          } , 1000);
+          return promise.promise;
+       }
+
+       //
        return {
            getSchema : getSchema,
-           getQuestions:getQuestions
+           getQuestions:getQuestions,
+           saveQuestion:saveQuestion
        }
 })
 
@@ -349,30 +356,36 @@ angular.module('surveysModule' , [])
       $scope.survey = Surveys.getActive();
 
       //
+      var original;
       if(!angular.isDefined($scope.survey)){
          $state.go('dashboard.surveys.overview');
       }
-
-      //
-      var original;
-      Questioneer.getQuestions('35465885').then(
-          function(data){
-              original = data;
-              $scope.questioneer = angular.copy(original);
-          },
-          function(err){
-              console.log(err);
-          }
-      );
+      else{
+          Questioneer.getQuestions($scope.survey.questioneerId).then(
+              function(data){
+                  original = data;
+                  $scope.questioneer = angular.copy(original);
+              },
+              function(err){
+                  console.log(err);
+              }
+          );
+      }
 
       //This triggers this view to create a new question when user click on a type in the sidemenu
       $scope.createQuestion = function(type){
-          $scope.questioneer.questions.push(Questioneer.getSchema(type));
+          $scope.questioneer.questions.push(angular.copy(Questioneer.getSchema(type)));
       }
 
-      //This is the callback triggered by the question directive
-      $scope.done = function(status){
-          alert(status);
+      //this is triggered when a question is saved
+      $scope.saveQuestioneer = function(){
+          console.log($scope.questioneer.questions);
+      }
+
+      //This is the callback triggered by the question types directive
+      $scope.removeQuestion = function(index){
+          $scope.questioneer.questions.splice(index , 1);
+          console.log($scope.questioneer.questions);
       }
 
 })
