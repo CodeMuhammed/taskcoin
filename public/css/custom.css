@@ -12205,7 +12205,7 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   border-radius: 6px 0 0 6px;
   width: 2.5em;
   height: 2.5em;
-  padding: .7em .3em;
+  padding: .0em .3em;
   display: block;
 }
 .survey-editor-menu-container .active .items .item .icon-c i {
@@ -12222,10 +12222,11 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   }
 }
 .survey-editor-menu-container .active .items .item .text {
+  text-align: left;
   color: #9E9B90;
   border-radius: 6px;
-  padding-top: .6em;
-  padding-left: 3em;
+  padding-top: .3em;
+  padding-left: 4em;
   font-weight: bold;
   display: inline-block;
   background-color: #fff;
@@ -12535,7 +12536,7 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
 }
 .survey-editor-builder-container .heading .text {
   display: inline-block;
-  padding: 1em;
+  padding: 1em .5em;
   position: absolute;
   bottom: 0;
   color: #FFF;
@@ -12547,26 +12548,84 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
 .survey-editor-builder-container .questions-container .question-c {
   padding: 0;
 }
-.survey-editor-builder-container .questions-container .question-c .question {
+.survey-editor-builder-container .questions-container .question-c .question-view {
+  position: relative;
+  padding: 0;
+  background-color: #f6f6f5;
+  border-radius: 5px;
+  min-height: 25em;
+  margin-bottom: 1.5em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-view .Q {
+  padding: .8em;
+  border-bottom: 1px solid #FFF;
+}
+.survey-editor-builder-container .questions-container .question-c .question-view .answers {
+  padding: .3em .8em;
+  min-height: 7em;
+  margin-top: 1.4em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-view .answers .option {
+  margin-bottom: 2em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-view .edit-btn {
+  font-size: 2.5em;
+  color: #777777;
+  position: absolute;
+  bottom: 1em;
+  right: 2em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-view .edit-btn:hover {
+  color: #FDC740;
+  cursor: pointer;
+}
+.survey-editor-builder-container .questions-container .question-c .question-editor {
   padding: 0;
   background-color: #EAEAE8;
   border-radius: 5px;
-  min-height: 30em;
+  min-height: 25em;
   margin-bottom: 1.5em;
 }
-.survey-editor-builder-container .questions-container .question-c .question .Q {
-  height: 4em;
+.survey-editor-builder-container .questions-container .question-c .question-editor .Q {
+  padding: .8em;
   border-bottom: 1px solid #FFF;
 }
-.survey-editor-builder-container .questions-container .question-c .question .answers {
+.survey-editor-builder-container .questions-container .question-c .question-editor .answers {
+  padding: .3em .8em;
   min-height: 20em;
   border-bottom: 1px solid #FFF;
 }
-.survey-editor-builder-container .questions-container .question-c .question .options {
-  min-height: 4em;
+.survey-editor-builder-container .questions-container .question-c .question-editor .answers h2 {
+  font-weight: bold;
+  margin-top: 0;
+  font-size: .9em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-editor .answers .answer {
+  margin-bottom: 1em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-editor .answers .answer .action span {
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #d9534f;
+}
+.survey-editor-builder-container .questions-container .question-c .question-editor .answers .answer .action span:first-child {
+  margin-right: 1em;
+  color: #5cb85c;
+}
+.survey-editor-builder-container .questions-container .question-c .question-editor .options {
+  padding: .3em .8em;
+  min-height: 7em;
   border-bottom: 1px solid #FFF;
 }
-.survey-editor-builder-container .questions-container .question-c .question .footer {
+.survey-editor-builder-container .questions-container .question-c .question-editor .options h2 {
+  font-weight: bold;
+  margin-top: 0;
+  font-size: .9em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-editor .options .option {
+  margin-bottom: 2em;
+}
+.survey-editor-builder-container .questions-container .question-c .question-editor .footer {
   padding: .6em;
   border-top: 1px solid #FFF;
 }

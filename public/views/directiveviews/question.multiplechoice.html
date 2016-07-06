@@ -1,0 +1,69 @@
+<div class="question-view col-xs-12" ng-hide="edit">
+    <div class="Q col-xs-12">
+        <b >Q{{qIndex+1}}: {{question.query}}</b>
+    </div>
+    <form name="questionOptions" class="answers col-xs-12" novalidate>
+        <div class="checkbox option" ng-repeat="option in question.answers">
+          <label>
+             <input name="agreed" type="radio">
+             {{option}}
+           </label>
+       </div>
+    </form>
+    <span class="edit-btn" ng-click="edit = true">
+         <i class="icon fa fa-edit"></i>
+    </span>
+</div>
+<div class="col-xs-12 question-editor" ng-show="mode=='edit' && edit">
+     <div class="Q col-xs-12">
+         <div class="input-group">
+             <span class="input-group-addon"><b>Q{{qIndex+1}}:</b> </span>
+             <input type="text" class="form-control" placeholder="Enter question here" ng-model="question.query">
+         </div>
+     </div>
+     <div class="answers col-xs-12">
+          <h2>Answers</h2>
+          <div class="input-group answer" ng-repeat="_ in question.answers">
+              <span class="input-group-addon">
+                  <input type="radio" ng-disabled="true">
+               </span>
+               <span>
+                   <input type="text" class="form-control" placeholder="Enter an option here"  ng-model="question.answers[$index]">
+               </span>
+               <span class="input-group-addon action">
+                    <span class="" ng-click="addOption($index)">
+                         <i class="icon fa fa-plus"></i>
+                    </span>
+                    <span>
+                        <i class="icon fa fa-times"></i>
+                    </span>
+               </span>
+         </div>
+     </div>
+     <div class="options col-xs-12">
+          <h2>Options</h2>
+          <form name="questionOptions" novalidate>
+              <div class="checkbox option">
+                <label>
+                   <input name="agreed" type="checkbox">
+                   Allow more than one answer to this question
+                 </label>
+             </div>
+             <div class="checkbox">
+               <label style="width:100%">
+                  <input name="agreed" type="checkbox">
+                  Require a specific answer to this question
+                  <span class="pull-right"><b>option 2</b></span>
+                </label>
+            </div>
+          </form>
+     </div>
+     <div class="footer col-xs-12">
+         <span class="pull-right">
+              <button class="btn btn-sm btn-default" ng-click="cancel()">Cancel</button>
+              <button class="btn btn-primary btn-sm" ng-click="save()">
+                    <span > Save</span>
+              </button>
+         </span>
+     </div>
+</div>

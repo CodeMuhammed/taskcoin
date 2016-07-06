@@ -148,32 +148,14 @@ angular.module('general.directives' , [])
           controller:function($scope , $state, $stateParams){
                 //
                 $scope.questionsTypes = [
-                   {
-                     icon:'fa-list-alt',
-                     name:'Multiple Choice'
-                   },
-                   {
-                     icon:'fa-chevron-circle-down',
-                     name:'Dropdown'
-                   },
-                   {
-                     icon:'fa-thumbs-o-up',
-                     name:'Net Promoter Score'
-                   },
-                   {
-                     icon:'fa-credit-card',
-                     name:'Single Textbox'
-                   },
-                   {
-                     icon:'fa-user',
-                     name:'Contact Information'
-                   },
-                   {
-                     icon:'fa-outdent',
-                     name:'New Segment'
-                   }
+                   {icon:'fa-list-alt', name:'Multiple Choice'},
+                   {icon:'fa-chevron-circle-down', name:'Dropdown'},
+                   {icon:'fa-thumbs-o-up',name:'Net Promoter Score'},
+                   {icon:'fa-credit-card',name:'Single Textbox'},
+                   {icon:'fa-user',name:'Contact Information'},
+                   {icon:'fa-outdent',name:'New Segment'}
                 ];
-                
+
                 //
                 $scope.selectItem = function(type){
                     type = type.trim().split(' ').join('_');
@@ -219,4 +201,37 @@ angular.module('general.directives' , [])
               }
           }
       }
+})
+
+//directive for multiple choice question
+.directive('multipleChoice' , function(){
+     return {
+        scope:{
+            question: '=question',
+            done: '&done',
+            mode: '@mode',
+            qIndex:'@qIndex'
+        },
+        templateUrl:'/views/directiveviews/question.multiplechoice.html',
+        controller:function($scope){
+            //
+            var original = angular.copy($scope.question);
+
+            //
+            $scope.addOption = function(index){
+                $scope.question.answers.insert(index , 'data');
+            }
+            //
+            $scope.cancel = function(){
+                 $scope.question = original;
+                 $scope.edit = false;
+            }
+
+            //
+            $scope.save = function(){
+                 original = angular.copy($scope.question);
+                 $scope.edit = false;
+            }
+        }
+     }
 });

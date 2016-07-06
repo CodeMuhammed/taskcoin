@@ -116,13 +116,6 @@ angular.module('surveysModule' , [])
      };
 })
 
-//Questions factory
-.factory('Questions' , function($q , $http , $timeout){
-       return {
-
-       }
-})
-
 //Abstract state controller for surveys route
 .controller('surveysController' , function($scope , $state){
        console.log('surveys abstract controller loaded');
@@ -278,25 +271,108 @@ angular.module('surveysModule' , [])
     }
 })
 
+//Questions factory
+.factory('Questioneer' , function($q , $http , $timeout){
+       //
+       var questionSchemas = {
+            'Multiple_Choice' : {
+                 type:'Multiple_Choice',
+                 questions:[
+                     {
+                         question:'What is the question again ?',
+                         answers:[
+                             'Option here',
+                             'Option here',
+                             'Option here',
+                             'Option here'
+                         ]
+                     }
+                 ],
+                 options:{
+                    multi:false,
+                    definite:0
+                 }
+            }
+       };
+
+       //
+       function getSchema(schema){
+           if(!questionSchemas[schema]){
+               alert(schema+' does not exist');
+           }
+           else{
+             return questionSchemas[schema];
+           }
+       }
+
+       //
+       function getQuestions(questioneerId){
+            var promise = $q.defer();
+
+            $timeout(function(){
+                var questioneer = {//Mocked out @TODO actual data will follow soon
+                    _id:'3458765584',
+                    questions:[
+                        {
+                             type:'Multiple_Choice',
+                             query:'What feature of taskcoin most excites you ?',
+                             answers:[
+                                 'It allows me to get real time feedbacks for my surveys',
+                                 'It integrates seamlessly into my website as a payment processor',
+                                 'It allows me to buy stuff online with my opinion',
+                                 'I am a taskcoin freak i love all the options'
+                             ],
+                             options:{
+                                multi:false,
+                                definite:-1
+                             }
+                        }
+                    ]
+                    //... rest properties not needed now
+                };
+
+                promise.resolve(questioneer);
+            } , 1000);
+            return promise.promise;
+       }
+
+       //
+       return {
+           getSchema : getSchema,
+           getQuestions:getQuestions
+       }
+})
+
 //
-.controller('surveysEditBuilderController' , function($scope , $state, Surveys){
+.controller('surveysEditBuilderController' , function($scope , $state, Surveys , Questioneer){
       //In case user cancels editing
-      var original = Surveys.getActive();
+      $scope.survey = Surveys.getActive();
 
       //
-      if(!angular.isDefined(original)){
-        // $state.go('dashboard.surveys.overview');
+      if(!angular.isDefined($scope.survey)){
+         $state.go('dashboard.surveys.overview');
       }
 
-      //For use in this scope only
-      $scope.survey = angular.copy(original);
-
       //
-      $scope.questions = [];
+      var original;
+      Questioneer.getQuestions('35465885').then(
+          function(data){
+              original = data;
+              $scope.questioneer = angular.copy(original);
+          },
+          function(err){
+              console.log(err);
+          }
+      );
 
       //This triggers this view to create a new question when user click on a type in the sidemenu
       $scope.createQuestion = function(type){
-          $scope.questions.push({type:type});
+          $scope.questioneer.questions.push(Questioneer.getSchema(type));
+      }
+
+      //This is the callback triggered by the question directive
+      $scope.done = function(status){
+          alert(status);
       }
 
 })

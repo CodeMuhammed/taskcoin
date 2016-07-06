@@ -922,7 +922,7 @@
                    border-radius: 6px 0 0 6px;
                    width:2.5em;
                    height:2.5em;
-                   padding:.7em .3em;
+                   padding:.0em .3em;
                    display:block;
                    i{
                       font-size: 1.2em;
@@ -942,10 +942,11 @@
                    &:hover{
                       background-color: #FDFACB;
                    }
+                   .text-left;
                    color: #9E9B90;
                    border-radius: 6px;
-                   padding-top:.6em;
-                   padding-left:3em;
+                   padding-top:.3em;
+                   padding-left:4em;
                    font-weight: bold;
                    display:inline-block;
                    background-color: #fff;
@@ -1212,7 +1213,7 @@
            position: relative;
            .text{
                display:inline-block;
-               padding: 1em;
+               padding: 1em .5em;
                position: absolute;
                bottom:0;
                color:#FFF;
@@ -1225,23 +1226,84 @@
           //
           .question-c{
               padding:0;
-              .question{
+              .question-view{
+                position: relative;
+                padding: 0;
+                background-color:lighten(#EAEAE8, 5%);
+                border-radius: 5px;
+                min-height:25em;
+                margin-bottom:1.5em;
+                .Q{
+                   padding:.8em;
+                   border-bottom: 1px solid #FFF;
+                }
+                .answers{
+                    padding:.3em .8em;;
+                    min-height: 7em;
+                    margin-top: 1.4em;
+                    .option{
+                       margin-bottom: 2em;
+                    }
+                }
+                .edit-btn{
+                    font-size:2.5em;
+                    color:@gray-light;
+                    position: absolute;
+                    bottom:1em;
+                    right: 2em;
+                    &:hover{
+                        color: #FDC740;
+                        cursor: pointer;
+                    }
+                }
+              }
+              .question-editor{
                   padding: 0;
                   background-color: #EAEAE8;
                   border-radius: 5px;
-                  min-height:30em;
+                  min-height:25em;
                   margin-bottom:1.5em;
                   .Q{
-                     height: 4em;
+                     padding:.8em;
                      border-bottom: 1px solid #FFF;
                   }
                   .answers{
+                     padding:.3em .8em;
                      min-height: 20em;
                      border-bottom: 1px solid #FFF;
+                     h2{
+                        font-weight: bold;
+                        margin-top:0;
+                        font-size: .9em;
+                     }
+                     .answer{
+                         margin-bottom: 1em;
+                         .action{
+                             span{
+                                font-size: 1.2em;
+                                cursor: pointer;
+                                color:@brand-danger;
+                                &:first-child{
+                                   margin-right: 1em;
+                                   color:@brand-success;
+                                }
+                             }
+                         }
+                     }
+
                   }
                   .options{
-                      min-height: 4em;
+                      padding:.3em .8em;;
+                      min-height: 7em;
                       border-bottom: 1px solid #FFF;
+                      h2{
+                         font-weight: bold;
+                         margin-top:0;
+                         font-size: .9em;
+                      }
+                      .option{
+                         margin-bottom: 2em;
+                      }
                   }
                   .footer{
                       padding:.6em;

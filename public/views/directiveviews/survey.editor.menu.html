@@ -25,7 +25,7 @@
      <span class="hidden-xs">BUILDER</span>
   </span>
   <span class="items">
-      <a class="item" ng-click="selectItem(qType.name)" ng-repeat="qType in questionsTypes">
+      <a class="btn item" ng-click="selectItem(qType.name)" ng-repeat="qType in questionsTypes" ng-disabled="qType.name!=='Multiple Choice'">
           <span class="icon-c">
               <i class="icon fa {{qType.icon}}"></i>
           </span>
@@ -37,7 +37,7 @@
 <div class="menu col-xs-12" ng-click="changeState('billing')" ng-class="isViewActive('billing')">
   <span class="heading">
      <i class="icon fa fa-caret-right  hidden-xs"></i>
-     
+
      <span class="info-box" ng-class="getInfoClass('billing')" ng-click="setAndDisplayInfo('billing')">
          <i class="icon fa fa-question-circle"></i>
          <span class="info">
