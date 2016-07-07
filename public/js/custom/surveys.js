@@ -233,7 +233,7 @@ angular.module('surveysModule' , [])
     //
     $scope.activePackageClass = function(package){
          if($scope.survey){
-             return $scope.survey.package.type == package.title ? 'active' : '';
+             return $scope.survey.package.type == package.title;
          }
          return '';
     }

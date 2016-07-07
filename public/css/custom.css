@@ -12300,6 +12300,7 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
 }
 .survey-editor-setup-container form .content .input .options-c .option {
   display: inline-block;
+  background-color: #FFF;
   border: 1px solid #ccc;
   height: 2em;
   padding: 0 1em;
@@ -12342,7 +12343,8 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   width: 12em;
-  border-radius: 20px;
+  border-radius: 0px;
+  margin-bottom: 1em;
 }
 .survey-editor-setup-container form .content .input .options-c .options-input input:focus {
   border-color: #66afe9;
@@ -12380,8 +12382,8 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   border: 1px solid #ccc;
   border-radius: 190px;
   font-size: 1.1em;
-  right: 1em;
-  top: 50%;
+  right: .5em;
+  top: 35%;
   transform: translate(0, -50%);
 }
 .survey-editor-setup-container form .content .input .options-c .options-input .icon-c i {
@@ -12481,6 +12483,7 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   position: relative;
   padding: 0;
   min-height: 15em;
+  background-color: #FFF;
   text-align: center;
 }
 .survey-editor-setup-container form .content .input .packages-c .package-c .package .popular-tag {
@@ -12488,27 +12491,26 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   position: absolute;
   top: 0;
   left: 0;
-  background-image: linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
-  background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #FFF 0%);
+  background-color: #FDC740;
   color: #FFF;
 }
 .survey-editor-setup-container form .content .input .packages-c .package-c .package .text {
   display: block;
   margin-top: 4em;
 }
-.survey-editor-setup-container form .content .input .packages-c .package-c .package:hover {
-  background-color: #fee5a5;
+.survey-editor-setup-container form .content .input .packages-c .package-c .package .selected-package {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
 }
-.survey-editor-setup-container form .content .input .packages-c .package-c .package:hover .popular-tag {
-  background-image: linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fee5a5 0%);
-  background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fee5a5 0%);
-}
-.survey-editor-setup-container form .content .input .packages-c .package-c .active {
-  background-color: #fedd8c;
-}
-.survey-editor-setup-container form .content .input .packages-c .package-c .active .popular-tag {
-  background-image: linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fedd8c 0%);
-  background-image: -moz-linear-gradient(70% 100% 330deg, #FDC740, #FDC740, #fedd8c 0%);
+.survey-editor-setup-container form .content .input .packages-c .package-c .package .selected-package i {
+  font-size: 2em;
+  display: inline-block;
+  margin-top: .5em;
+  color: #FDC740;
 }
 .survey-editor-setup-container form .footer {
   padding: 1em 1.5em;

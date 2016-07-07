@@ -13,7 +13,7 @@
                     <div class="col-xs-12 segment-title">
                         <h4><b>1. Introduction</b></h4>
                     </div>
-                    <div class="content col-xs-12">
+                    <div class="content col-xs-12 well">
                         <span class="input">
                            <label class="input-label">Title *</label>
                            <input type="text" placeholder="Enter survey title here" class="form-control" ng-model="survey.title" required>
@@ -26,7 +26,7 @@
                      <div class="col-xs-12 segment-title">
                          <h4><b>2. Target Respondents</b></h4>
                      </div>
-                     <div class="content col-xs-12">
+                     <div class="content col-xs-12 well">
                          <span class="input">
                             <label class="input-label">Geo Location *</label>
                             <input-options list="{{suggessions.country}}" selected="survey.target.countries" placeholder="Add country"></input-options>
@@ -39,12 +39,12 @@
                      <div class="col-xs-12 segment-title">
                          <h4><b>3. Package Description</b></h4>
                      </div>
-                     <div class="content col-xs-12">
+                     <div class="content col-xs-12 well">
                        <span class="input">
                           <label class="input-label">Questioneer length *</label>
                           <span class="packages-c col-xs-12">
                                <span class="package-c col-xs-12 col-sm-4" ng-repeat="package in packages">
-                                    <span class="col-xs-12 package" ng-class="activePackageClass(package)" ng-click="setPackage(package)">
+                                    <span class="col-xs-12 package" ng-click="setPackage(package)">
                                         <div class="col-xs-12 popular-tag" ng-if="package.highlight">
                                              <i class="icon fa fa-star"></i>
                                              Most popular
@@ -52,6 +52,9 @@
                                         <span class="text">
                                              <h1>{{package.title}}</h1>
                                              <h3>Questions</h3>
+                                        </span>
+                                        <span class="selected-package" ng-show="activePackageClass(package)">
+                                            <i class="icon fa fa-check"></i>
                                         </span>
                                     </span>
                                </span>

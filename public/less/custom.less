@@ -1012,6 +1012,7 @@
                      margin-top:.3em;
                      .option{
                          display: inline-block;
+                         background-color: #FFF;
                          border:1px solid #ccc;
                          height:2em;
                          padding:0 1em;
@@ -1038,7 +1039,8 @@
                               height:2em;
                               .form-control;
                               width:12em;
-                              border-radius: 20px;
+                              border-radius: 0px;
+                              margin-bottom: 1em;
                           }
                           .icon-c{
                               position:absolute;
@@ -1047,8 +1049,8 @@
                               border:1px solid #ccc;
                               border-radius: 190px;
                               font-size: 1.1em;
-                              right:1em;
-                              top:50%;
+                              right:.5em;
+                              top:35%;
                               transform: translate(0 , -50%);
                               i{
                                   margin-left:.25em;
@@ -1152,33 +1154,33 @@
                             position: relative;
                             padding:0;
                             min-height: 15em;
+                            background-color: #FFF;
                             .text-center;
                             .popular-tag{
                               .text-left;
                               position:absolute;
                               top:0;
                               left:0;
-                              background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
-                              background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , #FFF  0%);
+                              background-color: #FDC740;
                               color:#FFF;
                             }
                             .text{
                                  display: block;
                                  margin-top: 4em;
                             }
-                            &:hover{
-                                background-color: lighten(#FDC740, 20%);
-                                .popular-tag{
-                                  background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 20%)  0%);
-                                  background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 20%)  0%);
-                                }
-                            }
-                        }
-                        .active{
-                            background-color: lighten(#FDC740, 15%);
-                            .popular-tag{
-                              background-image: linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 15%)  0%);
-                              background-image: -moz-linear-gradient(70% 100% 330deg,#FDC740 , #FDC740 , lighten(#FDC740, 15%)  0%);
+                            .selected-package{
+                                 position: absolute;
+                                 display: inline-block;
+                                 bottom:0;
+                                 right: 0;
+                                 width: 50px;
+                                 height: 50px;
+                                 i{
+                                    font-size: 2em;
+                                    display: inline-block;
+                                    margin-top:.5em;
+                                    color:#FDC740;
+                                 }
                             }
                         }
                       }

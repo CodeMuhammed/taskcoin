@@ -1,18 +1,17 @@
 <!--Multiple_Choice view begins here-->
 <div class="question-view col-xs-12" ng-hide="edit" ng-mouseenter="mainActions = true" ng-mouseleave="mainActions=false">
     <div class="Q col-xs-12">
-        <b >Q{{(index*1+1)}}: {{question.query}}</b>
+        <b ><i class="icon fa fa-asterisk"></i> {{question.query}}</b>
     </div>
     <div class="answers col-xs-12">
         <div class="option" ng-class="{{question.options.multi?'checkbox':'radio'}}" ng-repeat="option in question.answers track by $index">
           <label>
-             <input name="agreed" type="{{question.options.multi?'checkbox':'radio'}}" ng-disabled="true">
+             <input name="agreed" type="{{question.options.multi?'checkbox':'radio'}}" ng-disabled="false">
              {{option}}
            </label>
        </div>
     </div>
     <span class="action-btn" ng-show="mode=='edit' && !edit && mainActions">
-
         <span class="delete-btn" >
           <span ng-click="deleteQuestion()">
              <spinner id="removingSpinner">
@@ -20,7 +19,6 @@
              </spinner>
           </span>
         </span>
-
         <span class="edit-btn" ng-click="editQuestion()">
              <i class="icon fa fa-edit"></i>
         </span>
@@ -33,7 +31,7 @@
     <div class="col-xs-12 question-editor" >
          <div class="Q col-xs-12">
              <div class="input-group">
-                 <span class="input-group-addon"><b>Q{{(index*1+1)}}:</b> </span>
+                 <span class="input-group-addon"><b><i class="icon fa fa-asterisk"></i></b> </span>
                  <input type="text" class="form-control" placeholder="Enter question here" ng-model="question.query" required>
              </div>
          </div>

@@ -63,7 +63,7 @@ angular.module('homeModule' , [])
               },
               {
                 title:'SHOPPERS',
-                text:'Think about it for a second. Why use your credit card or mobile phone voucher to make payments below $1 when your opinion counts? ',
+                text:'Think about it for a second. Why use your credit card or mobile phone voucher to make payments below $3 when your opinion counts? ',
                 url:'#!/home'
               }
           ];

@@ -1,6 +1,37 @@
 angular.module('general.directives' , [])
 
-//MAkes sure that an input box meets the criteria
+//A custom affix module
+.directive('myAffix' , function($window , $document , $timeout){
+     return{
+         restrict: 'A',
+         link:function(scope, element , attrs){
+             var marginTop;
+             $window.addEventListener('scroll' , function(e){
+                 console.log(e);
+                 var elem = document.getElementById('affix');
+                 var rect = elem.getBoundingClientRect();
+                 if(rect.top >= 0){
+                   $timeout(function(){
+                     marginTop = 0 + 'px';
+                     elem.setAttribute('style' , 'margin-top:'+marginTop);
+                   } , 1000);
+                 }
+                 if(rect.top < 0){
+                    $timeout(function(){
+                      marginTop = e.pageY-100 + 'px';
+                      elem.setAttribute('style' , 'margin-top:'+marginTop);
+                    } , 1500);
+                 }
+             });
+         },
+         controller:function($scope){
+
+         }
+     }
+})
+
+
+//Makes sure that an input box meets the criteria
 .directive('minResponse' , function(){
     return {
        restrict:'A',
