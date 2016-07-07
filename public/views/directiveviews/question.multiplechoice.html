@@ -15,7 +15,7 @@
 
         <span class="delete-btn" >
           <span ng-click="deleteQuestion()">
-             <spinner name="Multiple_Choice_Remove">
+             <spinner id="removingSpinner">
                  <i class="icon fa fa-times"></i>
              </spinner>
           </span>
@@ -80,8 +80,8 @@
              <span class="pull-right">
                   <button class="btn btn-sm btn-default" ng-click="cancel()">Back</button>
                   <button class="btn btn-primary btn-sm" ng-click="save()" ng-disabled="questionOptions.$invalid || definiteInValid()">
-                        <spinner name="Multiple_Choice_Save">
-                           Save
+                        <spinner id="savingSpinner">
+                            Save
                         </spinner>
                   </button>
              </span>

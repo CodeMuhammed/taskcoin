@@ -215,32 +215,50 @@ angular.module('general.directives' , [])
           },
           templateUrl:'/views/directiveviews/question.multiplechoice.html',
 
-          controller:function($scope, $timeout , spinnerService){
+          controller:function($scope, $timeout , Spinners){
+                //Spinners for this scope
+                $scope.removingSpinner;
+                $scope.savingSpinner;
+
                 //This keeps track of the prestine version of the question incase a user ever wants to revert
                 var original;
 
-                //This binds to the answers checkboxes
-                function initOptions(){
-                    $scope.answerOptions  = [];
-                    $scope.question.answer = -1;
-                    for(var i=0; i<$scope.question.answers.length; i++){
-                        $scope.answerOptions[i] = false;
-                        if($scope.question.answer == i && $scope.question.options.definite){
-                            $scope.answerOptions[i] = true;
-                        }
-                    }
-                };
-                initOptions();
+                //This method triggers the callback set on the parent scope to commence with deleting the data
+                $scope.deleteQuestion = function(){
+                    Spinners.spinner($scope.removingSpinner).show();
+                    $scope.notifyRemove({index:$scope.index , spinnerName:$scope.removingSpinner});
+                }
+
+                //This saves the prestine state and switch to the editor mode
+                $scope.editQuestion = function(){
+                    $scope.edit = true;
+                    initOptions();
+                    original = angular.copy($scope.question);
+               }
+
+               //This binds to the answers checkboxes
+               function initOptions(){
+                   $scope.answerOptions  = [];
+                   for(var i=0; i<$scope.question.answers.length; i++){
+                       $scope.answerOptions[i] = false;
+                       if($scope.question.answer == i && $scope.question.options.definite){
+                           $scope.answerOptions[i] = true;
+                       }
+                   }
+               };
+               initOptions();
 
                 //This adds an option to the answers
                 $scope.addAnswer = function(index){
                      $scope.question.answers.splice(index+1 , 0 , '');
+                     $scope.question.answer = -1;
                      initOptions();
                 }
 
                 //As function name implies
                 $scope.removeAnswer = function(index){
                     $scope.question.answers.splice(index , 1);
+                    $scope.question.answer = -1;
                     initOptions();
                 }
 
@@ -253,7 +271,6 @@ angular.module('general.directives' , [])
                         else{
                           $scope.answerOptions[i] = false;
                         }
-
                     }
                     $scope.question.answer = index;
                     console.log(index);
@@ -267,22 +284,14 @@ angular.module('general.directives' , [])
 
                 //This method triggers the callback set on the parent scope to commence with saving the data
                 $scope.save = function(){
-                    spinnerService.show('Multiple_Choice_Save');
-                    $scope.notifySave();
+                    Spinners.spinner($scope.savingSpinner).show().then(
+                         null , null , function(status){
+                              console.log(status);
+                              original = angular.copy($scope.question);
+                         }
+                    );
+                    $scope.notifySave({spinnerName:$scope.savingSpinner});
                 }
-
-                //This method triggers the callback set on the parent scope to commence with deleting the data
-                $scope.deleteQuestion = function(){
-                    spinnerService.show('Multiple_Choice_Remove');
-                    $scope.notifyRemove({index:$scope.index});
-                }
-
-                //This saves the prestine state and switch to the editor mode
-                $scope.editQuestion = function(){
-                    $scope.edit = true;
-                    initOptions();
-                    original = angular.copy($scope.question);
-               }
 
                //This rule ascertain that user actually selected an option when definete is true
                $scope.definiteInValid = function(){

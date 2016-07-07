@@ -24,8 +24,8 @@
                                <div ng-switch-when="Multiple_Choice">
                                    <multiple-choice
                                          question="questioneer.questions[$index]"
-                                         remove="removeQuestion(index)"
-                                         save="saveQuestioneer()"
+                                         remove="removeQuestion(index , spinnerName)"
+                                         save="saveQuestioneer(spinnerName)"
                                          processing="processing"
                                          mode="edit"
                                          index="{{$index}}">

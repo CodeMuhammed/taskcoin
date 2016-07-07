@@ -5,7 +5,7 @@ angular.module('taskcoin' , [
      'general.factories' ,'general.directives',
      'checkoutModule', 'betalistModule' ,
      'homeModule', 'surveysModule',
-     'angularSpinners'
+     'spinnersModule'
 ])
 
 //

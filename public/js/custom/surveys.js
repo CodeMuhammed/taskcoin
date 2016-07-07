@@ -353,7 +353,7 @@ angular.module('surveysModule' , [])
 })
 
 //
-.controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer , spinnerService){
+.controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer , Spinners){
       //In case user cancels editing
       $scope.survey = Surveys.getActive();
 
@@ -380,34 +380,35 @@ angular.module('surveysModule' , [])
       }
 
       //this is triggered when a question is saved
-      $scope.saveQuestioneer = function(spinner){
+      $scope.saveQuestioneer = function(spinnerName){
+          console.log(spinnerName+' herrrre' );
           Questioneer.saveQuestioneer($scope.questioneer).then(
               function(status){
                   console.log(status);
-                  spinnerService.hide('Multiple_Choice_Save');
+                  Spinners.spinner(spinnerName).hide();
               },
               function(err){
-                  console.log('err');
+                  Spinners.spinner(spinnerName).error();
               }
           );
       }
 
       //This is the callback triggered by the question types directive
-      $scope.removeQuestion = function(index){
-          var oldQ = angular.copy( $scope.questioneer.questions);
-          $scope.questioneer.questions.splice(index , 1);
-          Questioneer.saveQuestioneer($scope.questioneer).then(
+      $scope.removeQuestion = function(index , spinnerName){
+          var temp = angular.copy($scope.questioneer);
+          temp.questions.splice(index , 1);
+          Questioneer.saveQuestioneer(temp).then(
               function(status){
                   console.log(status);
-                  spinnerService.hide('Multiple_Choice_Remove');
+                  $scope.questioneer = angular.copy(temp);
+                  temp = undefined;
+                  Spinners.spinner(spinnerName).hide();
               },
               function(err){
-                  $scope.questioneer.questions = oldQ;
-                  spinnerService.hide('Multiple_Choice_Remove');
+                  Spinners.spinner(spinnerName).error();
               }
           );
       }
-
 })
 
 //
