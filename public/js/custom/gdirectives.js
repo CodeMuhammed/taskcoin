@@ -1,14 +1,17 @@
 angular.module('general.directives' , [])
 
 //A custom affix module
-.directive('myAffix' , function($window , $document , $timeout){
+.directive('affix' , function($window , $document , $timeout){
      return{
          restrict: 'A',
+         scope:{
+             affix: '@affix'
+         },
          link:function(scope, element , attrs){
              var marginTop;
+             console.log(scope.affix);
              $window.addEventListener('scroll' , function(e){
-                 console.log(e);
-                 var elem = document.getElementById('affix');
+                 var elem = document.querySelector('[affix="'+scope.affix+'"]');
                  var rect = elem.getBoundingClientRect();
                  if(rect.top >= 0){
                    $timeout(function(){
@@ -23,9 +26,6 @@ angular.module('general.directives' , [])
                     } , 1500);
                  }
              });
-         },
-         controller:function($scope){
-
          }
      }
 })
@@ -317,8 +317,9 @@ angular.module('general.directives' , [])
                 $scope.save = function(){
                     Spinners.spinner($scope.savingSpinner).show().then(
                          null , null , function(status){
-                              console.log(status);
-                              original = angular.copy($scope.question);
+                              if(status){
+                                  original = angular.copy($scope.question);
+                              }
                          }
                     );
                     $scope.notifySave({spinnerName:$scope.savingSpinner});

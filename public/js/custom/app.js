@@ -5,7 +5,7 @@ angular.module('taskcoin' , [
      'general.factories' ,'general.directives',
      'checkoutModule', 'betalistModule' ,
      'homeModule', 'surveysModule',
-     'spinnersModule'
+     'spinnersModule' , 'alertModule'
 ])
 
 //
@@ -81,18 +81,6 @@ angular.module('taskcoin' , [
               }
           );
       }
-
-       $scope.dropdown = [
-           {text: '<i class="fa fa-user"></i>&nbsp;Profile', href: '#', active: true},
-           {divider: true},
-           {text: '<i class="fa fa-code"></i>&nbsp;API', href: '#', active: true},
-           {divider: true},
-           {text: '<i class="fa fa-dollar"></i>&nbsp;Pricing', href: '#', active: true},
-           {divider: true},
-           {text: '<i class="fa fa-phone-square"></i>&nbsp;Help center', href: '#', active: true},
-           {divider: true},
-           {text: '<i class="fa fa-sign-out"></i>&nbsp;Logout', active: true , click:"logout()"},
-      ];
 
        var currentState = '';
        $scope.isActiveClass = function(state){

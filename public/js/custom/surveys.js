@@ -353,7 +353,7 @@ angular.module('surveysModule' , [])
 })
 
 //
-.controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer , Spinners){
+.controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer , Spinners , alertService){
       //In case user cancels editing
       $scope.survey = Surveys.getActive();
 
@@ -381,14 +381,16 @@ angular.module('surveysModule' , [])
 
       //this is triggered when a question is saved
       $scope.saveQuestioneer = function(spinnerName){
-          console.log(spinnerName+' herrrre' );
           Questioneer.saveQuestioneer($scope.questioneer).then(
               function(status){
                   console.log(status);
                   Spinners.spinner(spinnerName).hide();
+                  alertService.alert({msg:'Question saved successfully' , class:'success'});
+
               },
               function(err){
                   Spinners.spinner(spinnerName).error();
+                  alertService.alert({msg:'Question not saved' , class:'danger'});
               }
           );
       }

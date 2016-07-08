@@ -3405,6 +3405,10 @@ tbody.collapse.in {
 .dropdown {
   position: relative;
 }
+.dropup:hover .dropdown-menu,
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 .dropdown-toggle:focus {
   outline: 0;
 }

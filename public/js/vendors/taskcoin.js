@@ -56,9 +56,6 @@
                          el.appendChild(div.children[0]);
                        }
                        appendHtml(document.body);
-                       setTimeout(function(){
-                            document.getElementById('taskcoinframe').setAttribute('class' , 'animate');
-                       } , 200);
                    })(document.head);
 
                    //Append taskcoin iframe to the body
@@ -72,10 +69,15 @@
                         while (div.children.length > 0) {
                           el.appendChild(div.children[0]);
                         }
+
+                        //Temporarily disable the scroll for parent frame
+                        document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:hidden');
+                        setTimeout(function(){
+                             document.getElementById('taskcoinframe').setAttribute('class' , 'animate');
+                        } , 200);
                    };
 
-                   //Temporarily disable the scroll for parent frame
-                   document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:hidden');
+
               })();
 
               //initialize the event listener that will recieve messages from paystack.io

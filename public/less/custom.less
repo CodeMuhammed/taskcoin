@@ -592,7 +592,8 @@
          //background-image:linear-gradient(180deg, darken(#2098D1 , 30%), darken(#2098D1 , 10%));// darken(#005EA6 , 10%);
          box-shadow:0px 2px 4px rgba(0 , 0 , 0 , .3);
          .top-m{
-           z-index: 100000;
+           position: relative;
+             z-index: 100000;
              padding:.7em 10em;
              .menu-icon{
                 color: #fff;
@@ -610,7 +611,7 @@
                  }
              }
              .profile{
-
+                cursor: pointer;
                 display: inline-block;
                 margin-top:.5em;
                 i{
@@ -848,6 +849,7 @@
 
 //This styling for survey editor menu
 .survey-editor-menu-container{
+    transition: 1s ease-out;
     z-index: 1000001;
     padding:2em;
     padding-left:0;
@@ -1625,6 +1627,34 @@
           box-shadow: 0px 0px 5px 1px #161718;
         }
     }
+  }
+
+  .taskcoin-alert{
+       padding:3em;
+       display: block;
+       width:400px;
+       position: fixed;
+       bottom:0;
+       right:0;
+       z-index: 100000000000;
+       @media (max-width: @screen-sm-max) {
+           width:100%;
+       }
+       .alert{
+           width:100%;
+           height:4em;
+           background-color: lighten(@brand-primary, 00%);
+           box-shadow:0px 4px 4px #ccc;
+           border-radius: 0;
+           color:#FFF;
+       }
+
+       .success{
+           background-color: lighten(@brand-success, 00%);
+       }
+       .danger{
+           background-color: lighten(@brand-danger, 00%);
+       }
   }
 
   //General css rules
