@@ -175,7 +175,7 @@ angular.module('surveysModule' , [])
 })
 
 //
-.controller('surveysEditSetupController' , function($scope , $state , Surveys){
+.controller('surveysEditSetupController' , function($scope , $state , Surveys , alertService){
     //In case user cancels editing
     var original = Surveys.getActive();
 
@@ -263,9 +263,11 @@ angular.module('surveysModule' , [])
                  original = Surveys.getActive();
                  $scope.survey = angular.copy(original);
                  $scope.saving = false;
+                 alertService.alert({msg:'Question saved successfully' , class:'success'});
              },
              function(err){
                  console.log(err);
+                 alertService.alert({msg:'Error saving data' , class:'danger'});
              }
          );
     }
