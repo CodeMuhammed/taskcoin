@@ -23,7 +23,7 @@ angular.module('general.directives' , [])
                     $timeout(function(){
                       marginTop = e.pageY-100 + 'px';
                       elem.setAttribute('style' , 'margin-top:'+marginTop);
-                    } , 1500);
+                    } , 1000);
                  }
              });
          }
