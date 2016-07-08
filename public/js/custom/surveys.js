@@ -165,7 +165,7 @@ angular.module('surveysModule' , [])
                function(user){
                    console.log('Called');
                    Surveys.initNew(user.userInfo.email);
-                   $state.go('dashboard.surveys.edit' , {id:1});
+                   $state.go('dashboard.surveys.edit.setup' , {id:1});
                },
                function(err){
                    console.log(err);
@@ -292,13 +292,17 @@ angular.module('surveysModule' , [])
                     multi:false,
                     definite:false
                  }
+            },
+            'Segment_Title' : {
+                type: 'Segment_Title',
+                text: 'This is a new segment title'
             }
        };
 
        //
        function getSchema(schema){
            if(!questionSchemas[schema]){
-               alert(schema+' does not exist');
+               return -1;
            }
            else{
              return questionSchemas[schema];
@@ -369,6 +373,7 @@ angular.module('surveysModule' , [])
               function(data){
                   original = data;
                   $scope.questioneer = angular.copy(original);
+                  $scope.answers = []; //@TODO this will be majorly needed in live survey mode
               },
               function(err){
                   console.log(err);
@@ -378,7 +383,10 @@ angular.module('surveysModule' , [])
 
       //This triggers this view to create a new question when user click on a type in the sidemenu
       $scope.createQuestion = function(type){
-          $scope.questioneer.questions.push(angular.copy(Questioneer.getSchema(type)));
+          console.log(type)
+          var schema = angular.copy(Questioneer.getSchema(type));
+          console.log(schema);
+          schema == -1 ? '' : $scope.questioneer.questions.push(schema);
       }
 
       //this is triggered when a question is saved
@@ -403,13 +411,14 @@ angular.module('surveysModule' , [])
           temp.questions.splice(index , 1);
           Questioneer.saveQuestioneer(temp).then(
               function(status){
-                  console.log(status);
                   $scope.questioneer = angular.copy(temp);
                   temp = undefined;
                   Spinners.spinner(spinnerName).hide();
+                  alertService.alert({msg:'Question deleted successfully' , class:'success'});
               },
               function(err){
                   Spinners.spinner(spinnerName).error();
+                  alertService.alert({msg:'Question not deleted' , class:'danger'});
               }
           );
       }

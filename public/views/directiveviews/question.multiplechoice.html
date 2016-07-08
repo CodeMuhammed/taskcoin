@@ -4,9 +4,16 @@
         <b ><i class="icon fa fa-asterisk"></i> {{question.query}}</b>
     </div>
     <div class="answers col-xs-12">
-        <div class="option" ng-class="{{question.options.multi?'checkbox':'radio'}}" ng-repeat="option in question.answers track by $index">
+        <div class="option" ng-class="checkbox" ng-repeat="option in question.answers track by $index" ng-click="toggleAnswer($index)">
           <label>
-             <input name="agreed" type="{{question.options.multi?'checkbox':'radio'}}" ng-disabled="false">
+             <span ng-show="question.options.multi">
+                <i class="icon fa fa-check-square-o" ng-show="isInAnswer($index)"></i>
+                <i class="icon fa fa-square-o" ng-hide="isInAnswer($index)"></i>
+             </span>
+             <span ng-hide="question.options.multi">
+                <i class="icon fa fa-check-circle-o" ng-show="isInAnswer($index)"></i>
+                <i class="icon fa fa-circle-thin" ng-hide="isInAnswer($index)"></i>
+             </span>
              {{option}}
            </label>
        </div>
@@ -69,7 +76,7 @@
                    <label style="width:100%">
                       <input name="agreed" type="checkbox" ng-model="question.options.definite">
                       Require a specific answer to this question
-                      <span class="pull-right"><b>option {{question.answer*1+1}}</b></span>
+                      <span class="pull-right"><b>option: {{question.answer==-1? 'none' :question.answer*1+1}}</b></span>
                     </label>
                 </div>
               </form>

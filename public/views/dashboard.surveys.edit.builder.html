@@ -22,12 +22,16 @@
                                <div ng-switch-when="Multiple_Choice">
                                    <multiple-choice
                                          question="questioneer.questions[$index]"
+                                         answer="answers[$index]"
                                          remove="removeQuestion(index , spinnerName)"
                                          save="saveQuestioneer(spinnerName)"
                                          processing="processing"
                                          mode="edit"
                                          index="{{$index}}">
                                    </multiple-choice>
+                               </div>
+                               <div ng-switch-when="Segment_Title">
+                                     <segment-title text="questioneer.questions[$index].text"><segment-title>
                                </div>
                           </div>
                    </div>

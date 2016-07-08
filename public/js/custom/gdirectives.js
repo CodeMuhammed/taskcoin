@@ -184,7 +184,7 @@ angular.module('general.directives' , [])
                    {icon:'fa-thumbs-o-up',name:'Net Promoter Score'},
                    {icon:'fa-credit-card',name:'Single Textbox'},
                    {icon:'fa-user',name:'Contact Information'},
-                   {icon:'fa-outdent',name:'New Segment'}
+                   {icon:'fa-outdent',name:'Segment_Title'}
                 ];
 
                 //
@@ -243,10 +243,12 @@ angular.module('general.directives' , [])
               mode: '@mode', //Tell the directive wether or not to enable editor
               index:'@index', //Tells the directive the index position of question in the array
               question:'=question', // The question to be used by the directive view
+              answer:'=answer'// The answer to be exported from this directive
           },
           templateUrl:'/views/directiveviews/question.multiplechoice.html',
 
           controller:function($scope, $timeout , Spinners){
+                /**================================BEGINS EDITOR LOGIC==================================================**/
                 //Spinners for this scope
                 $scope.removingSpinner;
                 $scope.savingSpinner;
@@ -333,6 +335,55 @@ angular.module('general.directives' , [])
                      return false;
                }
 
+              /**================================BEGINS LLIVE PREVIEW LOGIC=========================================**/
+
+              $scope.answer = $scope.question.options.multi? [] : '-1'; //fill an array when multiple answers are required
+
+              //
+              $scope.isInAnswer = function(option){
+                  if($scope.question.options.multi){
+                      return  $scope.answer.indexOf(option) >= 0;
+                  }
+                  else{
+                      return $scope.answer == option;
+                  }
+              }
+
+              //
+              $scope.toggleAnswer = function(option){
+                  if($scope.question.options.multi){ //where multi-option is required
+                      var index = $scope.answer.indexOf(option);
+                      if(index >= 0){
+                          $scope.answer.splice(index , 1); //for array just yet
+                      }
+                      else{
+                          $scope.answer.push(option);
+                      }
+                  }
+                  else{ //where single option is required
+                         $scope.answer = option;
+                  }
+              }
+
           }
      }
+})
+
+//New segment directive
+.directive('segmentTitle' , function(){
+    return {
+        scope:{
+            text:'=text'
+        },
+        template:['<div class="segment-title">',
+                       '{{text}}',
+                       '<span class="action-btn">',
+                       '<i class="icon fa fa-edit">',
+                       '</i><i class="icon fa fa-times"></i>',
+                       '</span>',
+                  '</div>'].join(''),
+        controller:function($scope){
+             console.log($scope.text);
+        }
+    }
 });

@@ -614,6 +614,8 @@
                 cursor: pointer;
                 display: inline-block;
                 margin-top:.5em;
+                text-decoration: none;
+                color:#FFF;
                 i{
                   &:first-child{
                     font-size:1.6em;
@@ -1254,7 +1256,19 @@
                     .option{
                        margin-bottom: 2em;
                        label{
-                           font-weight: normal;;
+                           width:100%;
+                           font-size:1.15em;
+                           font-weight: normal;
+                           i{
+                               font-size:1.3em;
+                           }
+                       }
+                       &:hover{
+                         label{
+                             i{
+                                 color:#FFC73F;
+                             }
+                         }
                        }
                     }
                 }
@@ -1334,6 +1348,26 @@
                   }
               }
 
+              .segment-title{
+                  color:#FFF;
+                  background-image: linear-gradient(70% 100% 330deg,#005999 , #005999 , #FFF  0%);
+                  background-image: -moz-linear-gradient(70% 100% 330deg,#005999 , #005999 , #FFF  0%);
+                  padding:.4em 1em;
+                  margin-top:1.3em;
+                  margin-bottom: 1em;
+                  @media (max-width: @screen-sm-max) {
+                      background-image: linear-gradient(70% 100% 330deg,#005999 , #005999 , #FFF  0%);
+                      background-image: -moz-linear-gradient(70% 100% 330deg,#005999 , #005999 , #FFF  0%);
+                  }
+              }
+              .action-btn{
+                   .pull-right;
+                   display:inline-block;
+                   color:@gray-light;
+                   i{
+                      margin-left:1em;
+                   }
+              }
           }
           .empty-box{
              height:30em;
