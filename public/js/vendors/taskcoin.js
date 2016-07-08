@@ -14,7 +14,7 @@
     //Taskcoin object definition
     var Taskcoin = ensure(window , 'Taskcoin' , function(){
 
-        //This function fires up the messaging channel between merchant domain and taskcoin.io
+        //This function fires up the messaging channel between merchant domain and taskcoin.io.
         var setupMessenger = function (){
              var initialized = false;
              return {
