@@ -23,15 +23,21 @@
                                    <multiple-choice
                                          question="questioneer.questions[$index]"
                                          answer="answers[$index]"
-                                         remove="removeQuestion(index , spinnerName)"
-                                         save="saveQuestioneer(spinnerName)"
+                                         remove="removeQuestion(index , callback)"
+                                         save="saveQuestioneer(callback)"
                                          processing="processing"
                                          mode="edit"
                                          index="{{$index}}">
                                    </multiple-choice>
                                </div>
                                <div ng-switch-when="Segment_Title">
-                                     <segment-title text="questioneer.questions[$index].text"><segment-title>
+                                     <segment-title
+                                      text="questioneer.questions[$index].text"
+                                      mode="edit"
+                                      remove="removeQuestion(index ,  callback)"
+                                      save="saveQuestioneer(callback)"
+                                      index="{{$index}}">
+                                      <segment-title>
                                </div>
                           </div>
                    </div>

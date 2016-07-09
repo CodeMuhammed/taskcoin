@@ -359,7 +359,7 @@ angular.module('surveysModule' , [])
 })
 
 //
-.controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer , Spinners , alertService){
+.controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer, alertService){
       //In case user cancels editing
       $scope.survey = Surveys.getActive();
 
@@ -381,6 +381,12 @@ angular.module('surveysModule' , [])
           );
       }
 
+      $scope.$watchCollection('answers' , function(newVal){
+            if(newVal){
+               console.log($scope.answers);
+            }
+      });
+
       //This triggers this view to create a new question when user click on a type in the sidemenu
       $scope.createQuestion = function(type){
           console.log(type)
@@ -390,35 +396,33 @@ angular.module('surveysModule' , [])
       }
 
       //this is triggered when a question is saved
-      $scope.saveQuestioneer = function(spinnerName){
+      $scope.saveQuestioneer = function(callback){
+          console.log(callback);
           Questioneer.saveQuestioneer($scope.questioneer).then(
               function(status){
                   console.log(status);
-                  Spinners.spinner(spinnerName).hide();
-                  alertService.alert({msg:'Question saved successfully' , class:'success'});
+                  alertService.alert({msg:'Data saved successfully' , class:'success'});
+                  callback(true);
 
               },
               function(err){
-                  Spinners.spinner(spinnerName).error();
-                  alertService.alert({msg:'Question not saved' , class:'danger'});
+                  alertService.alert({msg:'Data not saved' , class:'danger'});
               }
           );
       }
 
       //This is the callback triggered by the question types directive
-      $scope.removeQuestion = function(index , spinnerName){
+      $scope.removeQuestion = function(index){
           var temp = angular.copy($scope.questioneer);
           temp.questions.splice(index , 1);
           Questioneer.saveQuestioneer(temp).then(
               function(status){
                   $scope.questioneer = angular.copy(temp);
                   temp = undefined;
-                  Spinners.spinner(spinnerName).hide();
-                  alertService.alert({msg:'Question deleted successfully' , class:'success'});
+                  alertService.alert({msg:'Data deleted successfully' , class:'success'});
               },
               function(err){
-                  Spinners.spinner(spinnerName).error();
-                  alertService.alert({msg:'Question not deleted' , class:'danger'});
+                  alertService.alert({msg:'Data not deleted' , class:'danger'});
               }
           );
       }

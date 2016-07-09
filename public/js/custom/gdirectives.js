@@ -17,13 +17,13 @@ angular.module('general.directives' , [])
                    $timeout(function(){
                      marginTop = 0 + 'px';
                      elem.setAttribute('style' , 'margin-top:'+marginTop);
-                   } , 1000);
+                   } , 500);
                  }
                  if(rect.top < 0){
                     $timeout(function(){
-                      marginTop = e.pageY-100 + 'px';
+                      marginTop = e.pageY-150 + 'px';
                       elem.setAttribute('style' , 'margin-top:'+marginTop);
-                    } , 1000);
+                    } , 500);
                  }
              });
          }
@@ -247,20 +247,10 @@ angular.module('general.directives' , [])
           },
           templateUrl:'/views/directiveviews/question.multiplechoice.html',
 
-          controller:function($scope, $timeout , Spinners){
+          controller:function($scope, $timeout){
                 /**================================BEGINS EDITOR LOGIC==================================================**/
-                //Spinners for this scope
-                $scope.removingSpinner;
-                $scope.savingSpinner;
-
                 //This keeps track of the prestine version of the question incase a user ever wants to revert
                 var original;
-
-                //This method triggers the callback set on the parent scope to commence with deleting the data
-                $scope.deleteQuestion = function(){
-                    Spinners.spinner($scope.removingSpinner).show();
-                    $scope.notifyRemove({index:$scope.index , spinnerName:$scope.removingSpinner});
-                }
 
                 //This saves the prestine state and switch to the editor mode
                 $scope.editQuestion = function(){
@@ -317,14 +307,16 @@ angular.module('general.directives' , [])
 
                 //This method triggers the callback set on the parent scope to commence with saving the data
                 $scope.save = function(){
-                    Spinners.spinner($scope.savingSpinner).show().then(
-                         null , null , function(status){
-                              if(status){
-                                  original = angular.copy($scope.question);
-                              }
+                    $scope.notifySave({callback:function(status){
+                         if(status){
+                            original = angular.copy($scope.question);
                          }
-                    );
-                    $scope.notifySave({spinnerName:$scope.savingSpinner});
+                    }});
+                }
+
+                //This method triggers the callback set on the parent scope to commence with deleting the data
+                $scope.deleteQuestion = function(){
+                    $scope.notifyRemove({index:$scope.index});
                 }
 
                //This rule ascertain that user actually selected an option when definete is true
@@ -364,7 +356,6 @@ angular.module('general.directives' , [])
                          $scope.answer = option;
                   }
               }
-
           }
      }
 })
@@ -373,17 +364,30 @@ angular.module('general.directives' , [])
 .directive('segmentTitle' , function(){
     return {
         scope:{
-            text:'=text'
+            notifyRemove: '&remove',
+            notifySave: '&save',
+            text:'=text',
+            mode:'@mode',
+            index:'@index'
         },
-        template:['<div class="segment-title">',
-                       '{{text}}',
-                       '<span class="action-btn">',
-                       '<i class="icon fa fa-edit">',
-                       '</i><i class="icon fa fa-times"></i>',
-                       '</span>',
-                  '</div>'].join(''),
+        templateUrl:'/views/directiveviews/question.segmenttitle.html',
         controller:function($scope){
-             console.log($scope.text);
+             var original = angular.copy($scope.text);
+
+             //
+             $scope.saveTitle = function(){
+                 $scope.notifySave({callback:function(status){
+                    if(status){
+                        console.log('Data saved');
+                    }
+                 }});
+                 $scope.edit = false;
+             }
+
+             //
+             $scope.deleteTitle = function(){
+                  $scope.notifyRemove({index:$scope.index});
+             }
         }
     }
 });

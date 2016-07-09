@@ -1,0 +1,15 @@
+<div class="segment-title">
+      <span ng-show="edit && mode=='edit'" >
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter title nere" ng-model="text" required>
+            <span class="input-group-addon" ng-click="saveTitle()">save</span>
+        </div>
+      </span>
+      <span ng-hide="edit">
+          {{text}}
+          <span class="action-btn" ng-show="mode=='edit">
+              <i class="icon fa fa-edit" ng-click="edit = true">
+              </i><i class="icon fa fa-times" ng-click="deleteTitle()"></i>
+          </span>
+      </span>
+</div>

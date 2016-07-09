@@ -21,9 +21,7 @@
     <span class="action-btn" ng-show="mode=='edit' && !edit && mainActions">
         <span class="delete-btn" >
           <span ng-click="deleteQuestion()">
-             <spinner id="removingSpinner">
-                 <i class="icon fa fa-times"></i>
-             </spinner>
+               <i class="icon fa fa-times"></i>
           </span>
         </span>
         <span class="edit-btn" ng-click="editQuestion()">
@@ -85,9 +83,7 @@
              <span class="pull-right">
                   <button class="btn btn-sm btn-default" ng-click="cancel()">Back</button>
                   <button class="btn btn-primary btn-sm" ng-click="save()" ng-disabled="questionOptions.$invalid || definiteInValid()">
-                        <spinner id="savingSpinner">
-                            Save
-                        </spinner>
+                        Save
                   </button>
              </span>
          </div>
