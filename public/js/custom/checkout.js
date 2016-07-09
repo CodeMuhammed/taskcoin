@@ -43,7 +43,7 @@ angular.module('checkoutModule' , [])
               .success(function(data){
                   getQuestions(data.questioneerId).then(
                        function(questions){
-                           data.questions = questions;
+                           data.questioneer = questions;
                            served.indexOf(data._id)<0 ? served.push(data._id) : '';
                            promise.resolve(data);
                        },
@@ -124,24 +124,9 @@ angular.module('checkoutModule' , [])
 
     //
     .controller('paySurveyController' , function($scope ,  $window , $timeout , QuestioneerPreview , profile){
+
+          //
           $scope.userData;
-          //Serves a new surveys
-          $scope.refresh = function(user){
-              $scope.refreshing = true;
-              QuestioneerPreview.refresh(user).then(
-                  function(data){
-                      $timeout(function(){
-                        $scope.warning = true;
-                        $scope.questioneer = data;
-                        $scope.refreshing = false;
-                      } , 3000);
-                  },
-                  function(err){
-                      $scope.error = err;
-                      $scope.questioneer = [];
-                  }
-              );
-          };
 
           //Serves the first survey automatically
           $scope.refreshing = true;
@@ -156,6 +141,45 @@ angular.module('checkoutModule' , [])
               }
           );
 
+          //Serves a new surveys
+          $scope.refresh = function(user){
+              $scope.refreshing = true;
+              QuestioneerPreview.refresh(user).then(
+                  function(data){
+                    $scope.warning = true;
+                    $scope.survey = data;
+                    $scope.refreshing = false;
+                    $scope.answers = []; //Collect answers as users answer them in real time
+
+                    //Calculate for number of questions
+                    $scope.questionsCount = 0;
+                    angular.forEach($scope.survey.questioneer.questions , function(question){
+                        question.type != 'Segment_Title' ? $scope.questionsCount++ : '';
+                    });
+                  },
+                  function(err){
+                      $scope.error = err;
+                      $scope.questioneer = [];
+                  }
+              );
+          };
+
+          //Lets watch and see how answer changes
+          $scope.completed = false;
+          $scope.answered = 0;
+          $scope.$watchCollection('answers' , function(newVal){
+                if(newVal){
+                   console.log(newVal);
+                   $scope.answered = 0;
+                   angular.forEach($scope.answers , function(answer){
+                        if(answer){
+                           answer!=''?$scope.answered++:'';
+                        }
+                        $scope.answered == $scope.questionsCount ? $scope.completed = true : $scope.completed = false;
+                   });
+                }
+          });
+
           //send a message to host to signal the status of the survey
           $scope.cancelTask = function(){
               $window.parent.postMessage({msg:'User cancelled the task', status:'cancel'}, '*');
@@ -165,10 +189,9 @@ angular.module('checkoutModule' , [])
           $scope.doneTask = function(){
               $scope.doneMsg = "Thank you !";
               $scope.processingCheckout = true;
-              $timeout(function(){
-                  $window.parent.postMessage({greet:'User successfully completed the task', status:'done'}, '*');
-                  $scope.processingCheckout = false;
-              } , 3000)
+              //@TODO analyze time took to complete question by question to see if appropriate - else affect karma, then take another survey.
+              //@TODO analyze for definitive answers if a wrong results goes beyound allowed treshold of 75%,refresh and show user another survey
+              //@TODO analyze open-ended questions, if wrong is less than 30%, proceed, else refresh questions and reduce the karma points of the user by a certain amount
           }
 
     });

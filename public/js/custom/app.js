@@ -49,7 +49,7 @@ angular.module('taskcoin' , [
 })
 
 //======================== Dashboard controller logged in state=============================
-.controller('dashboardController' , function($scope , $state ,$timeout,  authy , myMedia , profile , betalistFactory){
+.controller('dashboardController' , function($scope , $state ,$timeout,  authy , myMedia , Surveys ,  profile , betalistFactory){
        //Logic that requires user to be authenticated goes here
        authy.isAuth().then(
           function(stutus){
@@ -66,6 +66,20 @@ angular.module('taskcoin' , [
               $state.go('home');
           }
        );
+
+       //create a new survey schema and send user to editor
+       $scope.createSurvey = function(){
+           profile.getUser().then(
+               function(user){
+                   console.log('Called');
+                   Surveys.initNew(user.userInfo.email);
+                   $state.go('dashboard.surveys.edit.setup' , {id:1});
+               },
+               function(err){
+                   console.log(err);
+               }
+           );
+       }
 
        //logic for logging out
       $scope.logout = function(){

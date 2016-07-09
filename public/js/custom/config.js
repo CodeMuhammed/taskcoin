@@ -59,11 +59,6 @@ angular.module('config' , ['LocalStorageModule'])
                                  templateUrl : 'views/dashboard.surveys.edit.billing.html',
                                  controller : 'surveysEditBillingController',
                              })
-                         .state('dashboard.surveys.preview' , {
-                             url : '/preview?id',
-                             templateUrl : 'views/dashboard.surveys.preview.html',
-                             controller : 'surveysPreviewController',
-                         })
                          .state('dashboard.surveys.stats' , {
                              url : '/stats?id',
                              templateUrl : 'views/dashboard.surveys.stats.html',

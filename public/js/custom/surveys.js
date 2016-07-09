@@ -150,9 +150,6 @@ angular.module('surveysModule' , [])
               case 'edit':
                  $state.go('dashboard.surveys.edit.setup' , {id:survey._id});
                  break;
-              case 'preview':
-                 $state.go('dashboard.surveys.preview' , {id:survey._id});
-                 break;
               case 'stats':
                  $state.go('dashboard.surveys.stats' , {id:survey._id});
                  break;
@@ -245,8 +242,8 @@ angular.module('surveysModule' , [])
             'movies':['triller' , 'animation' , 'comedy']
         },
         country:{
-             'nigeria':['lagos' , 'porthacourt' , 'kano'],
-             'united states':['califonia' , 'newyork']
+             'nigeria':[],
+             'united states':[]
         }
     };
 
@@ -284,14 +281,20 @@ angular.module('surveysModule' , [])
                  answers:[
                      'Option here',
                      'Option here',
-                     'Option here',
                      'Option here'
                  ],
-                 answer:-1,
+                 answer:'',
                  options:{
                     multi:false,
                     definite:false
                  }
+            },
+            'Textbox':{
+               type: 'Textbox',
+               query:'What is your opinion again ?',
+               options:{
+                  inputType:'textinput' //or text input textarea:50 words text-input:10 words
+               }
             },
             'Segment_Title' : {
                 type: 'Segment_Title',
@@ -373,19 +376,12 @@ angular.module('surveysModule' , [])
               function(data){
                   original = data;
                   $scope.questioneer = angular.copy(original);
-                  $scope.answers = []; //@TODO this will be majorly needed in live survey mode
               },
               function(err){
                   console.log(err);
               }
           );
       }
-
-      $scope.$watchCollection('answers' , function(newVal){
-            if(newVal){
-               console.log($scope.answers);
-            }
-      });
 
       //This triggers this view to create a new question when user click on a type in the sidemenu
       $scope.createQuestion = function(type){
@@ -440,11 +436,6 @@ angular.module('surveysModule' , [])
 
       //For use in this scope only
       $scope.survey = angular.copy(original);
-})
-
-//
-.controller('surveysPreviewController' , function($scope , $state, $stateParams){
-       $scope.hello = 'surveys/preview '+$stateParams.id;
 })
 
 //

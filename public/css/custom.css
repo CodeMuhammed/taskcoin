@@ -11825,6 +11825,10 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   font-size: 1.3em;
   margin-right: 0.6em;
 }
+.pay-container .pay-survey-container .menu .controls .counter {
+  margin-right: 1em;
+  font-weight: bold;
+}
 .pay-container .pay-survey-container .menu .profile {
   position: absolute;
   left: 1em;
@@ -11838,7 +11842,7 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
 .pay-container .pay-survey-container .body {
   padding: 0;
   min-height: 60em;
-  background-color: #EEF3FA;
+  background-color: #FFF;
   position: relative;
 }
 .pay-container .pay-survey-container .body .refresh {
@@ -11866,23 +11870,21 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
   height: 200px;
 }
 .pay-container .pay-survey-container .body .heading {
-  padding: 1em;
+  padding: 1em .6em;
   padding-top: 2.5em;
   background: #449dd1 url('../img/home-bg.svg') center center no-repeat;
   background-size: cover;
   color: #fff;
 }
-.pay-container .pay-survey-container .body .questions {
-  padding: 0;
-}
-.pay-container .pay-survey-container .body .questions .segment-title {
-  background-image: linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #EEF3FA 0%);
-  background-image: -moz-linear-gradient(40% 100% 330deg, #FDC740, #FDC740, #EEF3FA 0%);
-  padding: .5em 1em;
-  margin-top: 1.3em;
-}
-.pay-container .pay-survey-container .footer {
+.pay-container .pay-survey-container .body .footer {
+  background-color: #FFF;
   padding: 1em;
+}
+.pay-container .pay-survey-container .body .footer .info {
+  margin-top: 2em;
+}
+.pay-container .pay-survey-container .body .footer .info h3 {
+  font-size: 1.1em;
 }
 .dashboard {
   padding: 0;
@@ -12475,7 +12477,7 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   z-index: -1;
   content: '';
   border-style: solid;
-  top: calc(4em);
+  top: calc(3em);
   left: -15px;
   border-width: 10px 15px 10px 0;
   border-color: transparent #FFF transparent transparent;
@@ -12557,114 +12559,134 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   color: #FFF;
   font-size: 1.3em;
 }
-.survey-editor-builder-container .questions-container {
+.questions-container {
   padding: 2em;
 }
-.survey-editor-builder-container .questions-container .question-c {
+.questions-container .question-c {
   padding: 0;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view {
+.questions-container .question-c .question-view {
   position: relative;
   padding: 0;
   background-color: #f6f6f5;
   border-radius: 0px;
-  min-height: 25em;
+  min-height: 15em;
   margin-bottom: 1.5em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .Q {
+.questions-container .question-c .question-view .Q {
   padding: .8em;
   border-bottom: 1px solid #FFF;
   font-size: 1.2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .answers {
+.questions-container .question-c .question-view .answers {
   padding: .3em .8em;
   min-height: 7em;
   margin-top: 1.4em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .answers .option {
+.questions-container .question-c .question-view .answers .option {
   margin-bottom: 2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .answers .option label {
+.questions-container .question-c .question-view .answers .option label {
   width: 100%;
   font-size: 1.15em;
   font-weight: normal;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .answers .option label i {
+.questions-container .question-c .question-view .answers .option label i {
   font-size: 1.3em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .answers .option:hover label i {
+.questions-container .question-c .question-view .answers .option label span .active {
   color: #FFC73F;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .action-btn {
+.questions-container .question-c .question-view .answers .option:hover label i {
+  color: #FFC73F;
+}
+.questions-container .question-c .question-view .action-btn {
   font-size: 2.5em;
   color: #777777;
   position: absolute;
   bottom: 1em;
   right: 2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .action-btn .edit-btn {
+.questions-container .question-c .question-view .action-btn .edit-btn {
   margin-left: 2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .action-btn .edit-btn:hover {
+.questions-container .question-c .question-view .action-btn .edit-btn:hover {
   color: #FDC740;
   cursor: pointer;
 }
-.survey-editor-builder-container .questions-container .question-c .question-view .action-btn .delete-btn:hover {
+.questions-container .question-c .question-view .action-btn .delete-btn:hover {
   color: #d9534f;
   cursor: pointer;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor {
+.questions-container .question-c .question-editor {
   padding: 0;
   background-color: #EAEAE8;
   border-radius: 0px;
-  min-height: 25em;
   margin-bottom: 1.5em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .Q {
+.questions-container .question-c .question-editor .Q {
   padding: .8em;
   border-bottom: 1px solid #FFF;
   font-size: 1.2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .answers {
+.questions-container .question-c .question-editor .answers {
   padding: .3em .8em;
   min-height: 20em;
   border-bottom: 1px solid #FFF;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .answers h2 {
+.questions-container .question-c .question-editor .answers h2 {
   font-weight: bold;
   margin-top: 0;
   font-size: .9em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .answers .answer {
+.questions-container .question-c .question-editor .answers .answer {
   margin-bottom: 1em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .answers .answer .action span {
+.questions-container .question-c .question-editor .answers .answer .action span {
   font-size: 1.2em;
   cursor: pointer;
   color: #d9534f;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .answers .answer .action span:first-child {
+.questions-container .question-c .question-editor .answers .answer .action span:first-child {
   margin-right: 1em;
   color: #5cb85c;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .options {
+.questions-container .question-c .question-editor .options {
   padding: .3em .8em;
   min-height: 7em;
   border-bottom: 1px solid #FFF;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .options h2 {
+.questions-container .question-c .question-editor .options h2 {
   font-weight: bold;
   margin-top: 0;
   font-size: .9em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .options .option {
+.questions-container .question-c .question-editor .options .option {
   margin-bottom: 2em;
 }
-.survey-editor-builder-container .questions-container .question-c .question-editor .footer {
+.questions-container .question-c .question-editor .footer {
   padding: .6em;
   border-top: 1px solid #FFF;
 }
-.survey-editor-builder-container .questions-container .question-c .segment-title {
+.questions-container .question-c .textbox {
+  padding: 0;
+  background-color: #f6f6f5;
+  border-radius: 0px;
+  margin-bottom: 1.5em;
+}
+.questions-container .question-c .textbox .Q {
+  padding: .8em;
+  border-bottom: 1px solid #FFF;
+  font-size: 1.2em;
+}
+.questions-container .question-c .textbox .answer {
+  padding: 1em .8em;
+  border-bottom: 1px solid #FFF;
+}
+.questions-container .question-c .textbox .answer textarea {
+  height: 10em;
+}
+.questions-container .question-c .segment-title {
   color: #FFF;
   background-image: linear-gradient(70% 100% 330deg, #005999, #005999, #FFF 0%);
   background-image: -moz-linear-gradient(70% 100% 330deg, #005999, #005999, #FFF 0%);
@@ -12675,45 +12697,45 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   margin-bottom: 1em;
 }
 @media (max-width: 991px) {
-  .survey-editor-builder-container .questions-container .question-c .segment-title {
+  .questions-container .question-c .segment-title {
     background-image: linear-gradient(70% 100% 330deg, #005999, #005999, #FFF 0%);
     background-image: -moz-linear-gradient(70% 100% 330deg, #005999, #005999, #FFF 0%);
   }
 }
-.survey-editor-builder-container .questions-container .question-c .segment-title .action-btn {
+.questions-container .question-c .segment-title .action-btn {
   float: right !important;
   display: inline-block;
   color: #777777;
 }
-.survey-editor-builder-container .questions-container .question-c .segment-title .action-btn i {
+.questions-container .question-c .segment-title .action-btn i {
   cursor: pointer;
   margin-left: 1em;
   font-size: 1.2em;
 }
-.survey-editor-builder-container .questions-container .question-c .segment-title .input-group {
+.questions-container .question-c .segment-title .input-group {
   width: 70%;
 }
-.survey-editor-builder-container .questions-container .question-c .segment-title .input-group input {
+.questions-container .question-c .segment-title .input-group input {
   width: 100%;
   height: 2em !important;
 }
-.survey-editor-builder-container .questions-container .question-c .segment-title .input-group input .input-group-addon {
+.questions-container .question-c .segment-title .input-group input .input-group-addon {
   padding: 0 !important;
   padding-top: .4em !important;
 }
-.survey-editor-builder-container .questions-container .empty-box {
+.questions-container .empty-box {
   height: 30em;
   border-radius: 5px;
   border: 2px dashed #EFEFEF;
   text-align: center;
 }
-.survey-editor-builder-container .questions-container .empty-box h1 {
+.questions-container .empty-box h1 {
   font-size: 1.4em;
   color: #eeeeee;
   margin-top: 30%;
 }
 @media (max-width: 991px) {
-  .survey-editor-builder-container .questions-container {
+  .questions-container {
     padding: 1em .5em;
   }
 }

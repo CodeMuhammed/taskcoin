@@ -22,13 +22,20 @@
                                <div ng-switch-when="Multiple_Choice">
                                    <multiple-choice
                                          question="questioneer.questions[$index]"
-                                         answer="answers[$index]"
                                          remove="removeQuestion(index , callback)"
                                          save="saveQuestioneer(callback)"
-                                         processing="processing"
                                          mode="edit"
                                          index="{{$index}}">
                                    </multiple-choice>
+                               </div>
+                               <div ng-switch-when="Textbox">
+                                   <textbox
+                                         question="questioneer.questions[$index]"
+                                         remove="removeQuestion(index , callback)"
+                                         save="saveQuestioneer(callback)"
+                                         mode="edit"
+                                         index="{{$index}}">
+                                   </textbox>
                                </div>
                                <div ng-switch-when="Segment_Title">
                                      <segment-title

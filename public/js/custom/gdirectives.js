@@ -9,7 +9,6 @@ angular.module('general.directives' , [])
          },
          link:function(scope, element , attrs){
              var marginTop;
-             console.log(scope.affix);
              $window.addEventListener('scroll' , function(e){
                  var elem = document.querySelector('[affix="'+scope.affix+'"]');
                  var rect = elem.getBoundingClientRect();
@@ -70,7 +69,7 @@ angular.module('general.directives' , [])
                          '</span>',
                    '</span>'].join(''),
 
-         controller: function($scope , $timeout){
+         controller: function($scope , $timeout , alertService){
              //
              $scope.$watch('list' , function(newVal){
                   if(newVal){
@@ -90,7 +89,7 @@ angular.module('general.directives' , [])
                        $scope.newItem = '';
                   }
                   else{
-                      console.log('invalid option');
+                      alertService.alert({msg:'Item already added' , class:'info'});
                   }
              }
          }
@@ -128,10 +127,10 @@ angular.module('general.directives' , [])
            template:[
                '<div class="suggestions">',
                     '<ul class="list">',
-                        '<li ng-repeat="(key , val) in list" ng-mouseenter="setSubIndex($index , val)">',
-                           '<div ng-show="$index==subIndex" class="sub">',
+                        '<li ng-repeat="(key , val) in list" ng-mouseenter="setSubIndex($index , val)" ng-click="selectItem(key , 0)">',
+                           '<div ng-show="$index==subIndex && subVal.length>0" class="sub">',
                               '<ul class="sub-list">',
-                                  '<li ng-repeat="item in subVal" ng-click="selectItem(item)">',
+                                  '<li ng-repeat="item in subVal" ng-click="selectItem(item , 1)">',
                                       '{{item}}',
                                   '</li>',
                               '</ul>',
@@ -158,8 +157,18 @@ angular.module('general.directives' , [])
                }
 
                //
-               $scope.selectItem = function(item){
-                    $scope.select  = item;
+               $scope.selectItem = function(item , layer){
+                    if(layer == 1){
+                       $scope.select  = item;
+                    }
+                    else{
+                       if($scope.subVal.length > 0){
+                           //
+                       }
+                       else{
+                          $scope.select  = item;
+                       }
+                    }
                     $scope.subIndex = -1;
                }
            }
@@ -179,12 +188,10 @@ angular.module('general.directives' , [])
           controller:function($scope , $state, $stateParams){
                 //
                 $scope.questionsTypes = [
+                   {icon:'fa-outdent',name:'Segment Title'},
                    {icon:'fa-list-alt', name:'Multiple Choice'},
-                   {icon:'fa-chevron-circle-down', name:'Dropdown'},
-                   {icon:'fa-thumbs-o-up',name:'Net Promoter Score'},
-                   {icon:'fa-credit-card',name:'Single Textbox'},
-                   {icon:'fa-user',name:'Contact Information'},
-                   {icon:'fa-outdent',name:'Segment_Title'}
+                   {icon:'fa-credit-card',name:'Textbox'},
+                   {icon:'fa-thumbs-o-up',name:'Net Promoter Score'}
                 ];
 
                 //
@@ -329,15 +336,20 @@ angular.module('general.directives' , [])
 
               /**================================BEGINS LLIVE PREVIEW LOGIC=========================================**/
 
-              $scope.answer = $scope.question.options.multi? [] : '-1'; //fill an array when multiple answers are required
+              $scope.answer = $scope.question.options.multi? [] : ''; //fill an array when multiple answers are required
 
               //
               $scope.isInAnswer = function(option){
-                  if($scope.question.options.multi){
-                      return  $scope.answer.indexOf(option) >= 0;
+                  if($scope.answer == '' || $scope.answer == []){
+                      return false;
                   }
                   else{
-                      return $scope.answer == option;
+                      if($scope.question.options.multi){
+                          return  $scope.answer.indexOf(option) >= 0;
+                      }
+                      else{
+                          return $scope.answer == option;
+                      }
                   }
               }
 
@@ -353,10 +365,29 @@ angular.module('general.directives' , [])
                       }
                   }
                   else{ //where single option is required
-                         $scope.answer = option;
+                         console.log(option);
+                         $scope.answer = option+'';
                   }
               }
           }
+     }
+})
+
+//Directive for open ended questions
+.directive('textbox' , function(){
+     return{
+         scope:{
+             notifyRemove: '&remove', //Notifies the parent directive to delete the question
+             notifySave: '&save',  //Notify the parent directive to save chages made to the question
+             mode: '@mode', //Tell the directive wether or not to enable editor
+             index:'@index', //Tells the directive the index position of question in the array
+             question:'=question', // The question to be used by the directive view
+             answer:'=answer'// The answer to be exported from this directive
+         },
+         templateUrl:'/views/directiveviews/question.textbox.html',
+         controller:function($scope){
+             console.log($scope.question);
+         }
      }
 })
 
@@ -378,7 +409,7 @@ angular.module('general.directives' , [])
              $scope.saveTitle = function(){
                  $scope.notifySave({callback:function(status){
                     if(status){
-                        console.log('Data saved');
+                        original = angular.copy($scope.text);
                     }
                  }});
                  $scope.edit = false;

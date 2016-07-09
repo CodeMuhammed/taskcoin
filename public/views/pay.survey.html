@@ -10,6 +10,9 @@
         </span>
 
         <span class="controls">
+            <span class="counter">
+                 {{answered}} / {{questionsCount}}
+            </span>
             <i class="icon fa fa-refresh" ng-click="refresh(userData.userInfo.email)"></i>
             <i class="icon fa fa-times" ng-click="cancelTask()"></i>
         </span>
@@ -28,8 +31,8 @@
              </span>
          </div>
          <div class="col-xs-12 heading">
-              <h4><b>{{questioneer.title}}</b></h4>
-              <p>{{questioneer.description}}</p>
+              <h4><b>{{survey.title}}</b></h4>
+              <p>{{survey.description}}</p>
               <div class="alert alert-warning" style="margin-top:1.4em; border-radius:0; position:relative" ng-show="warning">
                   <i class="icon fa fa-times" style="position:absolute; right:.4em; top:.5em; font-size:1.3em" ng-click="warning=false"></i>
                   Your genuine feedback will be highly appreciated. As it also reflects as karma
@@ -37,20 +40,48 @@
                   please click on the refresh button to take another one.
               </div>
          </div>
-         <div class="questions">
-             <div class="col-xs-12 segment-title">
-                  <h4><b>1. Introduction</b></h4>
-             </div>
+            <div class="col-xs-12 questions-container">
+               <div class="col-xs-12 question-c"  ng-repeat="question in survey.questioneer.questions">
+                      <div ng-switch on="question.type">
+                           <div ng-switch-when="Multiple_Choice">
+                               <multiple-choice
+                                     question="survey.questioneer.questions[$index]"
+                                     answer="answers[$index]"
+                                     mode="preview"
+                                     index="{{$index}}">
+                               </multiple-choice>
+                           </div>
+                           <div ng-switch-when="Textbox">
+                               <textbox
+                                     question="survey.questioneer.questions[$index]"
+                                     answer="answers[$index]"
+                                     mode="preview"
+                                     index="{{$index}}">
+                               </textbox>
+                           </div>
+                           <div ng-switch-when="Segment_Title">
+                                 <segment-title
+                                  text="survey.questioneer.questions[$index].text"
+                                  mode="preview"
+                                  index="{{$index}}">
+                                  <segment-title>
+                           </div>
+                      </div>
+               </div>
+         </div>
+         <div class="col-xs-12 footer pager">
+             <span class="col-xs-12">
+               <button class="btn btn-primary btn-lg" ng-click="doneTask()" ng-disabled="processingCheckout || !completed">
+                 <i class="icon fa fa-spin fa-spinner" ng-show="processingCheckout"></i>
+                 <span>checkout</span>
+               </button>
+             </span>
 
-             <div class="col-xs-12" style="font-size:1.2em; padding:2em .7em">
-                 <b>* How did you first learn about taskcoin ?<b>
-             </div>
+             <a href="https://taskcoin-demo.herokuapp.com" class="col-xs-4 col-xs-offset-4 info text-center">
+                 <h3>Get real time feedbacks for your own surveys.</h3>
+                 <img src="img/logof.png" width="100" alt="" />
+             </a>
          </div>
      </div>
-     <div class="col-xs-12 footer">
-         <button class="btn btn-primary pull-right" ng-click="doneTask()" ng-disabled="processingCheckout">
-           <i class="icon fa fa-spin fa-spinner" ng-show="processingCheckout"></i>
-           <span>checkout</span>
-         </button>
-     </div>
+
 </div>
