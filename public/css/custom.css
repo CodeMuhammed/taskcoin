@@ -12617,18 +12617,23 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   margin-top: 1.4em;
 }
 .questions-container .question-c .question-view .answers .option {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 .questions-container .question-c .question-view .answers .option label {
   width: 100%;
   font-size: 1.15em;
   font-weight: normal;
+  padding: .4em .1em;
+  border-radius: 10px;
 }
 .questions-container .question-c .question-view .answers .option label i {
   font-size: 1.3em;
 }
 .questions-container .question-c .question-view .answers .option label span .active {
   color: #FFC73F;
+}
+.questions-container .question-c .question-view .answers .option:hover label {
+  background-color: #EAEAE8;
 }
 .questions-container .question-c .question-view .answers .option:hover label i {
   color: #FFC73F;
