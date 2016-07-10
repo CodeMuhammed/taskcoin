@@ -147,6 +147,7 @@ angular.module('checkoutModule' , [])
               QuestioneerPreview.refresh(user).then(
                   function(data){
                     $scope.warning = true;
+                    //@TODO spoof questions by introducing foreign options to data
                     $scope.survey = data;
                     $scope.refreshing = false;
                     $scope.answers = []; //Collect answers as users answer them in real time
@@ -167,7 +168,7 @@ angular.module('checkoutModule' , [])
           //Lets watch and see how answer changes
           $scope.completed = false;
           $scope.answered = 0;
-          $scope.$watchCollection('answers' , function(newVal){
+          $scope.$watch('answers' , function(newVal){
                 if(newVal){
                    console.log(newVal);
                    $scope.answered = 0;
@@ -178,7 +179,7 @@ angular.module('checkoutModule' , [])
                         $scope.answered == $scope.questionsCount ? $scope.completed = true : $scope.completed = false;
                    });
                 }
-          });
+          } , true);
 
           //send a message to host to signal the status of the survey
           $scope.cancelTask = function(){
@@ -189,9 +190,33 @@ angular.module('checkoutModule' , [])
           $scope.doneTask = function(){
               $scope.doneMsg = "Thank you !";
               $scope.processingCheckout = true;
-              //@TODO analyze time took to complete question by question to see if appropriate - else affect karma, then take another survey.
-              //@TODO analyze for definitive answers if a wrong results goes beyound allowed treshold of 75%,refresh and show user another survey
-              //@TODO analyze open-ended questions, if wrong is less than 30%, proceed, else refresh questions and reduce the karma points of the user by a certain amount
+
+              //
+              (function analyzeDefinite(){
+                  //@TODO analyze for definitive answers if a wrong results goes beyound allowed treshold of 75%,refresh and show user another survey and reduce karma
+                  analyzeSpoofing();
+              })();
+
+              //
+              function analyzeSpoofing(){
+                 //@TODO analyze answers to see if users did'nt pick spoofed answers else show them another survey and reduce karma points
+                 analyzeOpenEnded();
+              }
+
+              //
+              function analyzeOpenEnded(){
+                 //@TODO analyze open ended with NLP engine to see how correct answer provided was, spelling, sentence construct, correlation of
+                 //answer to the context of the description and the question
+                 checkout();
+              }
+
+              //
+              function checkout(){
+                  $timeout(function(){
+                      $scope.processingCheckout = false;
+                      alert('Survey completed checked out');
+                  } , 3000);
+              }
           }
 
     });

@@ -35,10 +35,15 @@ angular.module('homeModule' , [])
           });
 
           //Media query for small screen
-          $scope.isSmall = function(){
-              if(myMedia['gt-xs']){
+          $scope.isSm = function(){
+              if(myMedia['gt-sm']){
                   $scope.submenuVisible = true;
               }
+              return myMedia.xs || myMedia.sm;
+          }
+
+          //Media query for small screen
+          $scope.isXs = function(){
               return myMedia.xs;
           }
           //

@@ -154,18 +154,20 @@
        .menu{
           padding:.5em 1em;
           .menu-icon{
+             .visible-xs;
              color: #fff;
-             font-size:1.6em;
+             font-size:1.8em;
              margin-right:1em;
-             margin-top: .2em;
+             margin-top: .45em;
              &:hover{
                  color:@brand-primary;
              }
           }
           .logo{
+             .pull-left;
              margin-top: 1em;
              img{
-                height:33px;
+                height:30px;
              }
           }
           .access-btn{
@@ -178,8 +180,10 @@
               left:0;
               margin-left: 50%;
               margin-top:1.3em;
+              margin-right: 1em;
               transform: translate(-50% , 0);
               display: inline-block;
+              .text-center;
               ul{
                 display:inline-block;
                 float:left;
@@ -190,7 +194,7 @@
                 li{
                     cursor: pointer;
                     margin-right:1em;
-                    width:5em;
+                    //width:5em;
                     display: inline-block;
                     float: left;
                    a{
@@ -204,33 +208,34 @@
                      }
                    }
                 }
+                @media (max-width: @screen-sm-min) {
+                    .hidden-xs;
+                }
               }
           }
-          @media (max-width: @screen-sm-max) {
+
+          @media (max-width: @screen-xs-min) {
              padding:.5em .5em;
              .logo{
-               display: inline-block;
+                 display: inline-block;
                  position: absolute;
                  top:0;
                  left:0;
-                 margin-top: 1em;
+                 margin-top: 9em;
                  margin-left: 50%;
                  transform: translate(-50% , 0);
                  img{
-                    height:25px;
+                    height:30px;
                  }
-             }
-             .access-btn{
-                 margin-top: .5em;
              }
           }
        }
-         padding:0 4em;
-         //height:41.5em; //dynamic @TODO
-         background-color: rgba(0, 0, 0, .2);
-         @media (max-width: @screen-sm-max) {
-            padding:0 1em;
-         }
+       padding:0 4em;
+       //height:41.5em; //dynamic @TODO
+       background-color: rgba(0, 0, 0, .2);
+       @media (max-width: @screen-sm-max) {
+          padding:0 1em;
+       }
 
          .tag-line{
              margin-top:8em;
@@ -363,30 +368,35 @@
       color:@gray-light;
       padding:6em 4em;
       .inner{
+          border-top: 10px solid #FFC73F;
           padding: 2em;
           box-shadow:0px 2px 4px rgba(0 , 0 , 0 , .3);
           background-color: #FFF;
          .heading{
            //border-bottom: 3px solid #ccc;
-           padding:1em 2em;
+           padding:1em 0em;
            h1{
-               font-size: 3em;
+               font-size: 2em;
                color:#449dd1;
+               img{
+                 width:35px;
+               }
            }
          }
 
          .body{
-            padding:1em 2em;
+            padding:1em 0em;
 
              //font-style: oblique;
              .input{
                 input{
                    background-color: transparent;
-                   height:4em !important;
+                   height:3em !important;
                    border:3px solid #449dd1;
                    color:@gray-light !important;
                    font-size: 1.4em;
                    font-weight: bold;
+                   margin-bottom:1.6em;
                 }
              }
              form{
@@ -395,6 +405,7 @@
                     margin-top:1em;
                     margin-bottom:1em;
                     font-weight: bold;
+                    font-size: 1.5em;
                  }
                   padding:0;
                   .radio{
@@ -409,10 +420,23 @@
          }
          @media (max-width: @screen-sm-max) {
              padding: 1em;
+             .body{
+               form{
+                  .query{
+                       h2{font-size: 1.3em;}
+                       .radio{
+                         label{
+                             font-size: 1.2em;
+                         }
+                       }
+
+                   }
+               }
+             }
          }
        }
        @media (max-width: @screen-sm-max) {
-          padding: 2em 1em;
+          padding: 2em;
           .heading{
                padding: 1em;
                h1{
@@ -577,6 +601,7 @@
                  background-color: #FFF;
                  padding: 1em;
                  .info{
+                    outline: none;
                     margin-top:2em;
                     h3{
                        font-size: 1.1em;
