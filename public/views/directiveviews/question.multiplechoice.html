@@ -17,6 +17,18 @@
              {{option}}
            </label>
        </div>
+       <div class="col-xs-12 comment option" ng-show="question.options.comment && !question.options.multi" ng-click="selectComment(question.answers.length+1)">
+           <label>
+              <span ng-hide="question.options.multi">
+                 <i class="icon fa fa-check-circle-o active" ng-show="commentSelected" ng-class="commentSelected?'active':''"></i>
+                 <i class="icon fa fa-circle-thin" ng-hide="commentSelected"></i>
+              </span>
+              Others
+              <div class="col-xs-12 input-box">
+                  <input ng-model="answer.comment" class="form-control">
+              </div>
+            </label>
+       </div>
     </div>
     <span class="action-btn" ng-show="mode=='edit' && !edit && mainActions">
         <span class="delete-btn" >
@@ -65,18 +77,25 @@
               <form name="questionOptions" novalidate>
                   <div class="checkbox option">
                     <label style="width:100%">
-                       <input name="agreed" type="checkbox" ng-model="question.options.multi">
-                       Allow more than one answer to this question
-                       <span class="pull-right">{{question.options.multi}}</span>
+                       <input name="agreed" type="checkbox" ng-model="question.options.multi" ng-click="question.options.comment = false">
+                       Allow more than one answer
+                       <span class="pull-right">{{question.options.multi ? 'Yes' : 'No'}}</span>
                      </label>
                  </div>
-                 <div class="checkbox">
+                 <div class="checkbox option">
                    <label style="width:100%">
                       <input name="agreed" type="checkbox" ng-model="question.options.definite">
-                      Require a specific answer to this question
+                      Require a specific answer (eliminate respondents who don’t meet your criteria)
                       <span class="pull-right"><b>option: {{question.answer==''? 'none' :question.answer*1+1}}</b></span>
                     </label>
                 </div>
+                <div class="checkbox option">
+                  <label style="width:100%">
+                     <input name="agreed" type="checkbox" ng-model="question.options.comment" ng-click="question.options.multi = false">
+                     Require an optional open-ended comment
+                     <span class="pull-right"><b>{{question.options.comment ? 'Yes' : 'No'}}</b></span>
+                   </label>
+               </div>
               </form>
          </div>
          <div class="footer col-xs-12">

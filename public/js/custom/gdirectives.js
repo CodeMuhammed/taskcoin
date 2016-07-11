@@ -281,7 +281,7 @@ angular.module('general.directives' , [])
                 //This adds an option to the answers
                 $scope.addAnswer = function(index){
                      $scope.question.answers.splice(index+1 , 0 , '');
-                     $scope.question.answer = -1;
+                     $scope.question.answer = '';
                      initOptions();
                 }
 
@@ -335,39 +335,55 @@ angular.module('general.directives' , [])
                }
 
               /**================================BEGINS LLIVE PREVIEW LOGIC=========================================**/
-
-              $scope.answer = $scope.question.options.multi? [] : ''; //fill an array when multiple answers are required
+              $scope.answer = {
+                  type:$scope.question.type,
+                  option: $scope.question.options.multi? [] : '',
+                  comment:'',
+                  status:false
+              };
 
               //
               $scope.isInAnswer = function(option){
-                  if($scope.answer == '' || $scope.answer == []){
+                  if($scope.answer.option == '' || $scope.answer.option == []){
                       return false;
                   }
                   else{
                       if($scope.question.options.multi){
-                          return  $scope.answer.indexOf(option) >= 0;
+                          return  $scope.answer.option.indexOf(option) >= 0;
                       }
                       else{
-                          return $scope.answer == option;
+                          return $scope.answer.option == option;
                       }
                   }
               }
 
-              //
+              //Normal options logic
               $scope.toggleAnswer = function(option){
                   if($scope.question.options.multi){ //where multi-option is required
-                      var index = $scope.answer.indexOf(option);
+                      var index = $scope.answer.option.indexOf(option);
                       if(index >= 0){
-                          $scope.answer.splice(index , 1); //for array just yet
+                          $scope.answer.option.splice(index , 1);
+                          $scope.answer.option.length>0 ? ($scope.answer.status = true) : $scope.answer.status = false;
                       }
                       else{
-                          $scope.answer.push(option);
+                          $scope.answer.option.push(option);
+                          $scope.answer.status = true;
                       }
                   }
                   else{ //where single option is required
+                         $scope.commentSelected = false;
                          console.log(option);
-                         $scope.answer = option+'';
+                         $scope.answer.option = option+'';
+                         $scope.answer.status = true;
+                         $scope.answer.comment = '';
                   }
+              }
+
+              //Comment answer logic
+              $scope.commentSelected = false;
+              $scope.selectComment = function(option){
+                  $scope.toggleAnswer(option);
+                  $scope.commentSelected = true;
               }
           }
      }
@@ -386,7 +402,21 @@ angular.module('general.directives' , [])
          },
          templateUrl:'/views/directiveviews/question.textbox.html',
          controller:function($scope){
-             console.log($scope.question);
+             //
+             $scope.answer = {
+                 type:$scope.question.type,
+                 option:'',
+                 comment:'',
+                 status:false
+             };
+
+             //Watch the answer and see if it is a valid one
+             $scope.$watch('answer.option' , function(newVal){
+                  if(newVal){
+                       //@TODO apply actual validation logic for the different input types
+                       newVal.length>2 ? ($scope.answer.status = true) : $scope.answer.status = false;
+                  }
+             });
          }
      }
 })

@@ -3,7 +3,7 @@
         <b ><i class="icon fa fa-asterisk"></i> {{question.query}}</b>
     </div>
     <div class="answer col-xs-12">
-        <textarea class="form-control" placeholder="Enter your answer here" ng-model="answer" ng-show="question.options.inputType == 'textarea'"></textarea>
-        <input class="form-control" placeholder="Enter your answer here" ng-model="answer" ng-show="question.options.inputType == 'textinput'">
+        <textarea class="form-control" placeholder="Enter your answer here" ng-model="answer.option" ng-show="question.options.inputType == 'textarea'"></textarea>
+        <input class="form-control" placeholder="Enter your answer here" ng-model="answer.option" ng-show="question.options.inputType == 'textinput'">
     </div>
 </div>

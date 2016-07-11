@@ -116,6 +116,100 @@ angular.module('surveysModule' , [])
      };
 })
 
+
+//Questions factory
+.factory('Questioneer' , function($q , $http , $timeout){
+
+       //
+       var questionSchemas = {
+            'Multiple_Choice' : {
+                 type:'Multiple_Choice',
+                 query:'What is the question again ?',
+                 answers:[
+                     'Option here',
+                     'Option here',
+                     'Option here'
+                 ],
+                 answer:'',
+                 options:{
+                    multi:false,
+                    definite:false,
+                    comment:false,
+                 }
+            },
+            'Textbox':{
+               type: 'Textbox',
+               query:'What is your opinion again ?',
+               options:{
+                  inputType:'textinput' //or text input textarea:50 words text-input:10 words
+               }
+            },
+            'Segment_Title' : {
+                type: 'Segment_Title',
+                text: 'This is a new segment title'
+            }
+       };
+
+       //
+       function getSchema(schema){
+           if(!questionSchemas[schema]){
+               return -1;
+           }
+           else{
+             return questionSchemas[schema];
+           }
+       }
+
+       //
+       function getQuestions(questioneerId){
+            var promise = $q.defer();
+
+            $http({
+                method: 'GET',
+                url:'/questioneer',
+                params:{id:questioneerId}
+            })
+            .success(function(data){
+                 console.log(data);
+                 promise.resolve(data);
+            })
+            .error(function(err){
+                 console.log(err);
+            });
+
+            return promise.promise;
+       }
+
+       //
+       function saveQuestioneer(questioneer){
+            var promise = $q.defer();
+            console.log(questioneer);
+            $http({
+                method: 'POST',
+                url:'/questioneer',
+                data:questioneer
+            })
+            .success(function(data){
+                console.log(data);
+                promise.resolve(true);
+            })
+            .error(function(err){
+                 console.log(err);
+                 promise.reject(err);
+            });
+
+            return promise.promise;
+       }
+
+       //
+       return {
+           getSchema : getSchema,
+           getQuestions:getQuestions,
+           saveQuestioneer:saveQuestioneer
+       }
+})
+
+
 //Abstract state controller for surveys route
 .controller('surveysController' , function($scope , $state){
        console.log('surveys abstract controller loaded');
@@ -270,97 +364,6 @@ angular.module('surveysModule' , [])
     }
 })
 
-//Questions factory
-.factory('Questioneer' , function($q , $http , $timeout){
-
-       //
-       var questionSchemas = {
-            'Multiple_Choice' : {
-                 type:'Multiple_Choice',
-                 query:'What is the question again ?',
-                 answers:[
-                     'Option here',
-                     'Option here',
-                     'Option here'
-                 ],
-                 answer:'',
-                 options:{
-                    multi:false,
-                    definite:false
-                 }
-            },
-            'Textbox':{
-               type: 'Textbox',
-               query:'What is your opinion again ?',
-               options:{
-                  inputType:'textinput' //or text input textarea:50 words text-input:10 words
-               }
-            },
-            'Segment_Title' : {
-                type: 'Segment_Title',
-                text: 'This is a new segment title'
-            }
-       };
-
-       //
-       function getSchema(schema){
-           if(!questionSchemas[schema]){
-               return -1;
-           }
-           else{
-             return questionSchemas[schema];
-           }
-       }
-
-       //
-       function getQuestions(questioneerId){
-            var promise = $q.defer();
-
-            $http({
-                method: 'GET',
-                url:'/questioneer',
-                params:{id:questioneerId}
-            })
-            .success(function(data){
-                 console.log(data);
-                 promise.resolve(data);
-            })
-            .error(function(err){
-                 console.log(err);
-            });
-
-            return promise.promise;
-       }
-
-       //
-       function saveQuestioneer(questioneer){
-            var promise = $q.defer();
-            console.log(questioneer);
-            $http({
-                method: 'POST',
-                url:'/questioneer',
-                data:questioneer
-            })
-            .success(function(data){
-                console.log(data);
-                promise.resolve(true);
-            })
-            .error(function(err){
-                 console.log(err);
-                 promise.reject(err);
-            });
-
-            return promise.promise;
-       }
-
-       //
-       return {
-           getSchema : getSchema,
-           getQuestions:getQuestions,
-           saveQuestioneer:saveQuestioneer
-       }
-})
-
 //
 .controller('surveysEditBuilderController' , function($scope , $state, $timeout,  Surveys , Questioneer, alertService){
       //In case user cancels editing
@@ -376,12 +379,20 @@ angular.module('surveysModule' , [])
               function(data){
                   original = data;
                   $scope.questioneer = angular.copy(original);
+                  $scope.answers = []; // For debugging purposes
               },
               function(err){
                   console.log(err);
               }
           );
       }
+
+      //For debuging purposes
+      $scope.$watch('answers' , function(newVal){
+            if(newVal){
+               console.log(newVal);
+            }
+      } , true);
 
       //This triggers this view to create a new question when user click on a type in the sidemenu
       $scope.createQuestion = function(type){

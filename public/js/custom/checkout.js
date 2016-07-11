@@ -174,7 +174,7 @@ angular.module('checkoutModule' , [])
                    $scope.answered = 0;
                    angular.forEach($scope.answers , function(answer){
                         if(answer){
-                           answer!=''?$scope.answered++:'';
+                           answer.status? $scope.answered++ : '';
                         }
                         $scope.answered == $scope.questionsCount ? $scope.completed = true : $scope.completed = false;
                    });

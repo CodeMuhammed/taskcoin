@@ -12638,12 +12638,19 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
 .questions-container .question-c .question-view .answers .option:hover label i {
   color: #FFC73F;
 }
+.questions-container .question-c .question-view .answers .comment {
+  padding: 0;
+}
+.questions-container .question-c .question-view .answers .comment label .input-box {
+  padding-left: 1.5em;
+  margin-top: .3em;
+}
 .questions-container .question-c .question-view .action-btn {
   font-size: 2.5em;
   color: #777777;
   position: absolute;
-  bottom: 1em;
-  right: 2em;
+  top: 0em;
+  right: .5em;
 }
 .questions-container .question-c .question-view .action-btn .edit-btn {
   margin-left: 2em;
