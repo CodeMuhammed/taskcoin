@@ -3,8 +3,8 @@
 
 (function(window , document){
     //
-    //var baseUrl = 'http://localhost:5001';
-    var baseUrl = 'https://taskcoin-demo.herokuapp.com';
+    var baseUrl = 'http://localhost:5001';
+    //var baseUrl = 'https://taskcoin-demo.herokuapp.com';
 
     //This prevents multiple initialzation of the API
     var ensure = function(obj , name , factory){
@@ -55,12 +55,12 @@
                        }
                        else if(event.data.status === 'cancel'){
                             document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:auto');
-                            document.getElementById('taskcoin').setAttribute('class' , 'hide');
+                            document.getElementById('taskcoin').classList.toggle("show");
                             Options.cancel();
                        }
                        else if(event.data.status === 'done'){
                             document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:auto');
-                            document.getElementById('taskcoin').setAttribute('class' , 'hide');
+                            document.getElementById('taskcoin').classList.add("hide");
                             Options.success();
                        }
                    }
@@ -75,7 +75,7 @@
             if(Source){
                 //Show overlay
                 document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:hidden');
-                document.getElementById('taskcoin').setAttribute('class' , 'show');
+                document.getElementById('taskcoin').classList.toggle("show");
 
                 Options = options;
                 Source.postMessage({msg:'Refresh surveys for user', status:'refresh' , config:Options.config}, '*');
