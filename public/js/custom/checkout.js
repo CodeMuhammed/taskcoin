@@ -157,6 +157,7 @@ angular.module('checkoutModule' , [])
 
          //
          WindowMessege.onVerifyHost(function(hostName){
+             //@TODO user hostname to grab the merchant information
              taskcoinAuth.verifyHost(hostName).then(
                  function(status){
                      $scope.init.msg = status;
