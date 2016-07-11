@@ -92,36 +92,21 @@ module.exports = function(emailClient , dbResource){
 							  });
 						 }
 
-						 //
+						 //This function defines the user schema and adds it to the database
 						 function createUser(betauser){
 							   var newUser = {
 									   auth: {
 											  username:betauser.email,
 												password:bCrypt.hashSync(betauser.inviteId , null , null)
 										 },
-										 /*merchants:{
-											   //@virtual-Coll  The user name of this user will be attached to every website
-												 //he creates
-												 billingInfo:{}
-										 },
-										 taskcoinCreators:{
-											    //@virtual-Coll The username of this user will be attached to every survey
-													//he creates
-										 },
-										 historyLogs:{
-										    notificationSettings:{
-											      email:true,
-														sms:true
-										    }
-											 //@virtual-Coll The username of this user will be attached to every log entry
-											 //he creates
-										 },*/
 										 userInfo:{
 											   email:betauser.email,
 											   firstname:'@firstname',
 												 lastname:'@lastname',
 												 phone:'+@code@phone',
-												 companyname:'@parent company name'
+												 companyname:'@parent company name',
+												 location:'',
+												 karma:'' // this score determines the likelyhood of a user being served a survey
 										 },
 										 inviteId:betauser.inviteId
 								 };

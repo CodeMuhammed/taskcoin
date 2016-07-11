@@ -92,7 +92,7 @@ module.exports = function(dbResource , questioneerApi , answerApi){
       //
       router.route('/preview')
          .post(function(req , res){
-              console.log(req.body.user);
+              console.log(req.body);
 
               //Transform the array of ids to mongoDB $OId's
               var served = req.body.served;
@@ -105,12 +105,18 @@ module.exports = function(dbResource , questioneerApi , answerApi){
               //2.Not already answered by this user
               Surveys.findOne(
                   {
-                   _id : {
-                      "$nin":served
-                    },
-                    respondents : {
-                       "$nin":req.body.user
-                    }
+                     _id : {
+                        "$nin":served
+                      },
+                      respondents : {
+                         "$nin":[req.body.user]
+                      },
+                      'target.countries' : {
+                         '$in':[req.body.location]
+                      }/*,
+                      'target.interests' : {
+                         '$in':req.body.interests
+                      }*/
                   },
                   {
                      title:1,
@@ -124,7 +130,7 @@ module.exports = function(dbResource , questioneerApi , answerApi){
                   }
                   else{
                       if(!result){
-                          res.status(400).send('Sorry no more survey available');
+                          res.status(400).send('Sorry no more survey available for you at this time');
                       }
                       else{
                           res.status(200).send(result);

@@ -3,8 +3,8 @@
 
 (function(window , document){
     //
-    //var baseUrl = 'http://localhost:5001';
-    var baseUrl = 'https://taskcoin-demo.herokuapp.com';
+    var baseUrl = 'http://localhost:5001';
+    //var baseUrl = 'https://taskcoin-demo.herokuapp.com';
 
     //This prevents multiple initialzation of the API
     var ensure = function(obj , name , factory){
@@ -14,79 +14,78 @@
     //Taskcoin object definition
     var Taskcoin = ensure(window , 'Taskcoin' , function(){
 
-        //This function fires up the messaging channel between merchant domain and taskcoin.io.
-        var setupMessenger = function (){
-             var initialized = false;
-             return {
-                 initOnce:function(options){
-                     if(!initialized){
-                         window.addEventListener('message', function(event) {
-                            var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-                            console.log(origin);
+        //Append taskcoin css to  the head
+        (function(el){
+            var div = document.createElement('div');
+            div.innerHTML = '<link rel="stylesheet" type="text/css" href="'+baseUrl+'/css/taskcoin.css"/>';
+            while (div.children.length > 0) {
+              el.appendChild(div.children[0]);
+            }
+            appendHtml(document.body);
+        })(document.head);
 
-                            if (origin === baseUrl){ //@TODO point to online resource online
-                                if(event.data.status === 'cancel'){
-                                     document.getElementById('taskcoin').remove();
-                                     document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:auto');
-                                     options.cancel();
-                                }
-                                else if(event.data.status === 'done'){
-                                    document.getElementById('taskcoin').remove();
-                                    options.success();
-                                }
-                                else if(event.data.status === 'verify'){
-                                    event.source.postMessage({msg:'Verify host', status:'verify' , config:options.config}, '*');
-                                }
-                            }
-                        });
-                        initialized = true;
-                     }
-                 }
+        //Append taskcoin iframe to the body
+        function appendHtml(el) {
+             var div = document.createElement('div');
+             div.innerHTML = '<div id="taskcoin">'+
+                                 '<iframe src="'+baseUrl+'#!/pay"></iframe>'+
+                              '</div>';
+             while (div.children.length > 0) {
+               el.appendChild(div.children[0]);
              }
+
+             //
+             listenForMerchant();
+        };
+
+        //Create an event listener for merchants messages
+        var Options;
+        var Source;
+        function listenForMerchant(){
+            var initialized = false;
+            if(!initialized){
+                window.addEventListener('message', function(event) {
+                   var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+                   console.log(event);
+
+                   if (origin === baseUrl){
+                       Source = event.source;
+                       if(event.data.status === 'verify'){
+                           event.source.postMessage({msg:'Verify merchants website', status:'verifyMerchant'}, '*');
+                       }
+                       else if(event.data.status === 'cancel'){
+                            document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:auto');
+                            document.getElementById('taskcoin').setAttribute('class' , 'hide');
+                            Options.cancel();
+                       }
+                       else if(event.data.status === 'done'){
+                            document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:auto');
+                            document.getElementById('taskcoin').setAttribute('class' , 'hide');
+                            Options.success();
+                       }
+                   }
+               });
+               initialized = true;
+            }
         }
 
-        //
-        var initialize = function(options){
-              (function(){
-                   //Append taskcoin css to  the head
-                   (function(el){
-                       var div = document.createElement('div');
-                       div.innerHTML = '<link rel="stylesheet" type="text/css" href="'+baseUrl+'/css/taskcoin.css"/>';
-                       while (div.children.length > 0) {
-                         el.appendChild(div.children[0]);
-                       }
-                       appendHtml(document.body);
-                   })(document.head);
+        //This kick starts the authorization, survey dance
+        //This function fires up the messaging channel between merchant domain and taskcoin.io.
+        var checkout = function(options){
+            if(Source){
+                //Show overlay
+                document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:hidden');
+                document.getElementById('taskcoin').setAttribute('class' , 'show');
 
-                   //Append taskcoin iframe to the body
-                   function appendHtml(el) {
-                        var div = document.createElement('div');
-                        div.innerHTML = '<div class="taskcoin" id="taskcoin">'+
-                                           '<div class="frame">'+
-                                             '<iframe id="taskcoinframe" src="'+baseUrl+'#!/pay"></iframe>'+
-                                           '</div>'+
-                                         '</div>';
-                        while (div.children.length > 0) {
-                          el.appendChild(div.children[0]);
-                        }
+                Options = options;
+                Source.postMessage({msg:'Refresh surveys for user', status:'refresh' , config:Options.config}, '*');
+            }
 
-                        //Temporarily disable the scroll for parent frame
-                        document.getElementsByTagName('html')[0].setAttribute('style' , 'overflow:hidden');
-                        setTimeout(function(){
-                             document.getElementById('taskcoinframe').setAttribute('class' , 'animate');
-                        } , 200);
-                   };
-
-
-              })();
-
-              //initialize the event listener that will recieve messages from paystack.io
-              setupMessenger().initOnce(options);
         }
 
         //Method exposed to merchant domain
         return {
-            initialize:initialize
+            checkout:checkout
         };
     });
 })(window , document);

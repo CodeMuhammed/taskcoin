@@ -31,14 +31,14 @@ angular.module('checkoutModule' , [])
           var served = [];
 
           //
-          function refresh(user){
+          function refresh(user , location , interests ){
               var promise = $q.defer();
 
-              console.log(user);
+              console.log(user , location , interests);
               $http({
                  method:'POST',
                  url:'/survey/preview',
-                 data:{served:served , user:[user]}
+                 data:{served:served , user:user , location:location ,interests:interests}
               })
               .success(function(data){
                   getQuestions(data.questioneerId).then(
@@ -81,29 +81,94 @@ angular.module('checkoutModule' , [])
               refresh:refresh
           }
     })
-    //============================ pay controller =================================
-    .controller('payController' , function($scope , $window , $state , $timeout , taskcoinAuth){
+
+    //
+    .factory('WindowMessege' , function($window , $q){
+        //callbacks to be executed
+        var refresh;
+        var verify;
+        var config; //Config object used by taskcoin to verify auth
+        //
+        function init(){
+            var promise = $q.defer()
+            $window.addEventListener('message', function(event) {
+                var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+                if(event.data.status === 'verifyMerchant'){
+                   verify(origin);
+                }
+                else if(event.data.status === 'refresh'){
+                   config = event.data.config;
+                   if(refresh){
+                       refresh(config);
+                   }
+                }
+            });
+
+            //
+            return promise.promise;
+        }
+
+        //
+        function onRefresh(callback){
+            refresh = callback;
+        };
+
+        //
+        function onVerifyHost(callback){
+            verify = callback;
+        }
+
+        //
+        function getConfig(){
+           return config;
+        }
+
+        //
+        return {
+          init:init,
+          onRefresh:onRefresh,
+          onVerifyHost:onVerifyHost,
+          getConfig:getConfig
+        }
+    })
+
+    //This factory gets user location
+    .factory('GeoLocation' , function($q , $timeout){
+        function getLocation(){
+             var promise = $q.defer();
+             $timeout(function(){
+                 promise.resolve('nigeria'); //Actual data will follow soon
+             } , 3000);
+             return promise.promise;
+        }
+
          //
-         $window.parent.postMessage({msg:'Please send a message', status:'verify'}, '*');
-         $window.addEventListener('message', function(event) {
-             var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-             if(event.data.status === 'verify'){
-                console.log(event.data.config);
-                $scope.hostName = origin;
-                taskcoinAuth.verifyHost($scope.hostName).then(
-                    function(status){
-                        $scope.init.msg = status;
-                        $scope.init.host = true;
-                    },
-                    function(err){
-                        $scope.init.msg = err;
-                    }
-                );
-             }
-         });
+         return {
+             getLocation:getLocation
+         }
+    })
+
+    //============================ pay controller =================================
+    .controller('payController' , function($scope , $window , $state , $timeout , taskcoinAuth , WindowMessege){
 
          //send a message to host to send back his credentials for authentication
-         $scope.hostName = '';
+         WindowMessege.init();
+         $window.parent.postMessage({msg:'Verify', status:'verify'}, '*');
+
+         //
+         WindowMessege.onVerifyHost(function(hostName){
+             taskcoinAuth.verifyHost(hostName).then(
+                 function(status){
+                     $scope.init.msg = status;
+                     $scope.init.host = true;
+                 },
+                 function(err){
+                     $scope.init.msg = err;
+                 }
+             );
+         });
+
+         //
          $scope.init = {
              host:false,
              auth:false,
@@ -123,7 +188,7 @@ angular.module('checkoutModule' , [])
     })
 
     //
-    .controller('paySurveyController' , function($scope ,  $window , $timeout , QuestioneerPreview , profile){
+    .controller('paySurveyController' , function($scope ,  $window , $timeout , QuestioneerPreview , profile , WindowMessege , GeoLocation){
 
           //
           $scope.userData;
@@ -134,7 +199,36 @@ angular.module('checkoutModule' , [])
               function(data){
                     console.log(data);
                     $scope.userData = data;
-                    $scope.refresh(data.userInfo.email);
+
+                    var location = $scope.userData.userInfo.location;
+                    if(location && location!=''){
+                        initialize(location);
+                    }
+                    else{
+                        GeoLocation.getLocation().then(
+                          function(location){
+                              $scope.userData.userInfo.location = location;
+                              //@TODO save user data
+                              initialize(location);
+                          },
+                          function(err){
+                              console.log('Could not resolve users location');
+                          }
+                      );
+                    }
+
+                    //
+                    function initialize(location){
+                        //Register a callback with window messenger service to auto refresh when user clicks the checkout button
+                        WindowMessege.onRefresh(function(config , location){
+                             $scope.refresh($scope.userData.userInfo.email , location);
+                        });
+
+                        //refresh for the first time
+                        $scope.config = WindowMessege.getConfig();
+                        console.log($scope.config); // used when the manual refresh button is pushed
+                        $scope.refresh($scope.userData.userInfo.email ,location);
+                    }
               },
               function(err){
                    $scope.error = err;
@@ -142,9 +236,10 @@ angular.module('checkoutModule' , [])
           );
 
           //Serves a new surveys
-          $scope.refresh = function(user){
+          $scope.refresh = function(user , location){
+              var interests = []; //@TODO merge user interests with Merchants interests
               $scope.refreshing = true;
-              QuestioneerPreview.refresh(user).then(
+              QuestioneerPreview.refresh(user , location , interests).then(
                   function(data){
                     $scope.warning = true;
                     //@TODO spoof questions by introducing foreign options to data
@@ -160,7 +255,6 @@ angular.module('checkoutModule' , [])
                   },
                   function(err){
                       $scope.error = err;
-                      $scope.questioneer = [];
                   }
               );
           };
