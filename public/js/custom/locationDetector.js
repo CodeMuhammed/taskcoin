@@ -108,7 +108,7 @@ angular.module('locationDetector' , [])
         console.log(ip);
         $http({
           method:'GET',
-          url:'http://freegeoip.net/json/'+ip
+          url:'https://freegeoip.net/json/'+ip
         })
         .success(function(data){
              callback(null , data);
