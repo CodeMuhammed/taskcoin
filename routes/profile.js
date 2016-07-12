@@ -10,6 +10,19 @@ module.exports = function(dbResource){
         .get(function(req , res){
              console.log(req.user);
              res.status(200).send(req.user);
+        })
+        .put(function(req , res){
+            console.log(req.body);
+            req.body._id = ObjectId(req.body._id);
+            Users.update({_id:req.body._id} , req.body , function(err , stats){
+                if(err){
+                   console.log(err);
+                   res.status(500).send('Err creating updating user');
+                }
+                else{
+                  res.status(200).send('User updated succcessfully');
+                }
+           });
         });
 
     return router;

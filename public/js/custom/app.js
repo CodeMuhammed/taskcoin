@@ -41,10 +41,32 @@ angular.module('taskcoin' , [
           user = undefined;
       }
 
+      //
+      function save(userData){
+
+          var promise = $q.defer();
+          
+          $http({
+             method:'PUT',
+             url:'/profile',
+             data:user
+          })
+          .success(function(status){
+              user = userData;
+              promise.resolve(status);
+          })
+          .error(function(err){
+             promise.reject(err);
+          });
+
+          return promise.promise;
+      }
+
       ///
       return{
           getUser:getUser,
-          reset:reset
+          reset:reset,
+          save:save
       };
 })
 

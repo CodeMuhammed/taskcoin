@@ -182,7 +182,6 @@ angular.module('checkoutModule' , [])
           $scope.refreshing = true;
           profile.getUser().then(
               function(data){
-                    console.log(data);
                     $scope.userData = data;
 
                     //Always ask a user for their location if the detection mode was navigator //for now
@@ -194,8 +193,16 @@ angular.module('checkoutModule' , [])
                         GeoLocation.getLocation().then(
                           function(location){
                               $scope.userData.userInfo.location = location;
-                              //@TODO save user data then initialize
-                              initialize(location);
+                              profile.save($scope.userData).then(
+                                    function(status){
+                                        console.log(status);
+                                        initialize(location);
+                                    },
+                                    function(err){
+                                         console.log('User not saved');
+                                    }
+                              );
+
                           },
                           function(err){
                               console.log('Could not resolve users location');
