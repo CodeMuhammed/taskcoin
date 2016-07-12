@@ -336,8 +336,8 @@ angular.module('surveysModule' , [])
             'movies':['triller' , 'animation' , 'comedy']
         },
         country:{
-             'nigeria':[],
-             'united states':[]
+             'Nigeria':[],
+             'United States':[]
         }
     };
 
