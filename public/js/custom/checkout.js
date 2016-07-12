@@ -200,6 +200,7 @@ angular.module('checkoutModule' , [])
                                     },
                                     function(err){
                                          console.log('User not saved');
+                                         //@TODO still serve them survey this time
                                     }
                               );
 

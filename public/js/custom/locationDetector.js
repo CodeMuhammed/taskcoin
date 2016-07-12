@@ -124,7 +124,7 @@ angular.module('locationDetector' , [])
          var promise = $q.defer();
 
          //see if user is oonine
-         if($window.navigator.online){
+         if(window.navigator.online){
              //Get clients ip addresses using STUN server
              getCountryIp(function(ip){
                  if(ip){
