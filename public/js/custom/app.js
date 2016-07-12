@@ -41,7 +41,7 @@ angular.module('taskcoin' , [
           user = undefined;
       }
 
-      //
+      ///
       return{
           getUser:getUser,
           reset:reset
