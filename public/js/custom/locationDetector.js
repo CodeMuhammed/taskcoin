@@ -141,7 +141,8 @@ angular.module('locationDetector' , [])
                 console.log('stun method falied');
                 //@TODO use GeoLocation method instead
                 //return default location object for offline development
-                var location = {
+                console.log(location);
+                location = {
                     info:{
                         country_name:'Nigeria'
                     }
