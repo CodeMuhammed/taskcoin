@@ -135,7 +135,7 @@ angular.module('locationDetector' , [])
                       else{
                          location.detectionMode = 'STUN';
                          location.info = info;
-                         console.log(location);
+                         promise.resolve(location);
                       }
                  });
              }

@@ -38,7 +38,7 @@ angular.module('checkoutModule' , [])
               $http({
                  method:'POST',
                  url:'/survey/preview',
-                 data:{served:served , user:user , country:location.country ,interests:interests}
+                 data:{served:served , user:user , country:location.info.country_name ,interests:interests}
               })
               .success(function(data){
                   getQuestions(data.questioneerId).then(
