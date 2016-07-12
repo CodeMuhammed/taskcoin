@@ -194,7 +194,7 @@ angular.module('checkoutModule' , [])
                         GeoLocation.getLocation().then(
                           function(location){
                               $scope.userData.userInfo.location = location;
-                              //@TODO save user data
+                              //@TODO save user data then initialize
                               initialize(location);
                           },
                           function(err){
