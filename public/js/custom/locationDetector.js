@@ -114,6 +114,7 @@ angular.module('locationDetector' , [])
              callback(null , data);
         })
         .error(function(err){
+             console.log(err);
              callback(err , null);
         });
     }
@@ -123,31 +124,25 @@ angular.module('locationDetector' , [])
     function getLocation(){
          var promise = $q.defer();
 
-         //check if user is online
-         if($window.navigator.onLine){
-             //Get clients ip addresses using STUN server
-             getCountryIp(function(ip){
-                 if(ip){
-                     getLocationInfo(ip , function(err , info){
-                          if(err){
-                              console.log('could not get location info');
-                              //@TODO use alternative mode like asking user for location
-                          }
-                          else{
-                             location.detectionMode = 'STUN';
-                             location.info = info;
-                             console.log(location);
-                          }
-                     });
-                 }
-                 else{
-                    //@TODO use GeoLocation method instead
-                 }
-             });
-         }
-         else{
-            alert('You are currently offline');
-         }
+         //Get clients ip addresses using STUN server
+         getCountryIp(function(ip){
+             if(ip){
+                 getLocationInfo(ip , function(err , info){
+                      if(err){
+                          console.log('could not get location info');
+                          //@TODO use alternative mode like asking user for location
+                      }
+                      else{
+                         location.detectionMode = 'STUN';
+                         location.info = info;
+                         console.log(location);
+                      }
+                 });
+             }
+             else{
+                //@TODO use GeoLocation method instead
+             }
+         });
 
          return promise.promise;
     }
