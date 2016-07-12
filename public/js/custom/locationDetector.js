@@ -140,6 +140,7 @@ angular.module('locationDetector' , [])
                      });
                  }
                  else{
+                      console.log('stun method falied');
                     //@TODO use GeoLocation method instead
                  }
              });
