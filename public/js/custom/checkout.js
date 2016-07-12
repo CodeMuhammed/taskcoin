@@ -38,7 +38,7 @@ angular.module('checkoutModule' , [])
               $http({
                  method:'POST',
                  url:'/survey/preview',
-                 data:{served:served , user:user , location:location ,interests:interests}
+                 data:{served:served , user:user , country:location.country ,interests:interests}
               })
               .success(function(data){
                   getQuestions(data.questioneerId).then(
@@ -132,22 +132,6 @@ angular.module('checkoutModule' , [])
         }
     })
 
-    //This factory gets user location
-    .factory('GeoLocation' , function($q , $timeout){
-        function getLocation(){
-             var promise = $q.defer();
-             $timeout(function(){
-                 promise.resolve('nigeria'); //Actual data will follow soon
-             } , 3000);
-             return promise.promise;
-        }
-
-         //
-         return {
-             getLocation:getLocation
-         }
-    })
-
     //============================ pay controller =================================
     .controller('payController' , function($scope , $window , $state , $timeout , taskcoinAuth , WindowMessege){
 
@@ -201,8 +185,9 @@ angular.module('checkoutModule' , [])
                     console.log(data);
                     $scope.userData = data;
 
+                    //Always ask a user for their location if the detection mode was navigator //for now
                     var location = $scope.userData.userInfo.location;
-                    if(location && location!=''){
+                    if(location && location.detectionMode == 'STUN'){
                         initialize(location);
                     }
                     else{
@@ -313,5 +298,4 @@ angular.module('checkoutModule' , [])
                   } , 3000);
               }
           }
-
     });

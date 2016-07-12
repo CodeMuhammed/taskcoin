@@ -112,7 +112,7 @@ module.exports = function(dbResource , questioneerApi , answerApi){
                          "$nin":[req.body.user]
                       },
                       'target.countries' : {
-                         '$in':[req.body.location]
+                         '$in':[req.body.country]
                       }/*,
                       'target.interests' : {
                          '$in':req.body.interests
