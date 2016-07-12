@@ -3,8 +3,8 @@
 
 (function(window , document){
     //
-    var baseUrl = 'http://localhost:5001';
-    //var baseUrl = 'https://taskcoin-demo.herokuapp.com';
+    //var baseUrl = 'http://localhost:5001';
+    var baseUrl = 'https://taskcoin-demo.herokuapp.com';
 
     //This prevents multiple initialzation of the API
     var ensure = function(obj , name , factory){
@@ -46,7 +46,7 @@
             if(!initialized){
                 window.addEventListener('message', function(event) {
                    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-                
+
                    if (origin === baseUrl){
                        Source = event.source;
                        if(event.data.status === 'verify'){
