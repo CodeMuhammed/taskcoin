@@ -123,39 +123,32 @@ angular.module('locationDetector' , [])
     function getLocation(){
          var promise = $q.defer();
 
-         //see if user is oonine
-         if(window.navigator.online){
-             //Get clients ip addresses using STUN server
-             getCountryIp(function(ip){
-                 if(ip){
-                     getLocationInfo(ip , function(err , info){
-                          if(err){
-                              promise.reject(false);
-                          }
-                          else{
-                             location.detectionMode = 'STUN';
-                             location.info = info;
-                             promise.resolve(location);
-                          }
-                     });
-                 }
-                 else{
-                      console.log('stun method falied');
-                    //@TODO use GeoLocation method instead
-                 }
-             });
-         }
-         else{
-             console.log('User currenty offline');
-
-             //return default location object for offline development
-             var location = {
-                 info:{
-                     country_name:'Nigeria'
-                 }
-             };
-             promise.resolve(location);
-         }
+         //Get clients ip addresses using STUN server
+         getCountryIp(function(ip){
+             if(ip){
+                 getLocationInfo(ip , function(err , info){
+                      if(err){
+                          promise.reject(false);
+                      }
+                      else{
+                         location.detectionMode = 'STUN';
+                         location.info = info;
+                         promise.resolve(location);
+                      }
+                 });
+             }
+             else{
+                console.log('stun method falied');
+                //@TODO use GeoLocation method instead
+                //return default location object for offline development
+                var location = {
+                    info:{
+                        country_name:'Nigeria'
+                    }
+                };
+                promise.resolve(location);
+             }
+         });
 
          return promise.promise;
     }
