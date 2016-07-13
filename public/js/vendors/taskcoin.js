@@ -3,8 +3,8 @@
 
 (function(window , document){
     //
-    //var baseUrl = 'http://localhost:5001';
-    var baseUrl = 'https://taskcoin-demo.herokuapp.com';
+    var baseUrl = 'http://localhost:5001';
+    //var baseUrl = 'https://taskcoin-demo.herokuapp.com';
 
     //This prevents multiple initialzation of the API
     var ensure = function(obj , name , factory){

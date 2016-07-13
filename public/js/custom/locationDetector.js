@@ -102,7 +102,6 @@ angular.module('locationDetector' , [])
 
     //Gets location information from ip address
     function getLocationInfo(ip , callback){
-        console.log(ip);
         $http({
           method:'GET',
           url:'https://freegeoip.net/json/'+(ip?ip:'')
@@ -111,7 +110,6 @@ angular.module('locationDetector' , [])
              callback(null , data);
         })
         .error(function(err){
-             console.log(err);
              callback(err , null);
         });
     }
@@ -125,18 +123,24 @@ angular.module('locationDetector' , [])
          getCountryIp(function(ip){
              getLocationInfo(ip , function(err , info){
                   if(err){
-                      //Could not resolve location information but return a default info //@TODO mainly for offline developement
-                      location = {
-                          info:{
-                              country_name:'Nigeria'
-                          }
-                      };
-                      promise.resolve(location);
+                      promise.reject(false);
                   }
+
                   else{
-                     location.detectionMode = (ip?'STUN':'IP');
-                     location.info = info;
-                     promise.resolve(location);
+                     if(info){
+                       location.detectionMode = (ip?'STUN':'IP');
+                       location.info = info;
+                       promise.resolve(location);
+                     }
+                     else{
+                         //Could not resolve location information but return a default info //@TODO mainly for offline developement
+                         location = {
+                             info:{
+                                 country_name:'Nigeria'
+                             }
+                         };
+                         promise.resolve(location);
+                     }
                   }
              });
 

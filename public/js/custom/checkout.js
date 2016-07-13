@@ -109,8 +109,11 @@ angular.module('checkoutModule' , [])
         }
 
         //
-        function onRefresh(callback){
+        function onRefresh(callback , initialize){
             refresh = callback;
+            if(initialize){
+                callback(config);
+            }
         };
 
         //
@@ -119,16 +122,10 @@ angular.module('checkoutModule' , [])
         }
 
         //
-        function getConfig(){
-           return config;
-        }
-
-        //
         return {
           init:init,
           onRefresh:onRefresh,
-          onVerifyHost:onVerifyHost,
-          getConfig:getConfig
+          onVerifyHost:onVerifyHost
         }
     })
 
@@ -186,7 +183,7 @@ angular.module('checkoutModule' , [])
 
                     //Always ask a user for their location if the detection mode was navigator //for now
                     var location = $scope.userData.userInfo.location;
-                    if(location && location.detectionMode == 'STUN'){
+                    if(/*location && location.detectionMode == 'STUN'*/1==2){
                         initialize(location);
                     }
                     else{
@@ -196,7 +193,7 @@ angular.module('checkoutModule' , [])
                               profile.save($scope.userData).then(
                                     function(status){
                                         console.log(status);
-                                        initialize(location);
+                                        initialize();
                                     },
                                     function(err){
                                          console.log('User not saved');
@@ -212,16 +209,12 @@ angular.module('checkoutModule' , [])
                     }
 
                     //
-                    function initialize(location){
+                    function initialize(){
                         //Register a callback with window messenger service to auto refresh when user clicks the checkout button
-                        WindowMessege.onRefresh(function(config , location){
-                             $scope.refresh($scope.userData.userInfo.email , location);
-                        });
+                        WindowMessege.onRefresh(function(config){
+                             $scope.refresh($scope.userData.userInfo.email , $scope.userData.userInfo.location);
+                        } , true); //The true flag tells the onRefresh method to excecute the callback once im ediately
 
-                        //refresh for the first time
-                        $scope.config = WindowMessege.getConfig();
-                        console.log($scope.config); // used when the manual refresh button is pushed
-                        $scope.refresh($scope.userData.userInfo.email ,location);
                     }
               },
               function(err){
@@ -231,26 +224,32 @@ angular.module('checkoutModule' , [])
 
           //Serves a new surveys
           $scope.refresh = function(user , location){
-              var interests = []; //@TODO merge user interests with Merchants interests
-              $scope.refreshing = true;
-              QuestioneerPreview.refresh(user , location , interests).then(
-                  function(data){
-                    $scope.warning = true;
-                    //@TODO spoof questions by introducing foreign options to data
-                    $scope.survey = data;
-                    $scope.refreshing = false;
-                    $scope.answers = []; //Collect answers as users answer them in real time
+              if(location.info){
+                  var interests = []; //@TODO merge user interests with Merchants interests
+                  $scope.refreshing = true;
+                  QuestioneerPreview.refresh(user , location , interests).then(
+                      function(data){
+                        $scope.warning = true;
+                        //@TODO spoof questions by introducing foreign options to data
+                        $scope.survey = data;
+                        $scope.refreshing = false;
+                        $scope.answers = []; //Collect answers as users answer them in real time
 
-                    //Calculate for number of questions
-                    $scope.questionsCount = 0;
-                    angular.forEach($scope.survey.questioneer.questions , function(question){
-                        question.type != 'Segment_Title' ? $scope.questionsCount++ : '';
-                    });
-                  },
-                  function(err){
-                      $scope.error = err;
-                  }
-              );
+                        //Calculate for number of questions
+                        $scope.questionsCount = 0;
+                        angular.forEach($scope.survey.questioneer.questions , function(question){
+                            question.type != 'Segment_Title' ? $scope.questionsCount++ : '';
+                        });
+                      },
+                      function(err){
+                          $scope.error = err;
+                      }
+                  );
+              }
+              else{
+                 console.log('Location info not defined');
+              }
+
           };
 
           //Lets watch and see how answer changes
