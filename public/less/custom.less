@@ -337,9 +337,9 @@
 
               &:hover{
                   transform: scale(1.1);
-                  transition: .2s ease-out;
-                  transition: .2s ease-in;
               }
+
+              transition: .2s ease-out;
           }
           @media (max-width: @screen-sm-max) {
                padding:2em 0em;
@@ -1101,7 +1101,8 @@
                                position:absolute;
                                display:inline-block;
                                padding:0em;
-                               min-height: 20em;
+                               max-height: 20em;
+                               overflow: auto;
                                margin-top: -6em;
                                margin-left:100%;
                                width:200px;

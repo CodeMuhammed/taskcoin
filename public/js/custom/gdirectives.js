@@ -63,7 +63,7 @@ angular.module('general.directives' , [])
                              '</span>',
                              '<suggestions list="list" select="newItem" ng-show="focused" focused="focused"></suggestions>',
                        '</span>',
-                       '<span class="option" ng-repeat="option in selected" ng-click="removeItem(item)">',
+                       '<span class="option" ng-repeat="option in selected" ng-click="removeItem($index)">',
                             '<label class="">{{option}}</label>',
                             '<i class="icon fa fa-times"></i>',
                          '</span>',
@@ -78,8 +78,8 @@ angular.module('general.directives' , [])
              });
 
              //
-             $scope.removeItem = function(item){
-                  $scope.selected.splice($scope.selected.indexOf(item),1);
+             $scope.removeItem = function(index){
+                  $scope.selected.splice(index,1);
              }
 
              //

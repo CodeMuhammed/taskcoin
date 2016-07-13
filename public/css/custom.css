@@ -11600,6 +11600,7 @@ button.close {
   height: 20em;
   background-color: #fff;
   padding: 0;
+  transition: 0.2s ease-out;
 }
 .home-container .value-container .feature .inner .f-body {
   text-align: left;
@@ -11683,8 +11684,6 @@ fieldset[disabled] .home-container .value-container .feature .inner .f-body .btn
 }
 .home-container .value-container .feature .inner:hover {
   transform: scale(1.1);
-  transition: 0.2s ease-out;
-  transition: 0.2s ease-in;
 }
 @media (max-width: 991px) {
   .home-container .value-container .feature {
@@ -12444,7 +12443,8 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   position: absolute;
   display: inline-block;
   padding: 0em;
-  min-height: 20em;
+  max-height: 20em;
+  overflow: auto;
   margin-top: -6em;
   margin-left: 100%;
   width: 200px;
