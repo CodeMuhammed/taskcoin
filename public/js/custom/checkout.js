@@ -181,9 +181,9 @@ angular.module('checkoutModule' , [])
               function(data){
                     $scope.userData = data;
 
-                    //Always ask a user for their location if the detection mode was navigator //for now
+                    //Always ask a user for their location if the detection mode was IP
                     var location = $scope.userData.userInfo.location;
-                    if(/*location && location.detectionMode == 'STUN'*/1==2){
+                    if(location && location.detectionMode == 'STUN'){
                         initialize(location);
                     }
                     else{
