@@ -125,7 +125,7 @@ angular.module('locationDetector' , [])
          getCountryIp(function(ip){
              getLocationInfo(ip , function(err , info){
                   if(err){
-                      //Could not resolve location information
+                      //Could not resolve location information but return a default info //@TODO mainly for offline developement
                       location = {
                           info:{
                               country_name:'Nigeria'
