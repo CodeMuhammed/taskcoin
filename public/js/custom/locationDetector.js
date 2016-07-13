@@ -5,10 +5,8 @@ angular.module('locationDetector' , [])
 
 .factory('GeoLocation' , function($q , $timeout , $http , $window){
     var location = {
-       detectionMode:'', // STUN or GEO
-       info:{}, // country name in lower case
-       lat:'', // latitude from GEO
-       long:'' // longitude from GEO
+       detectionMode:'', // STUN or IP
+       info:{} // country name in lower case
     };
 
     //get the IP addresses associated with an account using STUN method
@@ -139,7 +137,7 @@ angular.module('locationDetector' , [])
              }
              else{
                 console.log('stun method falied');
-                //@TODO use GeoLocation method instead
+                //@TODO use ip address detection mode instead
                 //return default location object for offline development
                 console.log(location);
                 location = {
