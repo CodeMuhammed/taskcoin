@@ -123,30 +123,23 @@ angular.module('locationDetector' , [])
 
          //Get clients ip addresses using STUN server
          getCountryIp(function(ip){
-             if(ip){
-                 getLocationInfo(ip , function(err , info){
-                      if(err){
-                          promise.reject(false);
-                      }
-                      else{
-                         location.detectionMode = 'STUN';
-                         location.info = info;
-                         promise.resolve(location);
-                      }
-                 });
-             }
-             else{
-                console.log('stun method falied');
-                //@TODO use ip address detection mode instead
-                //return default location object for offline development
-                console.log(location);
-                location = {
-                    info:{
-                        country_name:'Nigeria'
-                    }
-                };
-                promise.resolve(location);
-             }
+             getLocationInfo(ip , function(err , info){
+                  if(err){
+                      //Could not resolve location information
+                      location = {
+                          info:{
+                              country_name:'Nigeria'
+                          }
+                      };
+                      promise.resolve(location);
+                  }
+                  else{
+                     location.detectionMode = (ip?'STUN':'IP');
+                     location.info = info;
+                     promise.resolve(location);
+                  }
+             });
+
          });
 
          return promise.promise;
