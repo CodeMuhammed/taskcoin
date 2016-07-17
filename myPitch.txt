@@ -9,39 +9,44 @@ TRY TO KEEP YOUR ANSWER TO “TELL ME ABOUT YOURSELF” ABOUT A MINUTE OR SO LON
 THE MEDIUM IS THE MESSAGE
 THE INTERVIEWER CARES LESS ABOUT THE ANSWER TO THE QUESTION AND MORE ABOUT THE PASSION ENTHUSIASM AND CONFIDENCE BEHIND THE ANSWER
 
-
-Andela Values
+Andela Values @TODO researc more on answering questions related to andela's core values. Tonight
 =============
 Excellence    -- Creativity
 passion     -- Effect change in the world, curiousity
-Integrity   -- Goal driven
+Integrity   -- Quality over Quantity
 Collaboration -- Great communications skills and great work ethics
 
 TELL ME ABOUT YOURSELF
 =========
 
 1. DISCOVERY
-My first peek into the world of software development was some four years back when i accidentally downloaded a python shell on my nokia symbian phone because
-I thought it was a snake game. I launched the app and discovered something entirely different. Then i went online, researched about it and started following
-through with the online tutorial on my phone. it wasn't long before i built my first commandline-powered calculator app.In retrospect, That was where my passion for software dev started. Coupled with the realization that i had a turing complete tool in my hands that can be used to model anything within the grasp of my imagination, I went on a learning quest by taking series of online courses on programming from stanford. free courseware and coursera.
+My first peek into the world of software development was some four years back when i accidentally downloaded a python shell on my nokia symbian phone because I thought it was a snake game. I launched the app and discovered something entirely different. Then i went online, researched about it and started following through with the online tutorial on my phone. it wasn't long before i built my first commandline-powered calculator app.In retrospect, That was when my passion for software dev started. Coupled with the realization that i had a turing complete tool in my hands that can be used to model anything within the grasp of my imagination, I went on a learning quest by taking series of online courses on programming.
 
 2. SUCCESS STORY
 The highlight of my journey as a budding sofware developer was being a part of a rag-tag team who came out second runner up twice in the clash of the campuses-
-A software exhibition program organised by paradigm initiative Nigeria.
+A software exhibition organised by paradigm initiative Nigeria.
 
 3. CAREER GROWTH
-I have always wanted to work in a real team, working on real-life projects, and collaborating with creative young minds 
-with a singualar mantra of excellence and changing the world. Which makes the Andela model perfect.
+I have always wanted to work with a real team, On real-life projects, Collaborating with creative young minds 
+with a singualar mantra of excellence and changing the world with great products. Which makes the Andela model so perfect.
   
 
 WHERE DO YOU SEE YOURSELF IN FIVE YEARS
 =======================================
-I see myself in five years as an independent entrepreneur equipped with the neccessary skill sets needed to create great companies or work with an alreay existing firm to effect change through innovative products and services.
+I am fascinated with fin-tech as it relates to micro-payments.So I see myself innovating in that space in five years time.
 
 
 DO YOU HAVE ANY QUESTIONS FOR ME
 ===============================
 Sure!
-1.The last time i was here, i learnt that Andela is a better alternative to a university degree especially for tech savvy       folks, I am wondering if Andela is planning on becoming as big as say havard.
-2.I ll'd like to know if there is any reason why i may not be called back for the two weeks bootcamp.
+1.The last time i was here, i learnt that Andela is a better alternative to a university degree for tech savvy folks, I am wondering if Andela is planning on becoming as big as say havard.
 
+Most Frustrating Scenario As a Technologist - Government policies
+===================================================================================
+Although government policies have had a net positive effect to innovation and the diffusion of new technologies,
+Some policies as it relates to technology have always been viewed as a doube edged sword.
+
+Take Patent laws and intellectual property(IP) rights for instance which encourages universities and independent researchers to place heavy empahsis on patenting results from their findings, which may lead to the impediment of innovation and adoption of new technologies in areas related to their research.
+
+2.When the purpose of a technological innovation does not resonate with the purpose of the government, there is always bound to be friction.
+For example, the case of Apple (privacy of users) vs US government (security of citizens) on data encyption could threaten innovation in the field of cryptography big time.

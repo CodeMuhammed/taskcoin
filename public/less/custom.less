@@ -1378,7 +1378,7 @@
 
               }
               .options{
-                  padding:.3em .8em;;
+                  padding:.8em;;
                   min-height: 7em;
                   border-bottom: 1px solid #FFF;
                   h2{
@@ -1396,7 +1396,7 @@
               }
           }
 
-          .textbox{
+          .textbox-view{
               padding: 0;
               background-color:lighten(#EAEAE8, 5%);
               border-radius: 0px;
@@ -1413,6 +1413,51 @@
                       height:10em;
                    }
                }
+               .action-btn{
+                 font-size:2.5em;
+                 color:@gray-light;
+                 position: absolute;
+                 top:0em;
+                 right: .5em;
+                 .edit-btn{
+                     margin-left:2em;
+                     &:hover{
+                         color: #FDC740;
+                         cursor: pointer;
+                     }
+                 }
+                 .delete-btn{
+                     &:hover{
+                         color: @brand-danger;
+                         cursor: pointer;
+                     }
+                 }
+               }
+          }
+          .textbox-edit{
+            padding: 0;
+            background-color:lighten(#EAEAE8, 5%);
+            border-radius: 0px;
+            margin-bottom:1.5em;
+            .Q{
+               padding:.8em;
+               border-bottom: 1px solid #FFF;
+               font-size: 1.2em;
+            }
+            .options{
+                padding:.8em;
+                min-height: 7em;
+                border-bottom: 1px solid #FFF;
+                h2{
+                   font-weight: bold;
+                   margin-top:0;
+                   font-size: .9em;
+                }
+            }
+            .footer{
+                padding:.6em;
+                border-top: 1px solid #FFF;
+            }
           }
 
           .segment-title{

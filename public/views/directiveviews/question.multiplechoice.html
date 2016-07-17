@@ -74,29 +74,27 @@
          </div>
          <div class="options col-xs-12">
               <h2>Options</h2>
-              <form name="questionOptions" novalidate>
-                  <div class="checkbox option">
-                    <label style="width:100%">
-                       <input name="agreed" type="checkbox" ng-model="question.options.multi" ng-click="question.options.comment = false">
-                       Allow more than one answer
-                       <span class="pull-right">{{question.options.multi ? 'Yes' : 'No'}}</span>
-                     </label>
-                 </div>
-                 <div class="checkbox option">
-                   <label style="width:100%">
-                      <input name="agreed" type="checkbox" ng-model="question.options.definite">
-                      Require a specific answer (eliminate respondents who don’t meet your criteria)
-                      <span class="pull-right"><b>option: {{question.answer==''? 'none' :question.answer*1+1}}</b></span>
-                    </label>
-                </div>
-                <div class="checkbox option">
-                  <label style="width:100%">
-                     <input name="agreed" type="checkbox" ng-model="question.options.comment" ng-click="question.options.multi = false">
-                     Require an optional open-ended comment
-                     <span class="pull-right"><b>{{question.options.comment ? 'Yes' : 'No'}}</b></span>
-                   </label>
-               </div>
-              </form>
+              <div class="checkbox option">
+                <label style="width:100%">
+                   <input name="agreed" type="checkbox" ng-model="question.options.multi" ng-click="question.options.comment = false">
+                   Allow more than one answer
+                   <span class="pull-right">{{question.options.multi ? 'Yes' : 'No'}}</span>
+                 </label>
+             </div>
+             <div class="checkbox option">
+               <label style="width:100%">
+                  <input name="agreed" type="checkbox" ng-model="question.options.definite">
+                  Require a specific answer (eliminate respondents who don’t meet your criteria)
+                  <span class="pull-right"><b>option: {{question.answer==''? 'none' :question.answer*1+1}}</b></span>
+                </label>
+            </div>
+            <div class="checkbox option">
+              <label style="width:100%">
+                 <input name="agreed" type="checkbox" ng-model="question.options.comment" ng-click="question.options.multi = false">
+                 Require an optional open-ended comment
+                 <span class="pull-right"><b>{{question.options.comment ? 'Yes' : 'No'}}</b></span>
+               </label>
+           </div>
          </div>
          <div class="footer col-xs-12">
              <span class="pull-right">

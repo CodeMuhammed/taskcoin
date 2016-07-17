@@ -12697,7 +12697,7 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   color: #5cb85c;
 }
 .questions-container .question-c .question-editor .options {
-  padding: .3em .8em;
+  padding: .8em;
   min-height: 7em;
   border-bottom: 1px solid #FFF;
 }
@@ -12713,23 +12713,66 @@ textarea.survey-editor-setup-container form .content .input .options-c .options-
   padding: .6em;
   border-top: 1px solid #FFF;
 }
-.questions-container .question-c .textbox {
+.questions-container .question-c .textbox-view {
   padding: 0;
   background-color: #f6f6f5;
   border-radius: 0px;
   margin-bottom: 1.5em;
 }
-.questions-container .question-c .textbox .Q {
+.questions-container .question-c .textbox-view .Q {
   padding: .8em;
   border-bottom: 1px solid #FFF;
   font-size: 1.2em;
 }
-.questions-container .question-c .textbox .answer {
+.questions-container .question-c .textbox-view .answer {
   padding: 1em .8em;
   border-bottom: 1px solid #FFF;
 }
-.questions-container .question-c .textbox .answer textarea {
+.questions-container .question-c .textbox-view .answer textarea {
   height: 10em;
+}
+.questions-container .question-c .textbox-view .action-btn {
+  font-size: 2.5em;
+  color: #777777;
+  position: absolute;
+  top: 0em;
+  right: .5em;
+}
+.questions-container .question-c .textbox-view .action-btn .edit-btn {
+  margin-left: 2em;
+}
+.questions-container .question-c .textbox-view .action-btn .edit-btn:hover {
+  color: #FDC740;
+  cursor: pointer;
+}
+.questions-container .question-c .textbox-view .action-btn .delete-btn:hover {
+  color: #d9534f;
+  cursor: pointer;
+}
+.questions-container .question-c .textbox-edit {
+  padding: 0;
+  background-color: #f6f6f5;
+  border-radius: 0px;
+  margin-bottom: 1.5em;
+}
+.questions-container .question-c .textbox-edit .Q {
+  padding: .8em;
+  border-bottom: 1px solid #FFF;
+  font-size: 1.2em;
+}
+.questions-container .question-c .textbox-edit .options {
+  padding: .8em;
+  min-height: 7em;
+  border-bottom: 1px solid #FFF;
+}
+.questions-container .question-c .textbox-edit .options h2 {
+  font-weight: bold;
+  margin-top: 0;
+  font-size: .9em;
+}
+.questions-container .question-c .textbox-edit .footer {
+  padding: .6em;
+  border-top: 1px solid #FFF;
 }
 .questions-container .question-c .segment-title {
   color: #FFF;

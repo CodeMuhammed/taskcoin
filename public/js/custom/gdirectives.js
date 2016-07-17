@@ -402,6 +402,7 @@ angular.module('general.directives' , [])
          },
          templateUrl:'/views/directiveviews/question.textbox.html',
          controller:function($scope){
+            var original = $scope.question;
              //
              $scope.answer = {
                  type:$scope.question.type,
@@ -409,6 +410,36 @@ angular.module('general.directives' , [])
                  comment:'',
                  status:false
              };
+
+             //
+             //This method triggers the callback set on the parent scope to commence with saving the data
+             $scope.save = function(){
+                 $scope.notifySave({callback:function(status){
+                      if(status){
+                         original = angular.copy($scope.question);
+                      }
+                 }});
+             }
+
+             //This method triggers the callback set on the parent scope to commence with deleting the data
+             $scope.deleteQuestion = function(){
+                 $scope.notifyRemove({index:$scope.index});
+             }
+
+             //This saves the prestine state and switch to the editor mode
+             $scope.editQuestion = function(){
+                 $scope.edit = true;
+                 original = angular.copy($scope.question);
+            }
+
+            //Reverts to previous prestine state
+            $scope.cancel = function(){
+                 $scope.question = original;
+                 $scope.edit = false;
+            }
+
+
+
 
              //Watch the answer and see if it is a valid one
              $scope.$watch('answer.option' , function(newVal){
