@@ -11,9 +11,9 @@ THE INTERVIEWER CARES LESS ABOUT THE ANSWER TO THE QUESTION AND MORE ABOUT THE P
 
 Andela Values @TODO researc more on answering questions related to andela's core values. Tonight
 =============
-Excellence    -- Creativity
-passion     -- Effect change in the world, curiousity
-Integrity   -- Quality over Quantity
+Excellence    -- Creativity and drive for perfection
+passion     --  Extreme curiousity for learning and the creation of products and services with immense benefits to the society.
+Integrity   --   Quality over Quantity - Never providing sup-optimal solutions to problems.
 Collaboration -- Great communications skills and great work ethics
 
 TELL ME ABOUT YOURSELF
@@ -39,12 +39,12 @@ I am fascinated with fin-tech as it relates to micro-payments.So I see myself in
 DO YOU HAVE ANY QUESTIONS FOR ME
 ===============================
 Sure!
-1.The last time i was here, i learnt that Andela is a better alternative to a university degree for tech savvy folks, I am wondering if Andela is planning on becoming as big as say havard.
+1.The last time i was here, i learnt that Andela is a better alternative to a university degree for tech savvy folks, I just can't stop wondering if Andela is planning on becoming as big as - you know! as say havard.
 
 Most Frustrating Scenario As a Technologist - Government policies
 ===================================================================================
-Although government policies have had a net positive effect to innovation and the diffusion of new technologies,
-Some policies as it relates to technology have always been viewed as a doube edged sword.
+Although government policies has had a net positive effect to innovation and the diffusion of new technologies,
+Some policies as it relates to technology has always been viewed as a doube edged sword.
 
 Take Patent laws and intellectual property(IP) rights for instance which encourages universities and independent researchers to place heavy empahsis on patenting results from their findings, which may lead to the impediment of innovation and adoption of new technologies in areas related to their research.
 
